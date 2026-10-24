@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tussle Furniture Co. — furniture that knows when to disappear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f9f5eb;--fg:#17120f;--cobalt:#2f3cf0;--butter:#f4dc6a;--lilac:#cfc3f2;--sage:#b9cdb0;--frame:#17120f;--muted:#5d554d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17120f;--fg:#f9f5eb;--frame:#2e2620;--muted:#b9afa3}}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;overflow-x:clip;background:var(--bg);color:var(--fg);font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.5;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{display:block;line-height:0}.mark{width:76px;height:76px;display:block;transition:transform .45s cubic-bezier(.3,1.8,.5,1)}.logo:hover .mark,.logo:focus-visible .mark{transform:rotate(-10deg) scale(1.1)}.mark.c1{--lg-bg:#2f3cf0;--lg-ink:#f9f5eb}.mark.c2{--lg-bg:#f4dc6a}.mark.c3{--lg-bg:#17120f;--lg-ink:#f9f5eb}.stage{position:relative}.stick{position:absolute;right:-22px;top:-34px;width:112px;height:112px;z-index:2;transform:rotate(12deg);animation:wob 6s ease-in-out infinite}@keyframes wob{50%{transform:rotate(-6deg) scale(1.06)}}.brand{display:flex;gap:18px;flex-wrap:wrap}.brand .mark{width:96px;height:96px}@media (prefers-reduced-motion:reduce){.stick{animation:none}.mark{transition:none}}.fmark{width:40px;height:40px;vertical-align:middle;margin-right:10px}
+nav div{display:flex;gap:26px;align-items:center}
+nav a:not(.logo){text-decoration:none;font-weight:600}
+nav a:not(.logo):hover{text-decoration:underline}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:40px 0 90px}
+h1{font-size:clamp(46px,8vw,96px);line-height:.95;letter-spacing:-.045em;font-weight:800;margin:0 0 24px}
+.lede{font-size:20px;max-width:30ch;color:var(--muted);margin:0 0 32px}
+.btn{font:inherit;font-weight:600;background:var(--fg);color:var(--bg);border:0;border-radius:999px;padding:14px 26px;cursor:pointer}
+.btn:hover{background:var(--cobalt);color:#fff}
+.btn.alt{background:transparent;color:var(--fg);border:2px solid var(--fg);padding:10px 20px}
+.btn.alt:hover{background:var(--fg);color:var(--bg)}
+.stage{perspective:1200px;justify-self:center;width:100%;max-width:400px}
+.cab{position:relative;aspect-ratio:4/5;background:var(--frame);border-radius:16px;padding:12px}
+.in{position:absolute;inset:12px;background:var(--bg);border-radius:8px;overflow:hidden}
+.in svg{width:100%;height:100%;display:block}
+.door{position:absolute;top:12px;bottom:12px;width:calc(50% - 12px);background:var(--cobalt);transition:transform .9s cubic-bezier(.7,0,.2,1);backface-visibility:hidden}
+.door::after{content:"";position:absolute;top:46%;height:8%;width:5px;border-radius:3px;background:var(--bg)}
+.l{left:12px;transform-origin:left center;border-radius:8px 0 0 8px}.l::after{right:10px}
+.r{right:12px;transform-origin:right center;border-radius:0 8px 8px 0}.r::after{left:10px}
+.cab.open .l{transform:rotateY(-112deg)}.cab.open .r{transform:rotateY(112deg)}
+.cap{text-align:center;color:var(--muted);font-size:14px;margin:18px 0 0}
+section{padding:80px 0}
+h2{font-size:clamp(32px,5vw,56px);letter-spacing:-.035em;line-height:1;margin:0 0 12px;font-weight:800}
+.sub{color:var(--muted);max-width:44ch;margin:0 0 40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.card{display:flex;flex-direction:column}
+.tile{aspect-ratio:1;border-radius:22px;display:grid;place-items:center;color:#17120f;margin-bottom:14px}
+.tile svg{width:46%;height:auto}
+.card h3{margin:0;font-size:22px;letter-spacing:-.02em}
+.card p{margin:4px 0 14px;color:var(--muted);font-size:15px;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center}
+.price{font-weight:800}
+.why{background:var(--fg);color:var(--bg)}
+.why .grid{gap:40px}
+.why h3{font-size:26px;letter-spacing:-.02em;margin:0 0 8px;color:var(--butter)}
+.why p{margin:0;opacity:.85}
+.join{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.join input{font:inherit;padding:14px 20px;border-radius:999px;border:2px solid var(--fg);background:transparent;color:var(--fg);min-width:260px;flex:1;max-width:380px}
+footer{padding:40px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.acts{display:flex;gap:12px;flex-wrap:wrap}.in svg{transition:opacity .4s}
+.tick{background:var(--cobalt);color:#f9f5eb;overflow:hidden;white-space:nowrap;padding:16px 0;transform:rotate(-1.6deg);margin:20px -30px 0}.tick div{display:inline-block;animation:tk 40s linear infinite;font-weight:800;font-size:clamp(24px,4.5vw,44px);letter-spacing:-.03em}@keyframes tk{to{transform:translateX(-50%)}}
+.tile{position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.3,1.6,.5,1);cursor:pointer}.tile:hover,.tile:focus-visible{transform:rotate(-2.5deg) scale(1.03)}.tile svg{transition:transform .35s}.tile:hover svg,.tile:focus-visible svg{transform:translateY(-14px) scale(.9)}
+.sec{position:absolute;left:0;right:0;bottom:0;background:var(--fg);color:var(--bg);padding:14px 18px;font-weight:600;font-size:15px;line-height:1.3;transform:translateY(101%);transition:transform .3s}.tile:hover .sec,.tile:focus-visible .sec{transform:none}
+.opts{display:flex;flex-wrap:wrap;gap:12px}.opts .btn[aria-pressed=true]{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}.res{font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-.03em;max-width:26ch;line-height:1.1;margin:28px 0 0;min-height:1.2em}.res a{color:var(--cobalt)}
+.ba{position:relative;--p:50%;border-radius:22px;overflow:hidden;max-width:780px;aspect-ratio:20/11;user-select:none;touch-action:pan-y}.ba svg{position:absolute;inset:0;width:100%;height:100%}.ba .aft{clip-path:inset(0 calc(100% - var(--p)) 0 0)}.ba .line{position:absolute;top:0;bottom:0;left:var(--p);width:4px;margin-left:-2px;background:var(--fg);pointer-events:none}.ba .line::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;margin:-17px;border-radius:50%;background:var(--cobalt);border:3px solid var(--bg)}.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}.ba:focus-within{outline:3px solid var(--cobalt);outline-offset:3px}.ba b{position:absolute;top:12px;padding:4px 12px;border-radius:99px;background:var(--fg);color:var(--bg);font-size:13px;pointer-events:none}
+.lb{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 24px 24px}.lb article{flex:0 0 min(78vw,300px);aspect-ratio:3/4;border-radius:26px;padding:22px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;color:#17120f}.lb h3{font-size:36px;line-height:1;letter-spacing:-.04em;margin:0 0 8px}.lb p{margin:0}
+.bagbtn{font:inherit;font-weight:600;background:var(--fg);color:var(--bg);border:0;border-radius:999px;padding:8px 16px;cursor:pointer}.bump{animation:bp .4s}@keyframes bp{50%{transform:scale(1.25)}}[hidden]{display:none!important}
+#ov{position:fixed;inset:0;background:rgba(23,18,15,.55);z-index:40}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);color:var(--fg);border-left:4px solid var(--fg);padding:24px;padding-top:calc(24px + env(safe-area-inset-top,0px));padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(102%);transition:transform .5s cubic-bezier(.7,0,.2,1);z-index:50;display:flex;flex-direction:column}#drawer.open{transform:none}
+#drawer h2{font-size:32px;margin:0}#drawer .sub{margin:0 0 10px;font-size:15px}.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}#items{flex:1;overflow:auto}.it{display:flex;justify-content:space-between;gap:10px;padding:14px 0;border-bottom:1px solid var(--muted)}.qt{white-space:nowrap}.q{width:30px;height:30px;border-radius:50%;border:2px solid var(--fg);background:transparent;color:var(--fg);font:inherit;font-weight:800;cursor:pointer}.dt{display:flex;justify-content:space-between;font-size:22px;margin:16px 0}
+.pb{height:8px;background:rgba(128,128,128,.3);border-radius:9px;overflow:hidden;margin-bottom:12px}.pb i{display:block;height:100%;width:0;background:var(--cobalt);transition:width .4s}
+details{border-top:2px solid var(--fg);padding:18px 0}details:last-of-type{border-bottom:2px solid var(--fg)}summary{font-weight:800;font-size:22px;letter-spacing:-.02em;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}summary::-webkit-details-marker{display:none}summary::after{content:"+"}details[open] summary::after{content:"–"}details p{max-width:52ch;color:var(--muted);margin:10px 0 0}
+@media (prefers-reduced-motion:reduce){#drawer,.pb i{transition:none}.bump{animation:none}}
+@property --lg-bg{syntax:'<color>';inherits:true;initial-value:#f9f5eb}@property --lg-ink{syntax:'<color>';inherits:true;initial-value:#17120f}
+.logo .mark{transition:transform .45s cubic-bezier(.3,1.8,.5,1),--lg-bg .7s,--lg-ink .7s}.brand .mark{cursor:pointer}
+@media (prefers-reduced-motion:reduce){.logo .mark{transition:none}}
+body{transition:background .8s,color .8s}body.night{--bg:#17120f;--fg:#f9f5eb;--frame:#2e2620;--muted:#b9afa3}body.night .cab{box-shadow:0 0 90px 8px rgba(244,220,106,.22)}.cab::after{content:"Do not disturb";position:absolute;top:50%;left:50%;z-index:3;background:var(--butter);color:#17120f;font-weight:800;font-size:14px;padding:8px 14px;border-radius:99px;white-space:nowrap;transform:translate(-50%,-50%) rotate(-5deg) scale(0);transition:transform .5s cubic-bezier(.3,1.8,.5,1);pointer-events:none}body.night .cab:not(.open)::after{transform:translate(-50%,-50%) rotate(-5deg) scale(1)}@media (prefers-reduced-motion:reduce){body,.cab::after{transition:none}}
+.ba{aspect-ratio:20/12;max-width:920px}.tg{position:absolute;z-index:2;background:var(--bg);color:var(--fg);border:2px solid var(--fg);border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700;pointer-events:none;white-space:nowrap;transition:opacity .3s}.mv{max-width:920px;margin-top:22px}.st{margin-top:22px;gap:14px}.st>div{border:2px solid var(--fg);border-radius:18px;padding:14px 16px}.st b{display:block;font-size:36px;letter-spacing:-.03em;line-height:1.1}.st span{color:var(--muted);font-size:14px}@media (max-width:560px){.tg{font-size:10px;padding:2px 7px}}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-bottom:60px}nav div{gap:16px}nav .hide{display:none}}
+@media (prefers-reduced-motion:reduce){.tick div{animation:none}.tile,.tile svg,.sec{transition:none}.door{transition:none}html{scroll-behavior:auto}}
+
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="0 0 1160 1160"><circle cx="580" cy="580" r="580" style="fill:var(--lg-bg,#f9f5eb)"/>
+  <g transform="translate(74,465)">
+    <path d="M0 0 C5.46 4.64 10.37 9.55 14.94 15.06 C23.43 24.8 35.41 29.2 48.13 30.2 C61.29 30.44 74.09 26.64 83.92 17.66 C86.32 15.23 88.54 12.66 90.76 10.07 C101.95 -2.82 117.12 -12.93 134.52 -14.22 C149.3 -14.65 163.08 -11.25 174.49 -1.5 C178.44 2.34 182.1 6.03 184.56 11 C184.25 14.81 184.25 14.81 183.56 18 C181.12 19 181.12 19 177.56 19 C175.55 17.46 175.55 17.46 173.38 15.38 C164.23 6.64 151.56 3.16 139.06 2.62 C123.14 3.36 110.4 9.75 98.19 19.44 C80.8 33.21 62.83 38.96 40.56 37 C29.21 35.09 17.71 30.01 8.56 23 C7.65 22.61 6.75 22.22 5.81 21.81 C2.81 20.14 1.21 18.75 -1.12 16.31 C-9.89 7.23 -20.53 -0.32 -33.42 -1.2 C-45.54 -1.38 -54.93 1.09 -64 9.44 C-67.75 13.54 -70.33 18.51 -70.5 24.11 C-70.04 29.2 -68.54 33.2 -64.62 36.55 C-54.26 42.81 -42.57 46.26 -31.17 50.14 C-28.03 51.21 -24.89 52.29 -21.75 53.37 C-19.48 54.15 -17.2 54.92 -14.92 55.68 C10.61 64.36 34.52 77.35 58.48 89.59 C124.94 123.52 124.94 123.52 158.56 114 C164.48 111.74 169.66 108.68 173.38 103.44 C175.45 97.42 175.71 91.54 173.06 85.69 C163.98 75.93 151.44 70.93 138.88 67.19 C138.55 67.09 138.55 67.09 136.9 66.6 C125.02 63.26 113.55 62.73 101.31 62.88 C99.78 62.89 98.24 62.89 96.71 62.9 C92.99 62.92 89.28 62.96 85.56 63 C92.76 54.11 101.05 48.67 112.56 47 C135.53 45.13 161.75 52.06 179.99 66.64 C187.71 73.2 193.94 80.45 194.8 90.88 C195.04 101.37 193.23 108.21 186.38 116.25 C173.64 129.5 156.46 134.79 138.44 135.19 C107.19 134.75 81.05 119.41 54.19 105.15 C52.57 104.29 50.94 103.42 49.31 102.56 C48.55 102.16 47.79 101.76 47 101.34 C40.63 97.99 34.15 94.91 27.56 92 C27.33 92.77 27.1 93.55 26.86 94.34 C24.82 100.87 22.61 106.47 18.56 112 C17.84 113.01 17.12 114.02 16.38 115.06 C7.64 125.01 -6.53 131.11 -19.44 133 C-20.13 133.11 -20.82 133.22 -21.53 133.33 C-42.44 136.17 -65.24 132.07 -82.84 120.04 C-90.27 114.2 -98.3 107.19 -101.44 98 C-101.68 95.37 -101.68 95.37 -101.44 93 C-99.44 91 -99.44 91 -97.23 90.59 C-93.34 91.16 -90.8 93.18 -87.75 95.5 C-87.13 95.95 -86.51 96.41 -85.87 96.88 C-82.3 99.52 -78.85 102.28 -75.44 105.12 C-64.94 113.64 -53.05 119.78 -39.44 121 C-38.74 121.06 -38.03 121.13 -37.31 121.2 C-26.73 121.72 -15.72 118.8 -7.27 112.37 C-5.44 111 -5.44 111 -3.32 110.07 C-0.92 108.71 -0.5 107.51 0.56 105 C0.98 104.3 1.39 103.6 1.82 102.88 C5.7 96 6.43 89.83 6.56 82 C5.31 81.63 4.06 81.27 2.77 80.89 C-76.1 57.2 -76.1 57.2 -86.88 39.25 C-90.63 31.45 -90.97 21.87 -88.38 13.63 C-82.26 0.61 -72.49 -5.92 -59.44 -11 C-38.45 -17.58 -17.36 -13.53 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(464.4375,39)"/>
+    <path d="M0 0 C38.28 0 76.56 0 116 0 C116 3.3 116 6.6 116 10 C99.5 10 83 10 66 10 C66 52.9 66 95.8 66 140 C60.06 140 54.12 140 48 140 C48 97.1 48 54.2 48 10 C32.16 10 16.32 10 0 10 C0 6.7 0 3.4 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(15,28)"/>
+    <path d="M0 0 C6.6 0 13.2 0 20 0 C21.47 2.95 21.11 5.55 21.1 8.84 C21.1 9.55 21.09 10.25 21.09 10.98 C21.09 12.51 21.08 14.05 21.08 15.58 C21.06 18.03 21.06 20.47 21.05 22.92 C21.04 29.01 21.01 35.09 20.99 41.18 C20.97 46.31 20.95 51.43 20.94 56.55 C20.94 58.93 20.93 61.31 20.91 63.69 C20.89 71.18 21 78.64 21.39 86.12 C21.42 86.79 21.45 87.47 21.49 88.16 C22.26 100.9 26.12 113.58 34.8 123.11 C44.5 131.47 55.68 132.75 67.98 132.18 C77.37 131.35 85.26 127.02 91.64 120.26 C104.2 104.94 104.45 84.42 104.51 65.62 C104.53 63.72 104.55 61.81 104.57 59.91 C104.61 54.95 104.64 49.99 104.67 45.04 C104.7 39.95 104.75 34.87 104.79 29.79 C104.88 19.86 104.94 9.93 105 0 C109.95 0 114.9 0 120 0 C120.07 11.36 120.12 22.72 120.16 34.09 C120.17 39.36 120.19 44.64 120.23 49.92 C120.26 55.02 120.28 60.12 120.28 65.23 C120.29 67.16 120.3 69.1 120.32 71.04 C120.49 92.53 117.33 112.5 102.56 129.19 C90.63 140.54 73.91 144.05 58 144 C44.75 143.26 33.58 138.94 23 131 C22.18 130.39 21.37 129.78 20.52 129.15 C7.45 118.01 1.81 100.83 0.21 84.23 C-0.26 76.94 -0.12 69.61 -0.1 62.3 C-0.1 60.5 -0.09 58.7 -0.09 56.9 C-0.09 52.19 -0.08 47.48 -0.07 42.76 C-0.06 37.94 -0.05 33.12 -0.05 28.3 C-0.04 18.87 -0.02 9.43 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(188,28)"/>
+    <path d="M0 0 C5.94 0 11.88 0 18 0 C19 1 19 1 19.12 3.14 C19.12 3.61 19.12 3.61 19.12 6.02 C19.12 7.1 19.12 8.19 19.12 9.31 C19.12 10.51 19.12 11.72 19.11 12.96 C19.11 14.21 19.11 15.47 19.11 16.77 C19.11 20.23 19.11 23.69 19.1 27.15 C19.1 30.76 19.09 34.38 19.09 37.99 C19.09 44.83 19.08 51.68 19.07 58.53 C19.06 67.77 19.05 77.02 19.05 86.27 C19.04 100.85 19.02 115.42 19 130 C46.06 130 73.12 130 101 130 C101 133.3 101 136.6 101 140 C67.67 140 34.34 140 0 140 C0 93.8 0 47.6 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(734,28)"/>
+    <path d="M0 0 C32.67 0 65.34 0 99 0 C99 3.3 99 6.6 99 10 C72.6 10 46.2 10 19 10 C19 27.49 19 44.98 19 63 C42.1 63 65.2 63 89 63 C89 66.3 89 69.6 89 73 C65.9 73 42.8 73 19 73 C19 91.81 19 110.62 19 130 C24.91 129.99 30.82 129.98 36.9 129.96 C40.63 129.96 44.37 129.95 48.1 129.95 C54.03 129.95 59.96 129.94 65.89 129.92 C70.67 129.91 75.45 129.91 80.23 129.91 C82.05 129.9 83.88 129.9 85.71 129.89 C88.26 129.89 90.81 129.89 93.36 129.89 C94.12 129.88 94.89 129.88 95.67 129.88 C100.89 129.89 100.89 129.89 102 131 C102 133.97 102 136.94 102 140 C68.34 140 34.68 140 0 140 C0 93.8 0 47.6 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(890,28)"/>
+  </g>
+  <g transform="translate(197,692)">
+    <path d="M0 0 C3.06 2.06 3.06 2.06 5 4 C4.67 4.99 4.34 5.98 4 7 C3.01 6.67 2.02 6.34 1 6 C1 5.34 1 4.68 1 4 C-7.84 2.27 -7.84 2.27 -12.06 4.94 C-14.45 8.71 -15.3 11.55 -15 16 C-14.18 19.42 -12.98 22.16 -10.25 24.5 C-6.91 25.24 -4.31 24.78 -1 24 C0.94 22.44 0.94 22.44 2 21 C2.99 21.33 3.98 21.66 5 22 C4.05 24.38 3.43 25.73 1.23 27.11 C-2.78 28.71 -6.77 28.53 -11 28 C-15.09 26.14 -16.61 24.64 -18.94 20.81 C-20.62 14.76 -20.12 10.24 -17.31 4.62 C-12.28 -1.09 -7.13 -1.99 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(575,16)"/>
+    <path d="M0 0 C3.28 1.79 5.46 4.09 7.38 7.31 C8.56 12.39 8.58 16.4 6.81 21.25 C4.69 24.48 3.43 26.14 0 28 C-4.92 28.66 -9.36 28.65 -14 26.81 C-18.01 23.17 -19.57 19.56 -20.06 14.12 C-19.91 8.96 -18.17 5.14 -14.5 1.56 C-9.59 -1.5 -5.48 -1.36 0 0 Z M-14 6 C-15.75 11.25 -15.89 16.86 -13.75 22 C-11.82 24.21 -10.83 25.21 -8 26 C-3.93 25.93 -1.77 25.64 1.38 23 C3.83 18.47 4.7 14.02 3.52 8.93 C2.51 6.27 1.43 4.34 -0.81 2.56 C-6.59 1.08 -9.74 1.74 -14 6 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(620,16)"/>
+    <path d="M0 0 C5.94 0 11.88 0 18 0 C18 0.66 18 1.32 18 2 C13.38 2.33 8.76 2.66 4 3 C4 6.3 4 9.6 4 13 C7.96 13 11.92 13 16 13 C16 13.66 16 14.32 16 15 C14.02 15.16 14.02 15.16 4 16 C3.67 19.96 3.34 23.92 3 28 C2.01 28 1.02 28 0 28 C0 18.76 0 9.52 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(126,16)"/>
+    <path d="M0 0 C0.99 0 1.98 0 3 0 C3.06 1.23 3.12 2.46 3.18 3.73 C3.27 5.36 3.35 6.99 3.44 8.62 C3.48 9.43 3.52 10.24 3.56 11.07 C3.79 15.45 4.17 19.69 5 24 C13.01 25.42 13.01 25.42 16.5 23.94 C19.83 19.63 19.27 12.92 19.56 7.62 C19.61 6.89 19.65 6.15 19.69 5.39 C19.8 3.6 19.9 1.8 20 0 C20.66 0 21.32 0 22 0 C22.15 3.54 22.23 7.08 22.31 10.62 C22.35 11.62 22.4 12.62 22.44 13.65 C22.58 22 22.58 22 19.69 25.64 C16.3 28.61 14.49 29.08 10 29 C5.34 27.52 2.51 26.22 0 22 C-0.34 19.53 -0.34 19.53 -0.29 16.8 C-0.28 15.82 -0.27 14.84 -0.26 13.83 C-0.25 13.32 -0.25 13.32 -0.19 10.75 C-0.17 9.72 -0.16 8.69 -0.15 7.62 C-0.11 5.08 -0.06 2.54 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(169,16)"/>
+    <path d="M0 0 C2.7 -0.1 5.4 -0.21 8.19 -0.31 C9.03 -0.36 9.87 -0.4 10.74 -0.45 C14.96 -0.53 16.55 -0.35 20.02 2.33 C22 5 22 5 22.56 8 C21.88 11.66 20.61 13.39 18 16 C17.34 16 16.68 16 16 16 C18.31 19.63 20.62 23.26 23 27 C21.68 27.33 20.36 27.66 19 28 C16.9 25.47 15.12 23.26 13.75 20.25 C12 18 12 18 10.04 17.46 C8.03 17.22 6.02 17.1 4 17 C4 20.63 4 24.26 4 28 C2.68 28 1.36 28 0 28 C0 18.76 0 9.52 0 0 Z M4 2 C4 5.96 4 9.92 4 14 C5.75 14.06 7.51 14.12 9.31 14.19 C10.3 14.22 11.28 14.26 12.3 14.29 C15 14 15 14 16.82 12.68 C18.69 10.02 18.52 8.14 18 5 C14.96 2.06 12.25 1.83 8.19 1.81 C6.81 1.87 5.42 1.94 4 2 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(218,16)"/>
+    <path d="M0 0 C2 2 2 2 2.23 4.61 C2.22 5.69 2.21 6.77 2.2 7.88 C2.19 9.05 2.18 10.22 2.18 11.42 C2.16 12.64 2.14 13.86 2.12 15.12 C2.12 16.36 2.11 17.59 2.1 18.86 C2.07 21.9 2.04 24.95 2 28 C0.68 28.33 -0.64 28.66 -2 29 C-4.11 26.42 -6.21 23.83 -8.31 21.25 C-8.91 20.52 -9.5 19.79 -10.12 19.04 C-10.69 18.33 -11.27 17.62 -11.86 16.89 C-12.39 16.24 -12.92 15.59 -13.47 14.92 C-15.02 12.98 -16.51 10.99 -18 9 C-18.33 15.6 -18.66 22.2 -19 29 C-19.99 29 -20.98 29 -22 29 C-22 19.76 -22 10.52 -22 1 C-18 1 -18 1 -15.89 3.09 C-15.16 4.03 -14.44 4.97 -13.69 5.94 C-12.91 6.93 -12.13 7.93 -11.33 8.95 C-10.56 9.96 -9.79 10.96 -9 12 C-7.65 13.73 -6.29 15.46 -4.94 17.19 C-3.96 18.46 -2.98 19.73 -2 21 C-1.97 20.4 -1.95 19.8 -1.92 19.18 C-1.81 16.47 -1.69 13.77 -1.56 11.06 C-1.52 10.12 -1.48 9.17 -1.44 8.2 C-1.4 7.3 -1.36 6.4 -1.32 5.47 C-1.28 4.64 -1.24 3.81 -1.21 2.95 C-1 1 -1 1 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(289,15)"/>
+    <path d="M0 0 C1.32 0 2.64 0 4 0 C4 9.24 4 18.48 4 28 C2.68 28 1.36 28 0 28 C0 18.76 0 9.52 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(318,16)"/>
+    <path d="M0 0 C7.26 0 14.52 0 22 0 C22 0.66 22 1.32 22 2 C19.03 2 16.06 2 13 2 C13 10.25 13 18.5 13 27 C11.68 27.33 10.36 27.66 9 28 C9 19.42 9 10.84 9 2 C6.03 2 3.06 2 0 2 C0 1.34 0 0.68 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(347,16)"/>
+    <path d="M0 0 C0.99 0 1.98 0 3 0 C3.66 7.92 4.32 15.84 5 24 C14 25 14 25 16.52 23.63 C18.68 19.79 18.67 16.28 18.75 11.94 C18.76 11.53 18.76 11.53 18.84 9.47 C18.95 6.31 19 3.16 19 0 C19.99 0 20.98 0 22 0 C22.12 3.56 22.19 7.12 22.25 10.69 C22.27 11.19 22.27 11.19 22.35 13.74 C22.45 21.22 22.45 21.22 20.19 25.12 C17.2 27.69 14.9 28.41 11 29 C7.1 28.41 4.8 27.69 1.81 25.12 C-0.92 20.41 -0.43 16.02 -0.25 10.69 C-0.23 9.66 -0.21 8.63 -0.2 7.58 C-0.15 5.05 -0.08 2.53 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(393,16)"/>
+    <path d="M0 0 C2.72 -0.08 5.44 -0.16 8.25 -0.25 C9.1 -0.29 9.95 -0.32 10.83 -0.36 C14.55 -0.42 16.41 -0.43 19.49 1.83 C21.46 4.66 21.93 6.56 22 10 C20.75 12.81 20.75 12.81 19 15 C18.01 15.33 17.02 15.66 16 16 C16.43 16.7 16.87 17.4 17.31 18.12 C17.87 19.03 18.43 19.94 19 20.88 C19.56 21.78 20.11 22.68 20.69 23.62 C22 26 22 26 22 28 C19.81 28 19.81 28 17 27 C14.66 24.12 12 20.81 12 17 C9.36 17 6.72 17 4 17 C4 20.63 4 24.26 4 28 C2.68 28 1.36 28 0 28 C0 18.76 0 9.52 0 0 Z M4 2 C4 5.96 4 9.92 4 14 C5.75 14.08 7.51 14.16 9.31 14.25 C9.81 14.27 9.81 14.27 12.3 14.39 C15 14 15 14 16.86 12.18 C18 10 18 10 17.94 6.88 C17 4 17 4 15.24 2.83 C11.49 1.44 7.97 1.88 4 2 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(442,16)"/>
+    <path d="M0 0 C6.27 0 12.54 0 19 0 C19 0.66 19 1.32 19 2 C14.05 2 9.1 2 4 2 C4 5.3 4 8.6 4 12 C7.96 12 11.92 12 16 12 C16 12.99 16 13.98 16 15 C12.04 15 8.08 15 4 15 C4 18.3 4 21.6 4 25 C8.62 25 13.24 25 18 25 C18.33 25.99 18.66 26.98 19 28 C12.73 28 6.46 28 0 28 C0 18.76 0 9.52 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(490,16)"/>
+    <path d="M0 0 C26.73 0 53.46 0 81 0 C80.67 0.99 80.34 1.98 80 3 C53.6 3 27.2 3 0 3 C0 2.01 0 1.02 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(7,29)"/>
+    <path d="M0 0 C27.06 0 54.12 0 82 0 C82 0.99 82 1.98 82 3 C55.27 3 28.54 3 1 3 C0.67 2.01 0.34 1.02 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(680,29)"/>
+    <path d="M0 0 C0.66 0.16 0.66 0.16 4 1 C3.67 2.32 3.34 3.64 3 5 C1.68 4.67 0.36 4.34 -1 4 C-0.67 2.68 -0.34 1.36 0 0 Z " style="fill:var(--lg-ink,#17120f)" transform="translate(651,39)"/>
+  </g>
+</symbol></svg>
+<header class="wrap">
+<nav>
+<a class="logo" href="#top" aria-label="Tussle Furniture Co. home"><svg class="mark" viewBox="0 0 1160 1160" role="img" aria-label="Tussle Furniture Co."><use href="#logo"/></svg></a>
+<div><a class="hide" href="#shop">Shop</a><a class="hide" href="#why">Why Tussle</a><a href="#join">Join the list</a><button class="bagbtn" id="bag" aria-controls="drawer" aria-expanded="false">Bag (0)</button></div>
+</nav>
+</header>
+<main id="top">
+<div class="wrap hero">
+<div>
+<h1>Furniture that knows when to disappear.</h1>
+<p class="lede">Fold-away desks, hidden storage and quiet little accessories for rooms that do everything.</p>
+<div class="acts"><button class="btn" id="open" aria-pressed="false">Open it</button><button class="btn alt" id="next">Show me another</button></div>
+</div>
+<div>
+<div class="stage">
+<svg class="stick mark c1" viewBox="0 0 1160 1160" aria-hidden="true"><use href="#logo"/></svg>
+<div class="cab" id="cab">
+<div class="in" aria-hidden="true">
+<svg viewBox="0 0 100 125"><rect x="0" y="0" width="100" height="125" fill="none"/><rect x="6" y="72" width="88" height="6" rx="2" fill="#17120f"/><rect x="14" y="78" width="4" height="40" fill="#17120f"/><rect x="82" y="78" width="4" height="40" fill="#17120f"/><rect x="28" y="48" width="38" height="24" rx="2" fill="#17120f"/><rect x="31" y="51" width="32" height="18" fill="#f4dc6a"/><path d="M80 72V42l-10-8" stroke="#2f3cf0" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="66" cy="33" r="6" fill="#2f3cf0"/><rect x="10" y="12" width="26" height="4" rx="2" fill="#cfc3f2"/><rect x="10" y="22" width="18" height="4" rx="2" fill="#b9cdb0"/></svg>
+</div>
+<div class="door l"></div><div class="door r"></div>
+</div>
+</div>
+<p class="cap" id="cap" aria-live="polite">That’s the Hush desk. It lives in 12 cm of wall.</p>
+</div>
+</div>
+
+<div class="tick" aria-hidden="true"><div id="tk"></div></div>
+<section id="shop"><div class="wrap">
+<h2>Shop the quiet stuff</h2>
+<p class="sub">Five pieces to start. Each one does a job and then gets out of the way. Hover or tap a tile for its secret.</p>
+<div class="grid">
+<article class="card"><div class="tile" style="background:#e9b8c4"><svg viewBox="0 0 80 80" fill="none" stroke="#17120f" stroke-width="4" stroke-linejoin="round"><rect x="8" y="30" width="64" height="26" rx="8"/><path d="M8 44h64M20 56v8M60 56v8"/><path d="M16 30v-8a6 6 0 0 1 6-6h36a6 6 0 0 1 6 6v8"/></svg></div><h3>Love Glide</h3><p>A sofa for two that reclines, lifts and lies flat. Looks like a plain sofa from the outside.</p><div class="row"><span class="price">₹34,900</span><button class="btn alt add">Add to bag</button></div></article>
+<article class="card"><div class="tile" style="background:var(--cobalt)"><svg viewBox="0 0 80 80" fill="none" stroke="#f9f5eb" stroke-width="4" stroke-linejoin="round"><rect x="14" y="8" width="52" height="64" rx="4"/><path d="M14 44h52M30 44v28"/></svg></div><h3>Hush desk</h3><p>A wall cabinet that folds out into a 90 cm desk, then closes like it was never there.</p><div class="row"><span class="price">₹18,900</span><button class="btn alt add">Add to bag</button></div></article>
+<article class="card"><div class="tile" style="background:var(--butter)"><svg viewBox="0 0 80 80" fill="none" stroke="#17120f" stroke-width="4" stroke-linejoin="round"><rect x="10" y="26" width="60" height="38" rx="10"/><path d="M10 40h60"/></svg></div><h3>Stash ottoman</h3><p>Seat, footrest and 80 litres of hidden storage for the things you’d rather not see.</p><div class="row"><span class="price">₹6,400</span><button class="btn alt add">Add to bag</button></div></article>
+<article class="card"><div class="tile" style="background:var(--lilac)"><svg viewBox="0 0 80 80" fill="none" stroke="#17120f" stroke-width="4" stroke-linejoin="round"><rect x="8" y="30" width="64" height="14" rx="3"/><path d="M28 37h24"/><path d="M20 44v8M60 44v8"/></svg></div><h3>Nook shelf</h3><p>A floating shelf with a secret drawer for chargers, spare keys and tiny treasures.</p><div class="row"><span class="price">₹3,200</span><button class="btn alt add">Add to bag</button></div></article>
+<article class="card"><div class="tile" style="background:var(--sage)"><svg viewBox="0 0 80 80" fill="none" stroke="#17120f" stroke-width="4" stroke-linejoin="round"><rect x="12" y="24" width="56" height="34" rx="8"/><path d="M26 41h28M40 58v10"/></svg></div><h3>Tidy box</h3><p>Swallows power strips and cable tangles. Cords go in one side and out the other.</p><div class="row"><span class="price">₹1,450</span><button class="btn alt add">Add to bag</button></div></article>
+</div>
+</div></section>
+
+<section id="quiz"><div class="wrap"><h2>Which piece is yours?</h2><p class="sub">Pick your biggest headache. We’ll point you to the fix.</p>
+<div class="opts" id="opts"><button class="btn alt" aria-pressed="false" data-k="0">Nowhere to work</button><button class="btn alt" aria-pressed="false" data-k="1">Too much stuff</button><button class="btn alt" aria-pressed="false" data-k="2">Cable chaos</button><button class="btn alt" aria-pressed="false" data-k="3">Friends sleep over</button></div>
+<p class="res" id="res" aria-live="polite"></p></div></section>
+
+<section id="move"><div class="wrap"><h2>Move-in day, solved</h2><p class="sub">Same 9 m² room. Drag the line, or tap a button, and watch the mess disappear.</p>
+<div class="ba" id="ba"><svg class="bef" viewBox="0 0 200 120" aria-hidden="true"><rect width="200" height="120" fill="#e3d8c0"/><rect y="84" width="200" height="36" fill="#c9bb9c"/><rect x="82" y="14" width="34" height="38" rx="2" fill="#f2efe4"/><path d="M99 14v38M82 33h34" stroke="#c9bb9c" stroke-width="2"/><rect x="8" y="58" width="72" height="30" rx="4" fill="#8f8577"/><rect x="12" y="50" width="22" height="11" rx="5" fill="#bdb3a2"/><path d="M40 62q14-8 30 0l8 22H34z" fill="#6f665a"/><ellipse cx="108" cy="96" rx="20" ry="8" fill="#6b5b8a"/><ellipse cx="122" cy="91" rx="13" ry="6" fill="#b4574a"/><ellipse cx="98" cy="90" rx="11" ry="5" fill="#4a6b7a"/><rect x="140" y="68" width="52" height="5" fill="#17120f"/><rect x="146" y="73" width="4" height="22" fill="#17120f"/><rect x="182" y="73" width="4" height="22" fill="#17120f"/><rect x="148" y="52" width="26" height="16" fill="#9a8f80"/><rect x="156" y="42" width="20" height="10" fill="#bdb3a2"/><rect x="178" y="58" width="8" height="10" fill="#b4574a"/><rect x="140" y="96" width="26" height="20" fill="#b58b5a"/><rect x="164" y="102" width="22" height="14" fill="#a07a4c"/><path d="M152 73C140 100 120 82 100 106S60 100 40 114" stroke="#17120f" stroke-width="1.6" fill="none"/><path d="M156 73C166 106 128 108 112 114" stroke="#2f3cf0" stroke-width="1.6" fill="none"/></svg>
+<svg class="aft" viewBox="0 0 200 120" aria-hidden="true"><rect width="200" height="120" fill="#efe7d6"/><rect y="84" width="200" height="36" fill="#ddd2ba"/><rect x="82" y="14" width="34" height="38" rx="2" fill="#fbf3c9"/><path d="M99 14v38M82 33h34" stroke="#ddd2ba" stroke-width="2"/><ellipse cx="60" cy="102" rx="46" ry="9" fill="#cfc3f2" opacity=".55"/><rect x="8" y="58" width="72" height="30" rx="5" fill="#cfc3f2"/><rect x="12" y="50" width="22" height="11" rx="5" fill="#f4dc6a"/><rect x="38" y="58" width="42" height="30" rx="5" fill="#2f3cf0"/><rect x="88" y="78" width="34" height="18" rx="7" fill="#f4dc6a"/><path d="M88 87h34" stroke="#17120f" stroke-width="1.5"/><rect x="14" y="30" width="38" height="5" rx="2" fill="#b9cdb0"/><circle cx="24" cy="26" r="5" fill="#6aa86a"/><rect x="21" y="29" width="6" height="3" fill="#17120f"/><rect x="34" y="26" width="10" height="4" fill="#cfc3f2"/><rect x="142" y="16" width="44" height="68" rx="3" fill="#2f3cf0"/><path d="M164 16v68" stroke="#f9f5eb" stroke-width="1.5"/><rect x="159" y="46" width="2" height="8" rx="1" fill="#f9f5eb"/><rect x="167" y="46" width="2" height="8" rx="1" fill="#f9f5eb"/><rect x="130" y="100" width="22" height="12" rx="3" fill="#b9cdb0"/></svg>
+<span class="tg ta" style="left:5%;top:20%">Nook shelf</span><span class="tg ta" style="left:44%;top:60%">Stash ottoman</span><span class="tg ta" style="left:68%;top:8%">Hush desk</span><span class="tg ta" style="left:62%;top:86%">Tidy box</span>
+<span class="tg tb" style="left:70%;top:30%">No desk, just a pile</span><span class="tg tb" style="left:48%;top:80%">Cables everywhere</span><span class="tg tb" style="left:76%;top:86%">Boxes still packed</span>
+<b style="left:12px">After</b><b style="right:12px">Before</b><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Compare before and after"></div>
+<div class="mv"><div class="opts" id="pre"><button class="btn alt" aria-pressed="false" data-v="0">Move-in mess</button><button class="btn alt" aria-pressed="false" data-v="50">Halfway</button><button class="btn alt" aria-pressed="false" data-v="100">Sorted</button></div>
+<div class="grid st" aria-live="polite"><div><b id="s1">41%</b><span>floor space free</span></div><div><b id="s2">8</b><span>things in sight</span></div><div><b id="s3">3</b><span>cables you can see</span></div></div></div></div></section>
+
+<section class="why" id="why"><div class="wrap">
+<h2>Made for small rooms and big lives</h2>
+<p class="sub" style="color:inherit;opacity:.75">Hostel rooms, shared flats, first apartments. We design for the space you actually have.</p>
+<div class="grid">
+<div><h3>Small-room smart</h3><p>Every piece does at least two jobs, so one room can be a bedroom, an office and a place to have friends over.</p></div>
+<div><h3>Hides the mess</h3><p>Storage you can’t see means a room that looks calm, even on the days it isn’t.</p></div>
+<div><h3>Rental friendly</h3><p>Flat-packed and tool-light, so moving day takes an afternoon instead of a week.</p></div>
+</div>
+</div></section>
+
+<section id="look" style="padding-bottom:40px"><div class="wrap"><h2>Rooms we dream about</h2><p class="sub">Real customer rooms are coming soon. Until then, these are the moods we design for.</p></div>
+<div class="lb" tabindex="0" role="region" aria-label="Room moods, scrollable"><article style="background:var(--cobalt);color:#f9f5eb"><h3>9 m² hostel room</h3><p>The desk folds away so the bed isn’t the whole room.</p></article><article style="background:var(--butter)"><h3>Shared flat, Gachibowli</h3><p>Your corner, tidy, even when the living room isn’t.</p></article><article style="background:var(--lilac)"><h3>First studio</h3><p>One room, five jobs, zero clutter.</p></article><article style="background:var(--sage)"><h3>Parents’ spare room</h3><p>Looks like a guest room, works like your office.</p></article></div></section>
+
+<section id="faq"><div class="wrap"><h2>Quick answers</h2><p class="sub">The stuff people ask before they buy.</p>
+<details><summary>Do I need tools to put it together?</summary><p>Just the Allen key in the box. Most pieces take under 20 minutes.</p></details>
+<details><summary>Can I take it with me when I move?</summary><p>Yes. Everything comes apart and flat-packs again, so moving day stays easy.</p></details>
+<details><summary>How much space does the Hush desk need?</summary><p>It is 12 cm deep when closed, so it sits almost flat against the wall.</p></details>
+<details><summary>Do you deliver in Hyderabad?</summary><p>Yes, we start in Hyderabad and add more cities soon.</p></details>
+</div></section>
+
+<section id="join"><div class="wrap">
+<h2>Get first dibs on new drops</h2>
+<p class="sub">One email when something new lands. No spam.</p>
+<div class="join"><input type="email" id="em" placeholder="you@email.com" aria-label="Email address"><button class="btn" id="go">Join the list</button></div>
+<p id="msg" aria-live="polite" class="sub" style="margin-top:14px"></p>
+</div></section>
+</main>
+<section style="padding:20px 0 60px"><div class="wrap"><h2 style="font-size:28px;margin-bottom:20px">The mark, in four moods</h2><div class="brand"><svg class="mark " viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg><svg class="mark c1" viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg><svg class="mark c2" viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg><svg class="mark c3" viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg></div></div></section>
+<div id="ov" hidden></div>
+<aside id="drawer" aria-label="Your bag"><div class="dh"><h2>Your bag</h2><button class="btn alt" id="dc">Close</button></div><div id="items"></div><p class="sub" id="free" aria-live="polite"></p><div class="pb"><i id="bar"></i></div><div class="dt"><span>Total</span><b id="tot">₹0</b></div><button class="btn" id="ck">Checkout</button><p class="sub" id="ckm" aria-live="polite" style="margin-top:10px"></p></aside>
+<footer><div class="wrap"><span><svg class="fmark" viewBox="0 0 1160 1160" aria-hidden="true"><use href="#logo"/></svg>© 2026 Tussle Furniture Co.</span><span>Hyderabad, India</span></div></footer>
+<script>
+var cab=document.getElementById('cab'),ob=document.getElementById('open');
+function set(o){cab.classList.toggle('open',o);ob.setAttribute('aria-pressed',o);ob.textContent=o?'Close it':'Open it'}
+ob.onclick=function(){set(!cab.classList.contains('open'))};
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches,inn=cab.querySelector('.in'),cap=document.getElementById('cap'),i=0;
+var sc=[{c:cap.textContent,s:inn.innerHTML},
+{c:'That’s the Fold bed. Gone by 9 a.m.',s:'<svg viewBox="0 0 100 125"><circle cx="76" cy="26" r="9" fill="#f4dc6a"/><circle cx="60" cy="14" r="2" fill="#2f3cf0"/><circle cx="86" cy="50" r="2" fill="#2f3cf0"/><rect x="6" y="84" width="88" height="8" rx="2" fill="#17120f"/><rect x="6" y="64" width="88" height="20" rx="6" fill="#cfc3f2"/><rect x="10" y="54" width="26" height="12" rx="6" fill="#f4dc6a"/><rect x="44" y="64" width="50" height="20" rx="6" fill="#2f3cf0"/><rect x="10" y="92" width="4" height="26" fill="#17120f"/><rect x="86" y="92" width="4" height="26" fill="#17120f"/></svg>'},
+{c:'That’s the Glow vanity. The mirror hides the rest.',s:'<svg viewBox="0 0 100 125"><circle cx="50" cy="44" r="26" fill="#cfc3f2" stroke="#17120f" stroke-width="4"/><path d="M38 36q6-8 16-6" stroke="#f9f5eb" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="10" y="82" width="80" height="7" rx="2" fill="#17120f"/><rect x="16" y="89" width="4" height="30" fill="#17120f"/><rect x="80" y="89" width="4" height="30" fill="#17120f"/><rect x="28" y="89" width="44" height="14" rx="2" fill="#b9cdb0"/><rect x="46" y="94" width="8" height="3" rx="1" fill="#17120f"/><rect x="68" y="68" width="10" height="14" rx="2" fill="#2f3cf0"/></svg>'}];
+document.getElementById('next').onclick=function(){set(false);setTimeout(function(){i=(i+1)%sc.length;inn.innerHTML=sc[i].s;cap.textContent=sc[i].c;set(true)},rm?0:950)};
+var u='Now you see it ✦ Now you don’t ✦ Fold it ✦ Stash it ✦ Forget it ✦ ';document.getElementById('tk').textContent=u.repeat(3)+u.repeat(3);
+var S=['Six modes. Discreet from the outside.','Folds flat. Holds a 15-inch laptop.','80 L inside. The lid takes 60 kg.','The drawer fits six chargers and a power bank.','Fits a six-way strip. Cords exit both sides.'];
+document.querySelectorAll('.tile').forEach(function(t,k){t.tabIndex=0;t.insertAdjacentHTML('beforeend','<span class="sec">'+S[k]+'</span>')});
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setTimeout(function(){set(true)},900);
+var cart={},dr=document.getElementById('drawer'),ov=document.getElementById('ov'),bg=document.getElementById('bag'),FREE=5000;dr.inert=true;
+function fmt(v){return '₹'+v.toLocaleString('en-IN')}
+function draw(){var ks=Object.keys(cart),c=0,t=0,h='';ks.forEach(function(k){var x=cart[k];c+=x.q;t+=x.q*x.p;h+='<div class="it"><div><b>'+k+'</b><br>'+fmt(x.p)+'</div><div class="qt"><button class="q" data-k="'+k+'" data-d="-1" aria-label="Remove one '+k+'">−</button> '+x.q+' <button class="q" data-k="'+k+'" data-d="1" aria-label="Add one '+k+'">+</button></div></div>'});
+document.getElementById('items').innerHTML=h||'<p class="sub">Your bag is empty. Pick something from the shop.</p>';document.getElementById('tot').textContent=fmt(t);bg.textContent='Bag ('+c+')';
+document.getElementById('free').textContent=t>=FREE?'You’ve unlocked free delivery.':(t?'Add '+fmt(FREE-t)+' more for free delivery.':'Free delivery over '+fmt(FREE)+'.');document.getElementById('bar').style.width=Math.min(100,t/FREE*100)+'%'}
+function tog(o){dr.classList.toggle('open',o);dr.inert=!o;ov.hidden=!o;bg.setAttribute('aria-expanded',o);(o?document.getElementById('dc'):bg).focus()}
+bg.onclick=function(){tog(true)};document.getElementById('dc').onclick=ov.onclick=function(){tog(false)};
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dr.classList.contains('open'))tog(false)});
+document.getElementById('items').onclick=function(e){var b=e.target.closest('.q');if(!b)return;var x=cart[b.dataset.k];x.q+=+b.dataset.d;if(x.q<1)delete cart[b.dataset.k];draw()};
+document.querySelectorAll('.add').forEach(function(b){b.onclick=function(){var cd=b.closest('.card'),k=cd.querySelector('h3').textContent,p=+cd.querySelector('.price').textContent.replace(/\D/g,'');cart[k]=cart[k]||{p:p,q:0};cart[k].q++;draw();b.textContent='Added';setTimeout(function(){b.textContent='Add to bag'},1200);bg.classList.remove('bump');void bg.offsetWidth;bg.classList.add('bump')}});
+document.getElementById('ck').onclick=function(){document.getElementById('ckm').textContent=Object.keys(cart).length?'Checkout isn’t live yet. Payments get added before launch.':'Add something to your bag first.'};
+draw();
+document.getElementById('go').onclick=function(){var v=document.getElementById('em').value,m=document.getElementById('msg');m.textContent=/\S+@\S+\.\S+/.test(v)?'You’re on the list. Watch your inbox.':'Enter a valid email address to join.'};
+var R=['the Hush desk. It folds out for work and vanishes after.','the Stash ottoman. 80 litres of hiding place you can sit on.','the Tidy box. Power strips go in, cables disappear.','the Fold bed, coming soon. <a href="#join">Join the list</a> for first dibs.'];
+document.querySelectorAll('#opts button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#opts button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});document.getElementById('res').innerHTML='Try '+R[b.dataset.k]}});
+var ba=document.querySelector('.ba');ba.querySelector('input').oninput=function(e){ba.style.setProperty('--p',e.target.value+'%')};
+var lg=document.querySelector('.logo .mark'),cs=['','c1','c2','c3'],ci=0,tm;
+function setC(i){ci=i;lg.setAttribute('class','mark '+cs[i])}
+function auto(){clearInterval(tm);if(!rm)tm=setInterval(function(){setC((ci+1)%4)},2600)}
+document.querySelector('.logo').addEventListener('click',function(){setC((ci+1)%4);auto()});
+document.querySelectorAll('.brand .mark').forEach(function(m,i){m.tabIndex=0;m.onclick=function(){setC(i);auto();scrollTo({top:0,behavior:rm?'auto':'smooth'})};m.onkeydown=function(e){if(e.key==='Enter')m.onclick()}});
+auto();
+</script>
+<script>(function(){var ba=document.getElementById('ba'),inp=ba.querySelector('input'),ta=ba.querySelectorAll('.ta'),tb=ba.querySelectorAll('.tb'),s=[document.getElementById('s1'),document.getElementById('s2'),document.getElementById('s3')],rmm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function set(v){v=Math.max(0,Math.min(100,v));inp.value=v;ba.style.setProperty('--p',v+'%');var t=v/100;ta.forEach(function(e){e.style.opacity=v>40?1:0});tb.forEach(function(e){e.style.opacity=v<60?1:0});s[0].textContent=Math.round(18+46*t)+'%';s[1].textContent=Math.round(14-11*t);s[2].textContent=Math.round(6-6*t)}
+inp.oninput=function(){set(+inp.value)};
+function go(to,ms,cb){var from=+inp.value,t0=null;if(rmm){set(to);if(cb)cb();return}function f(ts){t0=t0||ts;var k=Math.min(1,(ts-t0)/ms);k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;set(from+(to-from)*k);if(k<1)requestAnimationFrame(f);else if(cb)cb()}requestAnimationFrame(f)}
+document.querySelectorAll('#pre button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#pre button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});go(+b.dataset.v,700)}});
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();go(0,700,function(){go(100,1400)})}},{threshold:.6});io.observe(ba)}
+set(50)})();</script>
+</body>
+</html>
