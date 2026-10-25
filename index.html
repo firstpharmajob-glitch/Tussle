@@ -54,7 +54,7 @@ h2{font-size:clamp(32px,5vw,56px);letter-spacing:-.035em;line-height:1;margin:0 
 .why .grid{gap:40px}
 .why h3{font-size:26px;letter-spacing:-.02em;margin:0 0 8px;color:var(--butter)}
 .why p{margin:0;opacity:.85}
-.join{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.join{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.join .trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 .join input{font:inherit;padding:14px 20px;border-radius:999px;border:2px solid var(--fg);background:transparent;color:var(--fg);min-width:260px;flex:1;max-width:380px}
 footer{padding:40px 0;color:var(--muted);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -192,8 +192,8 @@ body{transition:background .8s,color .8s}body.night{--bg:#17120f;--fg:#f9f5eb;--
 <section id="join"><div class="wrap">
 <h2>Get first dibs on new drops</h2>
 <p class="sub">One email when something new lands. No spam.</p>
-<div class="join"><input type="email" id="em" placeholder="you@email.com" aria-label="Email address"><button class="btn" id="go">Join the list</button></div>
-<p id="msg" aria-live="polite" class="sub" style="margin-top:14px"></p>
+<form class="join" id="join-form"><input type="email" id="em" name="email" placeholder="you@email.com" aria-label="Email address" autocomplete="email" maxlength="254" required><label class="trap" aria-hidden="true">Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label><button class="btn" id="go" type="submit">Join the list</button></form>
+<p id="msg" role="status" aria-live="polite" class="sub" style="margin-top:14px"></p>
 </div></section>
 </main>
 <section style="padding:20px 0 60px"><div class="wrap"><h2 style="font-size:28px;margin-bottom:20px">The mark, in four moods</h2><div class="brand"><svg class="mark " viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg><svg class="mark c1" viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg><svg class="mark c2" viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg><svg class="mark c3" viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg></div></div></section>
@@ -230,7 +230,7 @@ document.getElementById('items').onclick=function(e){var b=e.target.closest('.q'
 document.querySelectorAll('.add').forEach(function(b){b.onclick=function(){var cd=b.closest('.card'),k=cd.querySelector('h3').textContent,p=Number(cd.querySelector('.price').textContent.replace(/\D/g,''));cart[k]=cart[k]||{p:p,q:0};cart[k].q++;saveCart();draw();b.textContent='Added';setTimeout(function(){b.textContent='Add to bag'},1200);bg.classList.remove('bump');void bg.offsetWidth;bg.classList.add('bump')}});
 document.getElementById('ck').onclick=function(){document.getElementById('ckm').textContent='Online payments are not set up yet. Your bag is saved on this device.'};
 draw();
-document.getElementById('go').onclick=function(){var input=document.getElementById('em'),m=document.getElementById('msg');if(!input.checkValidity()){input.reportValidity();return}m.textContent='Email signup is not connected yet. Please check back soon.'};
+document.getElementById('join-form').addEventListener('submit',async function(e){e.preventDefault();var form=e.currentTarget,input=document.getElementById('em'),button=document.getElementById('go'),message=document.getElementById('msg');if(!form.reportValidity())return;button.disabled=true;button.textContent='Joining…';message.textContent='';try{var response=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:input.value,website:form.elements.website.value})}),result=await response.json();if(!response.ok)throw new Error(result.message||'We could not save your email. Please try again.');message.textContent=result.message;form.reset()}catch(error){message.textContent=error.message||'We could not reach the signup service. Please try again.'}finally{button.disabled=false;button.textContent='Join the list'}});
 var R=['the Hush desk. It folds out for work and vanishes after.','the Stash ottoman. 80 litres of hiding place you can sit on.','the Tidy box. Power strips go in, cables disappear.','the Love Glide. A sofa by day, a place for friends to stay at night.'];
 document.querySelectorAll('#opts button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#opts button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});document.getElementById('res').innerHTML='Try '+R[b.dataset.k]}});
 var ba=document.querySelector('.ba');ba.querySelector('input').oninput=function(e){ba.style.setProperty('--p',e.target.value+'%')};
