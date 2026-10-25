@@ -790,7 +790,6 @@ function NewsletterForm() {
           method: "POST",
           headers: {
             apikey: key,
-            Authorization: `Bearer ${key}`,
             "Content-Type": "application/json",
             Prefer: "resolution=ignore-duplicates,return=minimal",
           },
@@ -799,12 +798,18 @@ function NewsletterForm() {
       );
 
       if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          throw new Error(
+            "Supabase denied this signup. Check the newsletter table permissions and RLS policy.",
+          );
+        }
+        if (response.status === 404) {
+          throw new Error(
+            "The newsletter table was not found. Run the Supabase setup SQL and check the project URL.",
+          );
+        }
         throw new Error(
-          response.status === 401 ||
-            response.status === 403 ||
-            response.status === 404
-            ? "Email signup is not configured yet. Please try again soon."
-            : "We could not save your email right now. Please try again.",
+          `We could not save your email (HTTP ${response.status}). Please try again.`,
         );
       }
 
@@ -812,7 +817,9 @@ function NewsletterForm() {
       setEmail("");
     } catch (error) {
       setMessage(
-        error instanceof Error
+        error instanceof TypeError
+          ? "Could not reach Supabase. Check the project URL and your internet connection."
+          : error instanceof Error
           ? error.message
           : "We could not reach the signup service. Please try again.",
       );

@@ -5,6 +5,7 @@ create table if not exists public.newsletter_subscribers (
 
 alter table public.newsletter_subscribers enable row level security;
 
+grant usage on schema public to anon;
 revoke all on table public.newsletter_subscribers from anon, authenticated;
 grant insert on table public.newsletter_subscribers to anon;
 
@@ -14,3 +15,5 @@ create policy "Allow public newsletter signups"
   for insert
   to anon
   with check (email = lower(btrim(email)));
+
+notify pgrst, 'reload schema';
