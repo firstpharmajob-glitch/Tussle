@@ -26,6 +26,7 @@ h1{font-size:clamp(46px,8vw,96px);line-height:.95;letter-spacing:-.045em;font-we
 .lede{font-size:20px;max-width:30ch;color:var(--muted);margin:0 0 32px}
 .btn{font:inherit;font-weight:600;background:var(--fg);color:var(--bg);border:0;border-radius:999px;padding:14px 26px;cursor:pointer}
 .btn:hover{background:var(--cobalt);color:#fff}
+.btn:disabled{opacity:.5;cursor:not-allowed}.btn:disabled:hover{background:var(--fg);color:var(--bg)}
 .btn.alt{background:transparent;color:var(--fg);border:2px solid var(--fg);padding:10px 20px}
 .btn.alt:hover{background:var(--fg);color:var(--bg)}
 .stage{perspective:1200px;justify-self:center;width:100%;max-width:400px}
@@ -215,20 +216,22 @@ var u='By day, furniture ✦ By night, Tussle ✦ Now you see it ✦ Now you don
 var S=['Six modes. Discreet from the outside.','9 to 5 on top. Tap the tile to flip it.','Folds flat. Holds a 15-inch laptop.','80 L inside. The lid takes 60 kg.','The drawer fits six chargers and a power bank.','Fits a six-way strip. Cords exit both sides.'];
 document.querySelectorAll('.tile').forEach(function(t,k){t.tabIndex=0;t.insertAdjacentHTML('beforeend','<span class="sec">'+S[k]+'</span>')});
 if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setTimeout(function(){set(true)},900);
-var cart={},dr=document.getElementById('drawer'),ov=document.getElementById('ov'),bg=document.getElementById('bag'),FREE=5000;dr.inert=true;
+var dr=document.getElementById('drawer'),ov=document.getElementById('ov'),bg=document.getElementById('bag'),FREE=5000,CART_KEY='tussle-cart-v1';
+dr.inert=true;
 function fmt(v){return '₹'+v.toLocaleString('en-IN')}
-function draw(){var ks=Object.keys(cart),c=0,t=0,h='';ks.forEach(function(k){var x=cart[k];c+=x.q;t+=x.q*x.p;h+='<div class="it"><div><b>'+k+'</b><br>'+fmt(x.p)+'</div><div class="qt"><button class="q" data-k="'+k+'" data-d="-1" aria-label="Remove one '+k+'">−</button> '+x.q+' <button class="q" data-k="'+k+'" data-d="1" aria-label="Add one '+k+'">+</button></div></div>'});
-document.getElementById('items').innerHTML=h||'<p class="sub">Your bag is empty. Pick something from the shop.</p>';document.getElementById('tot').textContent=fmt(t);bg.textContent='Bag ('+c+')';
-document.getElementById('free').textContent=t>=FREE?'You’ve unlocked free delivery.':(t?'Add '+fmt(FREE-t)+' more for free delivery.':'Free delivery over '+fmt(FREE)+'.');document.getElementById('bar').style.width=Math.min(100,t/FREE*100)+'%'}
+function loadCart(){try{var saved=JSON.parse(localStorage.getItem(CART_KEY)||'{}'),clean={};Object.keys(saved).forEach(function(k){var x=saved[k];if(x&&Number.isSafeInteger(x.p)&&x.p>0&&Number.isSafeInteger(x.q)&&x.q>0)clean[k]={p:x.p,q:x.q}});return clean}catch(e){return {}}}
+var cart=loadCart();
+function saveCart(){try{localStorage.setItem(CART_KEY,JSON.stringify(cart))}catch(e){document.getElementById('ckm').textContent='Your browser could not save the bag. Keep this tab open while you browse.'}}
+function draw(){var ks=Object.keys(cart),count=0,total=0,items=document.getElementById('items');items.replaceChildren();ks.forEach(function(k){var x=cart[k],row=document.createElement('div'),info=document.createElement('div'),name=document.createElement('b'),qty=document.createElement('div'),minus=document.createElement('button'),plus=document.createElement('button');count+=x.q;total+=x.q*x.p;row.className='it';qty.className='qt';name.textContent=k;info.append(name,document.createElement('br'),document.createTextNode(fmt(x.p)));minus.className=plus.className='q';minus.type=plus.type='button';minus.textContent='−';plus.textContent='+';minus.setAttribute('aria-label','Remove one '+k);plus.setAttribute('aria-label','Add one '+k);minus.dataset.k=plus.dataset.k=k;minus.dataset.d='-1';plus.dataset.d='1';qty.append(minus,document.createTextNode(' '+x.q+' '),plus);row.append(info,qty);items.append(row)});if(!ks.length){var empty=document.createElement('p');empty.className='sub';empty.textContent='Your bag is empty. Pick something from the shop.';items.append(empty)}document.getElementById('tot').textContent=fmt(total);bg.textContent='Bag ('+count+')';document.getElementById('free').textContent=total>=FREE?'You’ve unlocked free delivery.':(total?'Add '+fmt(FREE-total)+' more for free delivery.':'Free delivery over '+fmt(FREE)+'.');document.getElementById('bar').style.width=Math.min(100,total/FREE*100)+'%';document.getElementById('ck').disabled=!count}
 function tog(o){dr.classList.toggle('open',o);dr.inert=!o;ov.hidden=!o;bg.setAttribute('aria-expanded',o);(o?document.getElementById('dc'):bg).focus()}
 bg.onclick=function(){tog(true)};document.getElementById('dc').onclick=ov.onclick=function(){tog(false)};
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dr.classList.contains('open'))tog(false)});
-document.getElementById('items').onclick=function(e){var b=e.target.closest('.q');if(!b)return;var x=cart[b.dataset.k];x.q+=+b.dataset.d;if(x.q<1)delete cart[b.dataset.k];draw()};
-document.querySelectorAll('.add').forEach(function(b){b.onclick=function(){var cd=b.closest('.card'),k=cd.querySelector('h3').textContent,p=+cd.querySelector('.price').textContent.replace(/\D/g,'');cart[k]=cart[k]||{p:p,q:0};cart[k].q++;draw();b.textContent='Added';setTimeout(function(){b.textContent='Add to bag'},1200);bg.classList.remove('bump');void bg.offsetWidth;bg.classList.add('bump')}});
-document.getElementById('ck').onclick=function(){document.getElementById('ckm').textContent=Object.keys(cart).length?'Checkout isn’t live yet. Payments get added before launch.':'Add something to your bag first.'};
+document.getElementById('items').onclick=function(e){var b=e.target.closest('.q');if(!b)return;var x=cart[b.dataset.k];if(!x)return;x.q+=Number(b.dataset.d);if(x.q<1)delete cart[b.dataset.k];saveCart();draw()};
+document.querySelectorAll('.add').forEach(function(b){b.onclick=function(){var cd=b.closest('.card'),k=cd.querySelector('h3').textContent,p=Number(cd.querySelector('.price').textContent.replace(/\D/g,''));cart[k]=cart[k]||{p:p,q:0};cart[k].q++;saveCart();draw();b.textContent='Added';setTimeout(function(){b.textContent='Add to bag'},1200);bg.classList.remove('bump');void bg.offsetWidth;bg.classList.add('bump')}});
+document.getElementById('ck').onclick=function(){document.getElementById('ckm').textContent='Online payments are not set up yet. Your bag is saved on this device.'};
 draw();
-document.getElementById('go').onclick=function(){var v=document.getElementById('em').value,m=document.getElementById('msg');m.textContent=/\S+@\S+\.\S+/.test(v)?'You’re on the list. Watch your inbox.':'Enter a valid email address to join.'};
-var R=['the Hush desk. It folds out for work and vanishes after.','the Stash ottoman. 80 litres of hiding place you can sit on.','the Tidy box. Power strips go in, cables disappear.','the Fold bed, coming soon. <a href="#join">Join the list</a> for first dibs.'];
+document.getElementById('go').onclick=function(){var input=document.getElementById('em'),m=document.getElementById('msg');if(!input.checkValidity()){input.reportValidity();return}m.textContent='Email signup is not connected yet. Please check back soon.'};
+var R=['the Hush desk. It folds out for work and vanishes after.','the Stash ottoman. 80 litres of hiding place you can sit on.','the Tidy box. Power strips go in, cables disappear.','the Love Glide. A sofa by day, a place for friends to stay at night.'];
 document.querySelectorAll('#opts button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#opts button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});document.getElementById('res').innerHTML='Try '+R[b.dataset.k]}});
 var ba=document.querySelector('.ba');ba.querySelector('input').oninput=function(e){ba.style.setProperty('--p',e.target.value+'%')};
 var lg=document.querySelector('.logo .mark'),cs=['','c1','c2','c3'],ci=0,tm;
