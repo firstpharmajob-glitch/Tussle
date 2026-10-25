@@ -73,3 +73,59 @@ body{transition:background .8s,color .8s}body.night{--bg:#17120f;--fg:#f9f5eb;--
 .wd,.pd{transform-box:fill-box;transform-origin:center}.wd{transition:transform .25s .25s}.pd{transform:scaleY(0);transition:transform .25s}.lt,.dy{transition:opacity .4s}.lt{opacity:0}.tile{transition:transform .35s cubic-bezier(.3,1.6,.5,1),background .5s,color .5s}.tile.flip{background:#17120f!important;color:#f9f5eb}.flip .wd{transform:scaleY(0);transition-delay:0s}.flip .pd{transform:scaleY(1);transition-delay:.25s}.flip .lt{opacity:1;filter:drop-shadow(0 0 3px #f4dc6a)}.flip .dy{opacity:0}@media (prefers-reduced-motion:reduce){.wd,.pd,.lt,.dy{transition:none}}
 @media (max-width:760px){.hero{grid-template-columns:1fr;padding-bottom:60px}nav div{gap:16px}nav .hide{display:none}}
 @media (prefers-reduced-motion:reduce){.tick div{animation:none}.tile,.tile svg,.sec{transition:none}.door{transition:none}html{scroll-behavior:auto}}
+@media (max-width:760px){
+  .wrap{padding-right:22px;padding-left:22px}
+  nav{padding:14px 0}
+  nav div{gap:12px}
+  nav .logo .mark{width:62px;height:62px}
+  .hero{gap:30px;padding-top:26px;padding-bottom:56px}
+  .stage{max-width:360px}
+  section{padding:64px 0}
+  .why .grid{gap:28px}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .wrap{padding-right:18px;padding-left:18px}
+  nav div{gap:10px}
+  nav .logo .mark{width:54px;height:54px}
+  nav .bagbtn{padding:8px 12px;font-size:14px}
+  h1{font-size:clamp(40px,12vw,62px)}
+  .hero{gap:24px;padding-top:22px;padding-bottom:44px}
+  .lede{font-size:18px;margin-bottom:24px}
+  section{padding:54px 0}
+  h2{font-size:clamp(30px,8vw,42px)}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .tile{border-radius:16px;margin-bottom:10px}
+  .card h3{font-size:18px}
+  .card p{font-size:14px}
+  .card .row{display:grid;justify-items:start;gap:8px}
+  .card .row .btn{width:100%;min-height:44px;padding:9px 8px;font-size:13px;line-height:1.2}
+  .join{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+  .join input,.join .btn{width:100%;min-width:0;max-width:none;min-height:50px}
+  .opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .opts .btn{min-height:48px;padding:10px 12px}
+  .acts{gap:10px}
+  .acts .btn{min-height:48px}
+  .ba{border-radius:16px}
+  .st{gap:8px}
+  .st>div{padding:10px}
+  .st b{font-size:clamp(24px,7vw,32px)}
+  .st span{font-size:12px}
+  footer{padding:30px 0}
+  footer .wrap{gap:8px}
+}
+@media (max-width:380px){
+  .wrap{padding-right:16px;padding-left:16px}
+  nav div{gap:8px}
+  nav .bagbtn{padding:7px 10px;font-size:13px}
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .card h3{font-size:21px}
+  .card p{font-size:15px}
+  .card .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .card .row .btn{width:auto;min-height:44px;padding:10px 14px;font-size:14px}
+}
+@media (hover:none){
+  .tile:hover,.tile:focus-visible{transform:none}
+  .tile:hover svg,.tile:focus-visible svg{transform:none}
+  .sec{transform:none;font-size:13px;padding:10px 12px}
+}
