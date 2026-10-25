@@ -6,5 +6,11 @@ create table if not exists public.newsletter_subscribers (
 alter table public.newsletter_subscribers enable row level security;
 
 revoke all on table public.newsletter_subscribers from anon, authenticated;
+grant insert on table public.newsletter_subscribers to anon;
 
-grant insert on table public.newsletter_subscribers to service_role;
+drop policy if exists "Allow public newsletter signups" on public.newsletter_subscribers;
+create policy "Allow public newsletter signups"
+  on public.newsletter_subscribers
+  for insert
+  to anon
+  with check (email = lower(btrim(email)));
