@@ -785,19 +785,19 @@ function NewsletterForm() {
       }
 
       const response = await fetch(
-        `${url}/rest/v1/newsletter_subscribers?on_conflict=email`,
+        `${url}/rest/v1/newsletter_subscribers`,
         {
           method: "POST",
           headers: {
             apikey: key,
             "Content-Type": "application/json",
-            Prefer: "resolution=ignore-duplicates,return=minimal",
+            Prefer: "return=minimal",
           },
           body: JSON.stringify({ email: normalizedEmail }),
         },
       );
 
-      if (!response.ok) {
+      if (!response.ok && response.status !== 409) {
         if (response.status === 401 || response.status === 403) {
           throw new Error(
             "Supabase denied this signup. Check the newsletter table permissions and RLS policy.",
