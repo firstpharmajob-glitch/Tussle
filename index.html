@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Tussle Furniture Co. — furniture that knows when to disappear</title>
+<title>Tussle Furniture Co. — by day, furniture. By night, Tussle.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
 <style>
@@ -76,6 +76,8 @@ details{border-top:2px solid var(--fg);padding:18px 0}details:last-of-type{borde
 @media (prefers-reduced-motion:reduce){.logo .mark{transition:none}}
 body{transition:background .8s,color .8s}body.night{--bg:#17120f;--fg:#f9f5eb;--frame:#2e2620;--muted:#b9afa3}body.night .cab{box-shadow:0 0 90px 8px rgba(244,220,106,.22)}.cab::after{content:"Do not disturb";position:absolute;top:50%;left:50%;z-index:3;background:var(--butter);color:#17120f;font-weight:800;font-size:14px;padding:8px 14px;border-radius:99px;white-space:nowrap;transform:translate(-50%,-50%) rotate(-5deg) scale(0);transition:transform .5s cubic-bezier(.3,1.8,.5,1);pointer-events:none}body.night .cab:not(.open)::after{transform:translate(-50%,-50%) rotate(-5deg) scale(1)}@media (prefers-reduced-motion:reduce){body,.cab::after{transition:none}}
 .ba{aspect-ratio:20/12;max-width:920px}.tg{position:absolute;z-index:2;background:var(--bg);color:var(--fg);border:2px solid var(--fg);border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700;pointer-events:none;white-space:nowrap;transition:opacity .3s}.mv{max-width:920px;margin-top:22px}.st{margin-top:22px;gap:14px}.st>div{border:2px solid var(--fg);border-radius:18px;padding:14px 16px}.st b{display:block;font-size:36px;letter-spacing:-.03em;line-height:1.1}.st span{color:var(--muted);font-size:14px}@media (max-width:560px){.tg{font-size:10px;padding:2px 7px}}
+#gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-items:center;text-align:center;padding:24px}#gate[hidden]{display:none}#gate .mark{margin:0 auto 18px;width:120px;height:120px}#gate h2{font-size:clamp(30px,6vw,48px)}#gate p{color:var(--muted);margin:0 0 24px}
+.wd,.pd{transform-box:fill-box;transform-origin:center}.wd{transition:transform .25s .25s}.pd{transform:scaleY(0);transition:transform .25s}.lt,.dy{transition:opacity .4s}.lt{opacity:0}.tile{transition:transform .35s cubic-bezier(.3,1.6,.5,1),background .5s,color .5s}.tile.flip{background:#17120f!important;color:#f9f5eb}.flip .wd{transform:scaleY(0);transition-delay:0s}.flip .pd{transform:scaleY(1);transition-delay:.25s}.flip .lt{opacity:1;filter:drop-shadow(0 0 3px #f4dc6a)}.flip .dy{opacity:0}@media (prefers-reduced-motion:reduce){.wd,.pd,.lt,.dy{transition:none}}
 @media (max-width:760px){.hero{grid-template-columns:1fr;padding-bottom:60px}nav div{gap:16px}nav .hide{display:none}}
 @media (prefers-reduced-motion:reduce){.tick div{animation:none}.tile,.tile svg,.sec{transition:none}.door{transition:none}html{scroll-behavior:auto}}
 
@@ -117,8 +119,8 @@ body{transition:background .8s,color .8s}body.night{--bg:#17120f;--fg:#f9f5eb;--
 <main id="top">
 <div class="wrap hero">
 <div>
-<h1>Furniture that knows when to disappear.</h1>
-<p class="lede">Fold-away desks, hidden storage and quiet little accessories for rooms that do everything.</p>
+<h1>By day, furniture. By night, Tussle.</h1>
+<p class="lede">Looks like everyday furniture. Quietly made for two.</p>
 <div class="acts"><button class="btn" id="open" aria-pressed="false">Open it</button><button class="btn alt" id="next">Show me another</button></div>
 </div>
 <div>
@@ -138,9 +140,10 @@ body{transition:background .8s,color .8s}body.night{--bg:#17120f;--fg:#f9f5eb;--
 <div class="tick" aria-hidden="true"><div id="tk"></div></div>
 <section id="shop"><div class="wrap">
 <h2>Shop the quiet stuff</h2>
-<p class="sub">Five pieces to start. Each one does a job and then gets out of the way. Hover or tap a tile for its secret.</p>
+<p class="sub">Six pieces to start. Each one does a job and then gets out of the way. Hover or tap a tile for its secret.</p>
 <div class="grid">
-<article class="card"><div class="tile" style="background:#e9b8c4"><svg viewBox="0 0 80 80" fill="none" stroke="#17120f" stroke-width="4" stroke-linejoin="round"><rect x="8" y="30" width="64" height="26" rx="8"/><path d="M8 44h64M20 56v8M60 56v8"/><path d="M16 30v-8a6 6 0 0 1 6-6h36a6 6 0 0 1 6 6v8"/></svg></div><h3>Love Glide</h3><p>A sofa for two that reclines, lifts and lies flat. Looks like a plain sofa from the outside.</p><div class="row"><span class="price">₹34,900</span><button class="btn alt add">Add to bag</button></div></article>
+<article class="card"><div class="tile" style="background:#e9b8c4"><svg viewBox="0 0 80 80" fill="none" stroke="#17120f" stroke-width="4" stroke-linejoin="round"><rect x="8" y="30" width="64" height="26" rx="8"/><path d="M8 44h64M20 56v8M60 56v8"/><path d="M16 30v-8a6 6 0 0 1 6-6h36a6 6 0 0 1 6 6v8"/></svg></div><h3>Love Glide</h3><p>Looks like a plain sofa by day. After dark, it’s ours.</p><div class="row"><span class="price">₹34,900</span><button class="btn alt add">Add to bag</button></div></article>
+<article class="card"><div class="tile" id="tt" style="background:#f4dc6a" role="button" aria-pressed="false" aria-label="Nightshift desk, tap to flip"><svg viewBox="0 0 80 80"><g fill="currentColor"><rect x="14" y="42" width="5" height="26" rx="1"/><rect x="61" y="42" width="5" height="26" rx="1"/></g><rect class="wd" x="8" y="34" width="64" height="8" rx="2" fill="#8a5a3c"/><rect class="pd" x="8" y="34" width="64" height="8" rx="3" fill="#cfc3f2"/><rect class="lt" x="12" y="43" width="56" height="2" rx="1" fill="#f4dc6a"/><g class="dy" fill="currentColor"><rect x="26" y="20" width="24" height="14" rx="2"/><rect x="22" y="32" width="32" height="2" rx="1"/><rect x="58" y="26" width="7" height="8" rx="1.5"/></g></svg></div><h3>Nightshift desk</h3><p>A plain work desk by day. Flips after dark. Tap the tile to see it turn.</p><div class="row"><span class="price">₹21,900</span><button class="btn alt add">Add to bag</button></div></article>
 <article class="card"><div class="tile" style="background:var(--cobalt)"><svg viewBox="0 0 80 80" fill="none" stroke="#f9f5eb" stroke-width="4" stroke-linejoin="round"><rect x="14" y="8" width="52" height="64" rx="4"/><path d="M14 44h52M30 44v28"/></svg></div><h3>Hush desk</h3><p>A wall cabinet that folds out into a 90 cm desk, then closes like it was never there.</p><div class="row"><span class="price">₹18,900</span><button class="btn alt add">Add to bag</button></div></article>
 <article class="card"><div class="tile" style="background:var(--butter)"><svg viewBox="0 0 80 80" fill="none" stroke="#17120f" stroke-width="4" stroke-linejoin="round"><rect x="10" y="26" width="60" height="38" rx="10"/><path d="M10 40h60"/></svg></div><h3>Stash ottoman</h3><p>Seat, footrest and 80 litres of hidden storage for the things you’d rather not see.</p><div class="row"><span class="price">₹6,400</span><button class="btn alt add">Add to bag</button></div></article>
 <article class="card"><div class="tile" style="background:var(--lilac)"><svg viewBox="0 0 80 80" fill="none" stroke="#17120f" stroke-width="4" stroke-linejoin="round"><rect x="8" y="30" width="64" height="14" rx="3"/><path d="M28 37h24"/><path d="M20 44v8M60 44v8"/></svg></div><h3>Nook shelf</h3><p>A floating shelf with a secret drawer for chargers, spare keys and tiny treasures.</p><div class="row"><span class="price">₹3,200</span><button class="btn alt add">Add to bag</button></div></article>
@@ -174,7 +177,11 @@ body{transition:background .8s,color .8s}body.night{--bg:#17120f;--fg:#f9f5eb;--
 <section id="look" style="padding-bottom:40px"><div class="wrap"><h2>Rooms we dream about</h2><p class="sub">Real customer rooms are coming soon. Until then, these are the moods we design for.</p></div>
 <div class="lb" tabindex="0" role="region" aria-label="Room moods, scrollable"><article style="background:var(--cobalt);color:#f9f5eb"><h3>9 m² hostel room</h3><p>The desk folds away so the bed isn’t the whole room.</p></article><article style="background:var(--butter)"><h3>Shared flat, Gachibowli</h3><p>Your corner, tidy, even when the living room isn’t.</p></article><article style="background:var(--lilac)"><h3>First studio</h3><p>One room, five jobs, zero clutter.</p></article><article style="background:var(--sage)"><h3>Parents’ spare room</h3><p>Looks like a guest room, works like your office.</p></article></div></section>
 
+<section id="private"><div class="wrap"><h2>Private by design</h2><p class="sub">The whole idea is that nobody needs to know. That goes for the packaging and the payment too.</p>
+<div class="grid"><div style="border:2px solid var(--fg);border-radius:20px;padding:22px"><h3 style="margin:0 0 6px;font-size:24px;letter-spacing:-.02em">Plain boxes</h3><p style="margin:0;color:var(--muted)">Nothing on the outside says what is inside.</p></div><div style="border:2px solid var(--fg);border-radius:20px;padding:22px"><h3 style="margin:0 0 6px;font-size:24px;letter-spacing:-.02em">Neutral billing</h3><p style="margin:0;color:var(--muted)">Your statement shows a plain, neutral name.</p></div><div style="border:2px solid var(--fg);border-radius:20px;padding:22px"><h3 style="margin:0 0 6px;font-size:24px;letter-spacing:-.02em">Quiet delivery</h3><p style="margin:0;color:var(--muted)">No loud labels and no fuss at the door.</p></div></div></div></section>
+
 <section id="faq"><div class="wrap"><h2>Quick answers</h2><p class="sub">The stuff people ask before they buy.</p>
+<details><summary>Who can see what I ordered?</summary><p>Only you. Boxes are plain, and your statement shows a neutral name.</p></details>
 <details><summary>Do I need tools to put it together?</summary><p>Just the Allen key in the box. Most pieces take under 20 minutes.</p></details>
 <details><summary>Can I take it with me when I move?</summary><p>Yes. Everything comes apart and flat-packs again, so moving day stays easy.</p></details>
 <details><summary>How much space does the Hush desk need?</summary><p>It is 12 cm deep when closed, so it sits almost flat against the wall.</p></details>
@@ -189,6 +196,7 @@ body{transition:background .8s,color .8s}body.night{--bg:#17120f;--fg:#f9f5eb;--
 </div></section>
 </main>
 <section style="padding:20px 0 60px"><div class="wrap"><h2 style="font-size:28px;margin-bottom:20px">The mark, in four moods</h2><div class="brand"><svg class="mark " viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg><svg class="mark c1" viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg><svg class="mark c2" viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg><svg class="mark c3" viewBox="0 0 1160 1160" role="img" aria-label="Tussle logo"><use href="#logo"/></svg></div></div></section>
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gt"><div><svg class="mark" viewBox="0 0 1160 1160" aria-hidden="true"><use href="#logo"/></svg><h2 id="gt">Tussle is for adults.</h2><p>Please confirm you are 18 or older to come in.</p><div class="acts" style="justify-content:center"><button class="btn" id="g18">I’m 18 or older</button><a class="btn alt" href="https://www.google.com" style="text-decoration:none">Leave</a></div></div></div>
 <div id="ov" hidden></div>
 <aside id="drawer" aria-label="Your bag"><div class="dh"><h2>Your bag</h2><button class="btn alt" id="dc">Close</button></div><div id="items"></div><p class="sub" id="free" aria-live="polite"></p><div class="pb"><i id="bar"></i></div><div class="dt"><span>Total</span><b id="tot">₹0</b></div><button class="btn" id="ck">Checkout</button><p class="sub" id="ckm" aria-live="polite" style="margin-top:10px"></p></aside>
 <footer><div class="wrap"><span><svg class="fmark" viewBox="0 0 1160 1160" aria-hidden="true"><use href="#logo"/></svg>© 2026 Tussle Furniture Co.</span><span>Hyderabad, India</span></div></footer>
@@ -197,12 +205,14 @@ var cab=document.getElementById('cab'),ob=document.getElementById('open');
 function set(o){cab.classList.toggle('open',o);ob.setAttribute('aria-pressed',o);ob.textContent=o?'Close it':'Open it'}
 ob.onclick=function(){set(!cab.classList.contains('open'))};
 var rm=matchMedia('(prefers-reduced-motion:reduce)').matches,inn=cab.querySelector('.in'),cap=document.getElementById('cap'),i=0;
-var sc=[{c:cap.textContent,s:inn.innerHTML},
-{c:'That’s the Fold bed. Gone by 9 a.m.',s:'<svg viewBox="0 0 100 125"><circle cx="76" cy="26" r="9" fill="#f4dc6a"/><circle cx="60" cy="14" r="2" fill="#2f3cf0"/><circle cx="86" cy="50" r="2" fill="#2f3cf0"/><rect x="6" y="84" width="88" height="8" rx="2" fill="#17120f"/><rect x="6" y="64" width="88" height="20" rx="6" fill="#cfc3f2"/><rect x="10" y="54" width="26" height="12" rx="6" fill="#f4dc6a"/><rect x="44" y="64" width="50" height="20" rx="6" fill="#2f3cf0"/><rect x="10" y="92" width="4" height="26" fill="#17120f"/><rect x="86" y="92" width="4" height="26" fill="#17120f"/></svg>'},
-{c:'That’s the Glow vanity. The mirror hides the rest.',s:'<svg viewBox="0 0 100 125"><circle cx="50" cy="44" r="26" fill="#cfc3f2" stroke="#17120f" stroke-width="4"/><path d="M38 36q6-8 16-6" stroke="#f9f5eb" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="10" y="82" width="80" height="7" rx="2" fill="#17120f"/><rect x="16" y="89" width="4" height="30" fill="#17120f"/><rect x="80" y="89" width="4" height="30" fill="#17120f"/><rect x="28" y="89" width="44" height="14" rx="2" fill="#b9cdb0"/><rect x="46" y="94" width="8" height="3" rx="1" fill="#17120f"/><rect x="68" y="68" width="10" height="14" rx="2" fill="#2f3cf0"/></svg>'}];
+var hush=inn.innerHTML,hushc=cap.textContent;
+var sc=[{c:'That\u2019s the Love Glide. A plain sofa by day.',s:'<svg viewBox="0 0 100 125"><rect x="14" y="40" width="72" height="34" rx="12" fill="#2f3cf0"/><rect x="8" y="64" width="84" height="30" rx="9" fill="#2f3cf0"/><rect x="14" y="68" width="35" height="20" rx="6" fill="#5a66ff"/><rect x="51" y="68" width="35" height="20" rx="6" fill="#5a66ff"/><rect x="2" y="58" width="16" height="38" rx="8" fill="#17120f"/><rect x="82" y="58" width="16" height="38" rx="8" fill="#17120f"/><rect x="22" y="48" width="18" height="14" rx="5" fill="#f4dc6a"/><rect x="60" y="48" width="18" height="14" rx="5" fill="#cfc3f2"/><rect x="12" y="96" width="5" height="10" fill="#17120f"/><rect x="83" y="96" width="5" height="10" fill="#17120f"/><rect x="6" y="106" width="88" height="3" rx="1.5" fill="#17120f" opacity=".15"/></svg>'},
+{c:'That\u2019s the Nightshift desk. 9 to 5 on top. Flips after dark.',s:'<svg viewBox="0 0 100 125"><rect x="6" y="72" width="88" height="7" rx="2" fill="#8a5a3c"/><rect x="16" y="79" width="5" height="40" fill="#17120f"/><rect x="79" y="79" width="5" height="40" fill="#17120f"/><rect x="30" y="50" width="38" height="22" rx="2" fill="#17120f"/><rect x="33" y="53" width="32" height="16" fill="#f4dc6a"/><rect x="10" y="80" width="80" height="2.5" rx="1" fill="#f4dc6a" opacity=".8"/><rect x="74" y="60" width="10" height="12" rx="2" fill="#cfc3f2"/></svg>'},
+{c:hushc,s:hush}];
+inn.innerHTML=sc[0].s;cap.textContent=sc[0].c;
 document.getElementById('next').onclick=function(){set(false);setTimeout(function(){i=(i+1)%sc.length;inn.innerHTML=sc[i].s;cap.textContent=sc[i].c;set(true)},rm?0:950)};
-var u='Now you see it ✦ Now you don’t ✦ Fold it ✦ Stash it ✦ Forget it ✦ ';document.getElementById('tk').textContent=u.repeat(3)+u.repeat(3);
-var S=['Six modes. Discreet from the outside.','Folds flat. Holds a 15-inch laptop.','80 L inside. The lid takes 60 kg.','The drawer fits six chargers and a power bank.','Fits a six-way strip. Cords exit both sides.'];
+var u='By day, furniture ✦ By night, Tussle ✦ Now you see it ✦ Now you don’t ✦ ';document.getElementById('tk').textContent=u.repeat(3)+u.repeat(3);
+var S=['Six modes. Discreet from the outside.','9 to 5 on top. Tap the tile to flip it.','Folds flat. Holds a 15-inch laptop.','80 L inside. The lid takes 60 kg.','The drawer fits six chargers and a power bank.','Fits a six-way strip. Cords exit both sides.'];
 document.querySelectorAll('.tile').forEach(function(t,k){t.tabIndex=0;t.insertAdjacentHTML('beforeend','<span class="sec">'+S[k]+'</span>')});
 if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setTimeout(function(){set(true)},900);
 var cart={},dr=document.getElementById('drawer'),ov=document.getElementById('ov'),bg=document.getElementById('bag'),FREE=5000;dr.inert=true;
@@ -235,5 +245,7 @@ function go(to,ms,cb){var from=+inp.value,t0=null;if(rmm){set(to);if(cb)cb();ret
 document.querySelectorAll('#pre button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#pre button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});go(+b.dataset.v,700)}});
 if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();go(0,700,function(){go(100,1400)})}},{threshold:.6});io.observe(ba)}
 set(50)})();</script>
+<script>(function(){var g=document.getElementById('gate'),parts=document.querySelectorAll('header,main,footer');function lock(o){parts.forEach(function(e){e.inert=o})}try{if(sessionStorage.getItem('t18')){g.hidden=true}}catch(e){}if(!g.hidden){lock(true);document.getElementById('g18').focus()}document.getElementById('g18').onclick=function(){g.hidden=true;lock(false);try{sessionStorage.setItem('t18','1')}catch(e){}}})();</script>
+<script>(function(){var t=document.getElementById('tt');function f(){var o=!t.classList.contains('flip');t.classList.toggle('flip',o);t.setAttribute('aria-pressed',o)}t.onclick=f;t.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();f()}}})();</script>
 </body>
 </html>
