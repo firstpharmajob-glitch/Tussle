@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nightshift desk · Tussle concept preview</title>
+<script>if(new URLSearchParams(location.search).has("embed"))document.documentElement.classList.add("embed-preview");</script>
+<style>
+:root{
+  color-scheme:light; --bg:#efe9e1; --surface:#f8f4ee; --ink:#2b2420; --muted:#6f645b; --line:#d8cfc3; --accent:#7a2e3b; --accent-ink:#fff;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:"Fraunces",Georgia,"Times New Roman",serif;display:flex;flex-direction:column}
+header{padding:18px 20px 6px}
+h1{font-size:clamp(1.5rem,4vw,2.2rem);margin:0;font-weight:600;letter-spacing:-.01em}
+.sub{margin:4px 0 0;color:var(--muted);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:.92rem}
+#stage{position:relative;flex:1;min-height:340px;margin:8px 12px;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden;touch-action:none;cursor:grab}
+canvas{display:block;width:100%;height:100%}
+#mode{position:absolute;left:16px;top:12px;font-size:1.25rem;font-weight:600;pointer-events:none}
+#mode small{display:block;font-family:system-ui,sans-serif;font-weight:400;font-size:.85rem;color:var(--muted);margin-top:2px}
+#hint{position:absolute;right:14px;bottom:10px;font:.75rem system-ui,sans-serif;color:var(--muted);pointer-events:none}
+.panel{padding:6px 16px 16px;display:grid;gap:12px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{font:inherit;font-weight:600;padding:11px 20px;border-radius:999px;border:0;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+input[type=range]{flex:1;min-width:140px;accent-color:var(--accent)}
+.dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.dims div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.dims b{display:block;font-size:.78rem;color:var(--muted);font-weight:500}
+.dims span{font-size:1.05rem}
+.note{font-size:.8rem;color:var(--muted);margin:0;max-width:70ch;line-height:1.5}
+html.embed-preview,html.embed-preview body{height:100%;min-height:0;overflow:hidden}
+html.embed-preview body{height:100dvh}
+html.embed-preview header,html.embed-preview .panel{display:none!important}
+html.embed-preview #stage{flex:1;width:100%;height:100%;min-height:0!important;margin:0;border:0;border-radius:0}
+html.embed-preview #mode{left:20px;top:18px}
+html.embed-preview #hint{right:18px;bottom:14px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Nightshift desk</h1>
+  <p class="sub">Concept preview. Drag to rotate, scroll to zoom.</p>
+</header>
+<div id="stage">
+  <canvas id="c" aria-label="3D model of the Nightshift desk"></canvas>
+  <div id="mode"><span id="modeName">By day, furniture.</span><small id="modeDesc">A plain work desk. Room for a 15-inch laptop.</small></div>
+  <div id="hint">drag · scroll</div>
+</div>
+<div class="panel">
+  <div class="row">
+    <button id="toggle" type="button">Switch to night</button>
+    <input id="slider" type="range" min="0" max="100" value="0" aria-label="Day to night transformation">
+  </div>
+  <div class="dims">
+    <div><b>Footprint</b><span>120 × 60 cm</span></div>
+    <div><b>Surface height</b><span id="dH">58 cm</span></div>
+    <div><b>Top</b><span id="dTop">Solid wood</span></div>
+    <div><b>Anchor points</b><span id="dAnc">Hidden</span></div>
+  </div>
+  <p class="note"><b>Night kit:</b> fixed 58 cm legs; the top lifts off its locating pins, turns over by hand and locks down with side latches, showing a firm, buttoned, wipeable pad; six flush, rated anchor rings; a drawer for cuffs, wipes and a towel.</p>
+  <p class="note"><b>Safe use:</b> use soft cuffs with quick release, keep safety shears within reach, never restrain around the neck, and agree limits and a stop word first. Rings, welds and the load rating need real testing before sale. Concept model with placeholder dimensions, and the lift-off top (likely 15 to 25 kg) needs a light core and a two-hand grip, with latches and pins reviewed for pinch points.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var stage=document.getElementById('stage'), canvas=document.getElementById('c');
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+  renderer.setClearColor(0x000000,0);
+  renderer.outputEncoding=THREE.sRGBEncoding;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.05;
+  renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(36,1,10,2000);
+  scene.add(new THREE.HemisphereLight(0xfff4e6,0x6a5a50,0.7));
+  var sun=new THREE.DirectionalLight(0xfff0dd,1.1);
+  sun.position.set(160,300,200); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); sun.shadow.radius=4;
+  var sc=sun.shadow.camera; sc.left=-200;sc.right=200;sc.top=200;sc.bottom=-200;sc.near=50;sc.far=800;
+  scene.add(sun);
+  var fill=new THREE.DirectionalLight(0xcfe0ff,0.35); fill.position.set(-200,120,-120); scene.add(fill);
+
+  function tex(w,h,draw){var c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);
+    var t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.anisotropy=8;return t;}
+  var woodTex=tex(512,256,function(g,w,h){
+    g.fillStyle='#a8794f';g.fillRect(0,0,w,h);
+    for(var i=0;i<160;i++){var y=Math.random()*h;g.strokeStyle='rgba('+(60+Math.random()*40|0)+',40,20,'+(0.05+Math.random()*0.12)+')';
+      g.lineWidth=0.6+Math.random()*1.6;g.beginPath();g.moveTo(0,y);
+      for(var x=0;x<=w;x+=32)g.lineTo(x,y+Math.sin(x*0.02+i)*3+Math.random()*1.2);g.stroke();}
+  });
+  var padTex=tex(512,256,function(g,w,h){
+    g.fillStyle='#6e2433';g.fillRect(0,0,w,h);
+    var s=64;g.strokeStyle='rgba(20,0,5,0.55)';g.lineWidth=3;
+    for(var i=-h;i<w+h;i+=s){g.beginPath();g.moveTo(i,0);g.lineTo(i+h,h);g.stroke();g.beginPath();g.moveTo(i,h);g.lineTo(i+h,0);g.stroke();}
+    for(var x=0;x<=w;x+=s)for(var y=0;y<=h;y+=s){
+      var r=g.createRadialGradient(x-1,y-1,0,x,y,6);r.addColorStop(0,'#b86a7a');r.addColorStop(1,'#3a0f18');
+      g.fillStyle=r;g.beginPath();g.arc(x,y,6,0,7);g.fill();}
+  });
+
+  var M=function(c,r,m){return new THREE.MeshStandardMaterial({color:c,roughness:r==null?0.8:r,metalness:m||0});};
+  var woodM=new THREE.MeshStandardMaterial({map:woodTex,roughness:0.55}), edgeM=M(0x8a6240,0.6),
+      padM=new THREE.MeshStandardMaterial({map:padTex,roughness:0.55}), padE=M(0x4d1824,0.7),
+      dark=M(0x3b2e27,0.55), woodD=M(0x8a6240,0.6), metal=M(0xcfd3d8,0.3,0.7);
+  function mesh(g,m){var o=new THREE.Mesh(g,m);o.castShadow=true;o.receiveShadow=true;return o;}
+  function box(w,h,d,m){return mesh(new THREE.BoxGeometry(w,h,d),m);}
+  function add(g,m,x,y,z){m.position.set(x,y,z);g.add(m);return m;}
+
+  var ground=new THREE.Mesh(new THREE.PlaneGeometry(900,900),new THREE.ShadowMaterial({opacity:0.22}));
+  ground.rotation.x=-Math.PI/2; ground.receiveShadow=true; scene.add(ground);
+
+  var L=120,Wd=60,legs=[];
+  [-1,1].forEach(function(sx){[-1,1].forEach(function(sz){
+    var l=mesh(new THREE.CylinderGeometry(3.2,2,1,20),dark); l.position.set(sx*(L/2-6),0.5,sz*(Wd/2-6)); scene.add(l); legs.push(l);
+  });});
+
+  var frame=new THREE.Group(); scene.add(frame);
+  [-1,1].forEach(function(s){
+    add(frame,box(102,8,3,woodD),0,-4,s*24);
+    add(frame,box(3,8,42,woodD),s*54,-4,0);
+  });
+  add(frame,box(60,6,1.5,woodD),0,-4,25.5);
+  add(frame,box(16,1.4,1.4,metal),0,-2.8,26.8);
+  [-1,1].forEach(function(sx){[-1,1].forEach(function(sz){add(frame,mesh(new THREE.CylinderGeometry(1.2,1.2,3,12),metal),sx*40,1.5,sz*18);});});
+  var latches=[];
+  [-1,1].forEach(function(s){latches.push(add(frame,box(2,3,10,metal),s*55.5,-4,0));});
+
+  var top=new THREE.Group(); scene.add(top);
+  add(top,box(L,3,Wd,[edgeM,edgeM,woodM,edgeM,edgeM,edgeM]),0,3,0);
+  add(top,box(L,6,Wd,[padE,padE,padE,padM,padE,padE]),0,-1.5,0);
+
+  var rings=[];
+  [-45,0,45].forEach(function(x){[-20,20].forEach(function(z){
+    var g=new THREE.Group(); g.position.set(x,-4.5,z); top.add(g);
+    add(g,mesh(new THREE.CylinderGeometry(3.4,3.4,0.9,20),metal),0,-0.45,0);
+    add(g,mesh(new THREE.TorusGeometry(2.6,0.6,10,24),metal),0,-3.2,0);
+    rings.push(g);
+  });});
+
+  var lap=new THREE.Group(); scene.add(lap);
+  add(lap,box(34,1.5,24,M(0x9aa0a6,0.4,0.6)),0,0.75,4);
+  var scr=add(lap,box(34,22,1,M(0x23272b,0.5,0.3)),0,12,-8); scr.rotation.x=-0.2;
+
+  function clamp(x){return Math.max(0,Math.min(1,x));}
+  function sub(a,b,t){return clamp((t-a)/(b-a));}
+  function sm(x){return x*x*(3-2*x);}
+  var t=0,target=0,sl=document.getElementById('slider');
+  function apply(){
+    var surf=58, H=surf-9;
+    frame.position.y=H;
+    legs.forEach(function(l){l.scale.y=H;l.position.y=H/2;});
+    var lift=40*(sm(sub(0.1,0.3,t))-sm(sub(0.65,0.85,t)));
+    var locked=1-sm(sub(0,0.1,t))+sm(sub(0.85,0.95,t));
+    latches.forEach(function(l){l.rotation.y=Math.PI/2*(1-locked);});
+    top.position.y=H+4.5+lift;
+    top.rotation.x=Math.PI*sm(sub(0.3,0.65,t));
+    var rs=Math.max(0.001,sm(sub(0.9,1,t))); rings.forEach(function(g){g.scale.set(rs,rs,rs);});
+    var ls=Math.max(0.001,1-sm(sub(0,0.1,t))); lap.scale.set(ls,ls,ls); lap.visible=t<0.1; lap.position.y=surf;
+    var night=t>0.5;
+    document.getElementById('modeName').textContent=night?'By night, Tussle.':'By day, furniture.';
+    document.getElementById('modeDesc').textContent=night?'Flipped, padded, with anchor points.':'A plain work desk. Room for a 15-inch laptop.';
+    document.getElementById('dH').textContent=Math.round(surf)+' cm';
+    document.getElementById('dTop').textContent=t>0.98?'Padded, wipeable':(t<0.02?'Solid wood':'Changing…');
+    document.getElementById('dAnc').textContent=t>0.98?'6 rated rings':(t<0.02?'Hidden':'Rising…');
+    document.getElementById('toggle').textContent=target>0.5?'Switch to day':'Switch to night';
+  }
+  document.getElementById('toggle').addEventListener('click',function(){target=target>0.5?0:1; sl.value=Math.round(target*100); apply();});
+  sl.addEventListener('input',function(){t=target=sl.value/100; apply();});
+
+  var az=0.7,pol=1.1,rad=330,drag=false,lx=0,ly=0,idle=true;
+  stage.addEventListener('pointerdown',function(e){drag=true;idle=false;lx=e.clientX;ly=e.clientY;stage.setPointerCapture(e.pointerId);});
+  stage.addEventListener('pointerup',function(){drag=false;});
+  stage.addEventListener('pointermove',function(e){
+    if(!drag)return;
+    az-=(e.clientX-lx)*0.008; pol=Math.max(0.3,Math.min(1.5,pol-(e.clientY-ly)*0.006)); lx=e.clientX;ly=e.clientY;
+  });
+  stage.addEventListener('wheel',function(e){e.preventDefault();rad=Math.max(180,Math.min(600,rad+e.deltaY*0.3));},{passive:false});
+  function resize(){
+    var w=stage.clientWidth,h=stage.clientHeight;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+    renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize',resize); resize();
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var last=performance.now();
+  function loop(now){
+    var dt=Math.min(0.05,(now-last)/1000); last=now;
+    if(t!==target){
+      var step=(reduce?4:0.4)*dt;
+      t=t<target?Math.min(target,t+step):Math.max(target,t-step);
+      sl.value=Math.round(t*100); apply();
+    }
+    if(idle&&!reduce)az+=dt*0.1;
+    var r=rad*(window.innerWidth<600?1.3:1);
+    camera.position.set(Math.sin(az)*Math.sin(pol)*r,Math.cos(pol)*r,Math.cos(az)*Math.sin(pol)*r);
+    camera.lookAt(0,35,0);
+    renderer.render(scene,camera);
+    requestAnimationFrame(loop);
+  }
+  apply(); requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dusk sofa-bed · Tussle concept preview</title>
+<script>if(new URLSearchParams(location.search).has("embed"))document.documentElement.classList.add("embed-preview");</script>
+<style>
+:root{
+  color-scheme:light; --bg:#efe9e1; --surface:#f8f4ee; --ink:#2b2420; --muted:#6f645b; --line:#d8cfc3; --accent:#7a2e3b; --accent-ink:#fff;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:"Fraunces",Georgia,"Times New Roman",serif;display:flex;flex-direction:column}
+header{padding:18px 20px 6px}
+h1{font-size:clamp(1.5rem,4vw,2.2rem);margin:0;font-weight:600;letter-spacing:-.01em}
+.sub{margin:4px 0 0;color:var(--muted);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:.92rem}
+#stage{position:relative;flex:1;min-height:320px;margin:8px 12px;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden;touch-action:none;cursor:grab}
+#stage:active{cursor:grabbing}
+canvas{display:block;width:100%;height:100%}
+#mode{position:absolute;left:16px;top:12px;font-size:1.25rem;font-weight:600;pointer-events:none}
+#mode small{display:block;font-family:system-ui,sans-serif;font-weight:400;font-size:.85rem;color:var(--muted);margin-top:2px}
+#hint{position:absolute;right:14px;bottom:10px;font:.75rem system-ui,sans-serif;color:var(--muted);pointer-events:none}
+.panel{padding:6px 16px 16px;display:grid;gap:12px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{font:inherit;font-weight:600;padding:11px 20px;border-radius:999px;border:0;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+input[type=range]{flex:1;min-width:140px;accent-color:var(--accent)}
+.dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.dims div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.dims b{display:block;font-size:.78rem;color:var(--muted);font-weight:500}
+.dims span{font-size:1.05rem}
+.note{font-size:.8rem;color:var(--muted);margin:0;max-width:70ch;line-height:1.5}
+html.embed-preview,html.embed-preview body{height:100%;min-height:0;overflow:hidden}
+html.embed-preview body{height:100dvh}
+html.embed-preview header,html.embed-preview .panel{display:none!important}
+html.embed-preview #stage{flex:1;width:100%;height:100%;min-height:0!important;margin:0;border:0;border-radius:0}
+html.embed-preview #mode{left:20px;top:18px}
+html.embed-preview #hint{right:18px;bottom:14px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Dusk sofa-bed</h1>
+  <p class="sub">Concept preview. Drag to rotate, scroll to zoom.</p>
+</header>
+<div id="stage">
+  <canvas id="c" aria-label="3D model of the Dusk sofa-bed"></canvas>
+  <div id="mode"><span id="modeName">By day, furniture.</span><small id="modeDesc">A plain two-seater.</small></div>
+  <div id="hint">drag · scroll</div>
+</div>
+<div class="panel">
+  <div class="row">
+    <button id="toggle" type="button">Switch to night</button>
+    <button id="drawerBtn" type="button" style="background:transparent;color:var(--accent);border:2px solid var(--accent)">Open drawer</button>
+    <input id="slider" type="range" min="0" max="100" value="0" aria-label="Day to night transformation">
+  </div>
+  <div class="dims">
+    <div><b>Footprint</b><span id="dFoot">160 × 90 cm</span></div>
+    <div><b>Height</b><span id="dH">94 cm</span></div>
+    <div><b>Sleeping surface</b><span id="dBed">Closed</span></div>
+    <div><b>Weight rating</b><span>[X] kg</span></div>
+  </div>
+  <p class="note"><b>Night kit:</b> plywood deck with firm foam, wipeable body-safe cover, locking legs, silent hinges, grab-friendly arms, wedge cushion and pillows, hidden drawer for wipes and essentials.</p>
+  <p class="note">Concept model with placeholder dimensions. Hinges, fold-out legs and load ratings need engineering review and real load testing before production.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var stage=document.getElementById('stage'), canvas=document.getElementById('c');
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+  renderer.setClearColor(0x000000,0);
+  renderer.shadowMap.enabled=true;
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(38,1,10,2000);
+
+  scene.add(new THREE.HemisphereLight(0xffffff,0x8a7a70,0.85));
+  var sun=new THREE.DirectionalLight(0xffffff,0.75);
+  sun.position.set(180,300,200); sun.castShadow=true;
+  sun.shadow.mapSize.set(1024,1024);
+  var sc=sun.shadow.camera; sc.left=-220;sc.right=220;sc.top=220;sc.bottom=-220;sc.near=50;sc.far=800;
+  scene.add(sun);
+
+  var fabric=new THREE.MeshStandardMaterial({color:0x9c8a78,roughness:0.9});
+  var frame=new THREE.MeshStandardMaterial({color:0x6b5646,roughness:0.7});
+  var wood=new THREE.MeshStandardMaterial({color:0x3b2e27,roughness:0.6});
+
+  function box(w,h,d,mat){var m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.castShadow=true;m.receiveShadow=true;return m;}
+
+  var ground=new THREE.Mesh(new THREE.PlaneGeometry(900,900),new THREE.ShadowMaterial({opacity:0.18}));
+  ground.rotation.x=-Math.PI/2; ground.receiveShadow=true; scene.add(ground);
+
+  var D=90,W=140,SEAT=44;
+  var base=box(W,20,D,frame); base.position.set(0,20,0); scene.add(base);
+  [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(function(s){
+    var f=box(7,10,7,wood); f.position.set(s[0]*(W/2-6),5,s[1]*(D/2-6)); scene.add(f);
+  });
+  var cushion=box(W,14,D,fabric); cushion.position.set(0,37,0); scene.add(cushion);
+  [-1,1].forEach(function(s){var a=box(10,54,D,fabric); a.position.set(s*(W/2+5),37,0); scene.add(a);});
+
+  var leaf=box(W-0.6,13.8,50,fabric); leaf.position.set(0,37,10); scene.add(leaf);
+  var soft=new THREE.MeshStandardMaterial({color:0xe6dccf,roughness:0.95});
+  var extras=new THREE.Group(); scene.add(extras);
+  [-30,30].forEach(function(x){var p=box(50,10,32,soft); p.position.set(x,50,-72); extras.add(p);});
+  var wedge=box(60,12,40,soft); wedge.position.set(0,51,22); wedge.rotation.x=0.28; extras.add(wedge);
+
+  var hinge=new THREE.Group(); hinge.position.set(0,SEAT,-D/2); scene.add(hinge);
+  var back=box(W,50,14,fabric); back.position.set(0,25,-7); hinge.add(back);
+
+  function leg(z){var g=new THREE.Group(); g.position.set(0,30,z); scene.add(g);
+    [-1,1].forEach(function(s){var l=box(8,30,8,wood); l.position.set(s*(W/2-6),-15,0); g.add(l);}); return g;}
+  var legBack=leg(-D/2-50+5), legFront=leg(D/2+50-5);
+
+  var drawer=new THREE.Group(); drawer.position.set(0,20,D/2+1); scene.add(drawer);
+  var dFront=box(84,17,2,wood); drawer.add(dFront);
+  var dHandle=box(24,2,3,fabric); dHandle.position.set(0,2,2); drawer.add(dHandle);
+  var dTray=box(80,10,40,frame); dTray.position.set(0,-2,-21); drawer.add(dTray);
+  var softM=new THREE.MeshStandardMaterial({color:0xe6dccf,roughness:0.95});
+  var d1=box(24,3,16,softM); d1.position.set(-18,4,-18); drawer.add(d1);
+  var d2=box(20,4,12,fabric); d2.position.set(14,4,-26); drawer.add(d2);
+  var dr=0,drTarget=0;
+  var drBtn=document.getElementById('drawerBtn');
+  drBtn.addEventListener('click',function(){drTarget=drTarget?0:1; drBtn.textContent=drTarget?'Close drawer':'Open drawer';});
+
+  function clamp(x){return Math.max(0,Math.min(1,x));}
+  function sub(a,b,t){return clamp((t-a)/(b-a));}
+  function sm(x){return x*x*(3-2*x);}
+
+  var t=0,target=0;
+  function apply(){
+    hinge.rotation.x=-Math.PI/2*sm(sub(0,0.55,t));
+    leaf.position.z=10+60*sm(sub(0.35,0.85,t));
+    var ls=Math.max(0.001,sm(sub(0.75,1,t)));
+    var es=Math.max(0.001,sm(sub(0.85,1,t))); extras.scale.set(es,es,es); extras.position.y=44*(1-es);
+    [legBack,legFront].forEach(function(g){g.scale.y=ls;});
+    var night=t>0.5;
+    var nm=document.getElementById('modeName'),nd=document.getElementById('modeDesc');
+    nm.textContent=night?'By night, Tussle.':'By day, furniture.';
+    nd.textContent=night?'A full bed. No creaks, no commentary.':'A plain two-seater.';
+    document.getElementById('dFoot').textContent=t<0.02?'160 × 90 cm':'160 × 190 cm';
+    document.getElementById('dH').textContent=t<0.02?'94 cm':'44 cm';
+    document.getElementById('dBed').textContent=t>0.98?'140 × 190 cm':(t<0.02?'Closed':'Opening…');
+    document.getElementById('toggle').textContent=target>0.5?'Switch to day':'Switch to night';
+  }
+
+  var sl=document.getElementById('slider');
+  document.getElementById('toggle').addEventListener('click',function(){
+    target=target>0.5?0:1; sl.value=Math.round(target*100); apply();
+  });
+  sl.addEventListener('input',function(){t=target=sl.value/100; apply();});
+
+  var az=0.7,pol=1.15,rad=380,drag=false,lx=0,ly=0,idle=true;
+  stage.addEventListener('pointerdown',function(e){drag=true;idle=false;lx=e.clientX;ly=e.clientY;stage.setPointerCapture(e.pointerId);});
+  stage.addEventListener('pointerup',function(){drag=false;});
+  stage.addEventListener('pointermove',function(e){
+    if(!drag)return;
+    az-=(e.clientX-lx)*0.008; pol=Math.max(0.3,Math.min(1.5,pol-(e.clientY-ly)*0.006)); lx=e.clientX;ly=e.clientY;
+  });
+  stage.addEventListener('wheel',function(e){e.preventDefault();rad=Math.max(180,Math.min(650,rad+e.deltaY*0.3));},{passive:false});
+
+  function resize(){
+    var w=stage.clientWidth,h=stage.clientHeight;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+    renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize',resize); resize();
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var last=performance.now();
+  function loop(now){
+    var dt=Math.min(0.05,(now-last)/1000); last=now;
+    if(t!==target){
+      var step=(reduce?4:0.55)*dt;
+      t=t<target?Math.min(target,t+step):Math.max(target,t-step);
+      sl.value=Math.round(t*100); apply();
+    }
+    if(dr!==drTarget){var ds=(reduce?4:2.2)*dt; dr=dr<drTarget?Math.min(drTarget,dr+ds):Math.max(drTarget,dr-ds); drawer.position.z=D/2+1+34*sm(dr);}
+    if(idle&&!reduce)az+=dt*0.12;
+    var r=rad*(window.innerWidth<600?1.25:1);
+    camera.position.set(Math.sin(az)*Math.sin(pol)*r,Math.cos(pol)*r,Math.cos(az)*Math.sin(pol)*r);
+    camera.lookAt(0,28,0);
+    renderer.render(scene,camera);
+    requestAnimationFrame(loop);
+  }
+  apply(); requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

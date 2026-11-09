@@ -1,0 +1,564 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Love Glide Sofa</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: a dark, candle-lit 3D stage with the sofa as the only bright object; controls, live side view and specs in a column beside it, stacked on phones. Dark-first, with a cream and wine light theme. */
+:root{
+  --bg:#0d090b; --surface:#161013; --ink:#f3e9e5; --muted:#a6948e; --line:#2c2025;
+  --accent:#e0728a; --accent-ink:#1a0a0e; --stage-a:#2a1820; --stage-b:#0e090b; --fabric:#7d3346;
+  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#efe8e2; --surface:#f8f4ef; --ink:#261a1d; --muted:#6d5c5e; --line:#d9cdc6;
+    --accent:#7a2e3b; --accent-ink:#ffffff; --stage-a:#fbf7f2; --stage-b:#ddd0c8; --fabric:#b5707f;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#efe8e2; --surface:#f8f4ef; --ink:#261a1d; --muted:#6d5c5e; --line:#d9cdc6;
+  --accent:#7a2e3b; --accent-ink:#ffffff; --stage-a:#fbf7f2; --stage-b:#ddd0c8; --fabric:#b5707f;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--body); line-height:1.45;
+  padding-block:22px 40px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.wrap{max-width:1180px;margin-inline:auto;display:grid;gap:20px}
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 24px}
+.eyebrow{margin:0 0 6px;font:500 .72rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1{margin:0;font:500 clamp(2.2rem,6vw,3.8rem)/.98 var(--display);letter-spacing:-.02em;text-wrap:balance}
+h1 em{font-style:italic;color:var(--accent)}
+.sub{margin:0;max-width:40ch;color:var(--muted);font-size:.95rem}
+.sub b{color:var(--ink);font-weight:600}
+.app{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+@media (min-width:940px){.app{grid-template-columns:minmax(0,1fr) 370px;align-items:start}}
+
+#stage{
+  --s-ink:var(--ink); --s-muted:var(--muted);
+  position:relative;height:clamp(400px,66vh,700px);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 38%,var(--stage-a),var(--stage-b));
+  color:var(--s-ink); touch-action:none; cursor:grab;
+}
+#stage.night{--s-ink:#f6ebe6;--s-muted:#bba8a2}
+#stage:active{cursor:grabbing}
+#stage:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.glow,.vig{position:absolute;inset:0;pointer-events:none;opacity:0}
+.glow{background:radial-gradient(110% 85% at 42% 42%,#4a1a28 0%,#1c0a11 55%,#080406 100%)}
+.vig{background:radial-gradient(90% 80% at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%)}
+canvas{position:relative;display:block;width:100%;height:100%}
+#mode{position:absolute;left:18px;top:16px;right:18px;pointer-events:none}
+#modeName{display:block;font:italic 500 1.7rem/1.05 var(--display);letter-spacing:-.01em}
+#modeDesc{display:block;margin-top:5px;max-width:34ch;font-size:.88rem;color:var(--s-muted)}
+#glFail{position:absolute;inset:0;margin:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--s-muted)}
+.cam{position:absolute;left:12px;bottom:12px;right:12px;display:flex;flex-wrap:wrap;gap:6px}
+.cam button{
+  font:500 .78rem/1 var(--body);min-height:34px;padding:0 13px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);
+}
+#stage.night .cam button{background:rgba(18,9,12,.62);color:#f6ebe6;border-color:rgba(255,255,255,.2)}
+.cam button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.hint{margin:8px 2px 0;font-size:.78rem;color:var(--muted)}
+
+.side{display:grid;gap:14px;min-width:0}
+.card{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:15px;display:grid;gap:12px;min-width:0}
+h2{margin:0;font:500 .72rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button{font:inherit}
+.btn{
+  min-height:46px;padding:0 24px;border:0;border-radius:999px;background:var(--accent);color:var(--accent-ink);
+  font-weight:600;cursor:pointer;
+}
+.btn:active{transform:translateY(1px)}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:999px;padding:3px;gap:3px}
+.seg button{min-height:38px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-weight:600;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  min-height:36px;padding:0 12px;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:500;
+  border:1px solid var(--line);background:transparent;color:var(--ink);
+}
+.chip .n{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-right:5px}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip[aria-pressed="true"] .n{color:inherit;opacity:.8}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+.read{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.read div{border:1px solid var(--line);border-radius:10px;padding:8px 11px;min-width:0}
+.read b{display:block;font-weight:500;font-size:.74rem;color:var(--muted)}
+.read span{font:500 1.05rem/1.3 var(--mono);font-variant-numeric:tabular-nums}
+svg{display:block;width:100%;height:auto}
+.s-floor{stroke:var(--line);stroke-width:.6;fill:none}
+.s-base{fill:var(--line)}
+.s-cush{fill:var(--fabric);stroke:var(--muted);stroke-width:.3}
+.s-arm{fill:none;stroke:var(--muted);stroke-width:.4;stroke-dasharray:1.6 1.6}
+.s-ghost{fill:none;stroke:var(--muted);stroke-width:.4;stroke-dasharray:1.6 1.6}
+.s-pad{fill:var(--accent);fill-opacity:.9;stroke:var(--ink);stroke-width:.4;stroke-linejoin:round}
+.s-txt{fill:var(--muted);font:4.2px var(--mono)}
+.cap{margin:0;font-size:.78rem;color:var(--muted)}
+dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:6px 14px;font-size:.9rem}
+dt{color:var(--muted)}
+dd{margin:0;font:500 .88rem var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.fld{display:grid;gap:6px;font-size:.82rem;color:var(--muted)}
+.fld input{min-height:40px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--ink);padding:0 10px;font:500 .95rem var(--mono)}
+details.note ul{margin:8px 0 0;padding-left:18px}
+.note{margin:0;font-size:.82rem;color:var(--muted);line-height:1.55;max-width:62ch}
+.note b{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="eyebrow">Tussle Furniture Co. · Concept preview</p>
+      <h1>Love <em>Glide</em> sofa</h1>
+    </div>
+    <p class="sub"><b>By day, furniture. By night, Tussle.</b> Switch the mood, then step through the glide.</p>
+  </header>
+
+  <main class="app">
+    <section aria-label="3D model">
+      <div id="stage" class="night" tabindex="0" aria-label="Sofa viewer. Arrow keys orbit, plus and minus zoom.">
+        <div class="glow" id="glow"></div>
+        <canvas id="c" aria-hidden="true"></canvas>
+        <div class="vig" id="vig"></div>
+        <div id="mode"><span id="modeName">Sofa mode</span><span id="modeDesc" aria-live="polite">Back panel upright at the rear, locked.</span></div>
+        <p id="glFail" hidden>The 3D view could not start in this browser. The side view and readouts still work.</p>
+        <div class="cam" role="group" aria-label="Camera view">
+          <button type="button" data-view="three">3/4</button>
+          <button type="button" data-view="front">Front</button>
+          <button type="button" data-view="side">Side</button>
+          <button type="button" data-view="top">Top</button>
+          <button type="button" id="auto" aria-pressed="true">Auto-rotate</button>
+        </div>
+      </div>
+      <p class="hint">Drag to rotate. Scroll or pinch to zoom. Arrow keys orbit.</p>
+    </section>
+
+    <aside class="side">
+      <section class="card" aria-label="Mood and glide controls">
+        <h2>Mood</h2>
+        <div class="seg" role="group" aria-label="Lighting mood">
+          <button type="button" data-mood="day" aria-pressed="false">Day</button>
+          <button type="button" data-mood="night" aria-pressed="true">Night</button>
+        </div>
+        <h2>Glide</h2>
+        <div class="row"><button class="btn" id="toggle" type="button">Glide onto seat</button></div>
+        <div class="chips" id="chips" role="group" aria-label="Jump to step"></div>
+        <input id="slider" type="range" min="0" max="100" value="0" aria-label="Glide progress">
+        <div class="read" aria-label="Live measurements">
+          <div><b>Back angle</b><span id="rAngle">0°</span></div>
+          <div><b>Back travel</b><span id="rTravel">0 cm</span></div>
+          <div><b>Back panel top</b><span id="rTop">100 cm</span></div>
+          <div><b>Open seat depth</b><span id="rSeat">58 cm</span></div>
+        </div>
+      </section>
+
+      <section class="card" aria-label="Design options">
+        <h2>Stack height</h2>
+        <div class="seg" role="group" aria-label="Back panel thickness">
+          <button type="button" data-ht="22" aria-pressed="true">Standard · 64 cm</button>
+          <button type="button" data-ht="14" aria-pressed="false">Slim · 56 cm</button>
+        </div>
+        <h2>Cover</h2>
+        <div class="seg" role="group" aria-label="Cover material">
+          <button type="button" data-cov="0" aria-pressed="true">Woven fabric</button>
+          <button type="button" data-cov="1" aria-pressed="false">Wipeable, body-safe</button>
+        </div>
+        <h2>Weight rating</h2>
+        <label class="fld"><span>Target load, kg. Confirm only after moving-load testing.</span><input id="wt" type="number" min="0" inputmode="numeric" placeholder="[X]"></label>
+      </section>
+
+      <section class="card" aria-label="Side view">
+        <h2>Side view</h2>
+        <svg id="diag" viewBox="0 0 150 130" role="img" aria-label="Side section showing the back panel position"></svg>
+        <p class="cap">Dashed outline marks the sofa position. Front is on the left.</p>
+      </section>
+
+      <section class="card" aria-label="Specifications">
+        <h2>Dimensions</h2>
+        <dl>
+          <dt>Footprint</dt><dd>200 × 80 cm</dd>
+          <dt>Seat cushions</dt><dd>199.4 × 58 cm</dd>
+          <dt>Back panel</dt><dd id="sPad">199.4 × 58 × 22 cm</dd>
+          <dt>Seat height</dt><dd>42 cm</dd>
+          <dt>Arm height</dt><dd>89 cm</dd>
+          <dt>Stacked surface</dt><dd id="sTop">64 cm</dd>
+          <dt>Weight rating</dt><dd id="sWt">[X] kg</dd>
+        </dl>
+        <p class="note"><b>How it works:</b> unlock, the back lifts and lays backward to horizontal, then glides forward over the seat and sits on it. It matches the seat size (199.4 × 58 cm), so it stacks as a double cushion.</p>
+        <p class="note">Concept model with placeholder dimensions. Rails, locks and load ratings need engineering review and real testing before production.</p>
+        <details class="note"><summary><b>Before production</b></summary><ul><li>Rails and locks: lock in both positions, no drift, no noise, no finger pinch points at rails and hinge.</li><li>Arms and frame: strong, comfortable to grip. Legs lock against slipping.</li><li>Moving (dynamic) load test, not only static. Stability, fire-retardant cover and load tests to the sofa standards, with independent testing.</li><li>Wipeable cover must be tested as body-safe before use.</li></ul></details>
+      </section>
+    </aside>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id);};
+  var root=document.documentElement;
+  var stage=$('stage'), canvas=$('c');
+
+  /* ---------- geometry constants (cm) ---------- */
+  var W=200,D=80,H=58,TH=22,P=20,SEAT=P+TH;
+  var PT=22, Z0, Z1, GL;
+  function dims(){Z0=-D/2+PT/2; Z1=D/2-PT/2; GL=(Z1-Z0)+PT/2;} dims();
+
+  function cl(x){return Math.max(0,Math.min(1,x));}
+  function sub(a,b,t){return cl((t-a)/(b-a));}
+  function sm(x){return x*x*(3-2*x);}
+  function mix(a,b,n){return a+(b-a)*n;}
+
+  /* one pose drives the 3D model, the side view and every readout */
+  function pose(t){
+    var up=sm(sub(0,0.2,t))*(1-sm(sub(0.82,1,t)));
+    var f=sm(sub(0.2,0.55,t)), g=sm(sub(0.55,0.85,t)), th=-Math.PI/2*f;
+    return {up:up,f:f,g:g,th:th,rv:sm(sub(0.82,1,t)),z:Z0+GL*g,y:SEAT+(PT/2)*Math.sin(-th)+16*up};
+  }
+  function padCorners(p){
+    var c=Math.cos(p.th), s=Math.sin(p.th);
+    return [[0,-PT/2],[0,PT/2],[H,PT/2],[H,-PT/2]].map(function(q){
+      return {z:p.z+q[0]*s+q[1]*c, y:p.y+q[0]*c-q[1]*s};
+    });
+  }
+
+  /* ---------- steps ---------- */
+  var STEPS=[
+    {name:'Sofa',at:0},{name:'Lift',at:0.2},{name:'Lay back',at:0.55},{name:'Glide',at:0.85},{name:'Settle',at:1}
+  ];
+  var DESC=[
+    'Back panel upright at the rear, locked.',
+    'Unlocked and lifting 16 cm clear of the seat.',
+    'Tilting backward toward horizontal.',
+    'Gliding forward over the seat on the arm rails.',
+    'Lowering onto the seat cushions; the rear platform rises to match.'
+  ];
+  function stepIndex(t){return t<=0.0005?0:t<=0.2?1:t<=0.55?2:t<=0.85?3:4;}
+  var chipsEl=$('chips'), chipBtns=[];
+  STEPS.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.type='button'; b.className='chip'; b.setAttribute('aria-pressed','false');
+    b.innerHTML=(i?'<span class="n">'+i+'</span>':'')+s.name;
+    b.addEventListener('click',function(){target=s.at;});
+    chipsEl.appendChild(b); chipBtns.push(b);
+  });
+
+  /* ---------- side view (SVG, same pose) ---------- */
+  var diag=$('diag');
+  function X(z){return 50-z;}
+  function Y(y){return 120-y;}
+  function rect(z0,z1,y0,y1,cls){return '<rect class="'+cls+'" x="'+X(z1)+'" y="'+Y(y1)+'" width="'+(z1-z0)+'" height="'+(y1-y0)+'"/>';}
+  function pts(p){return padCorners(p).map(function(c){return X(c.z).toFixed(2)+','+Y(c.y).toFixed(2);}).join(' ');}
+  diag.innerHTML=
+    '<line class="s-floor" x1="0" x2="150" y1="120" y2="120"/>'+
+    rect(27.4,32.6,0,8,'s-base')+rect(-32.6,-27.4,0,8,'s-base')+
+    rect(-40,40,8,20,'s-base')+
+    rect(-40,-18,20,42,'s-cush')+rect(-18,40,20,42,'s-cush')+
+    rect(-40,40,8,89,'s-arm')+
+    '<rect class="s-cush" id="dRiser" x="'+X(-18)+'" y="'+Y(42)+'" width="22" height="0"/>'+
+    '<polygon class="s-ghost" id="dGhost" points="'+pts(pose(0))+'"/>'+
+    '<polygon class="s-pad" id="dPad" points="'+pts(pose(0))+'"/>'+
+    '<text class="s-txt" x="'+X(40)+'" y="127">front</text>'+
+    '<text class="s-txt" x="'+(X(-40)-3)+'" y="127">back</text>';
+  var dPad=$('dPad'), dGhost=$('dGhost'), dRiser=$('dRiser');
+
+  /* ---------- 3D ---------- */
+  function build3d(){
+    var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+    renderer.setClearColor(0x000000,0);
+    renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+    var aniso=renderer.capabilities.getMaxAnisotropy();
+    var scene=new THREE.Scene();
+    var camera=new THREE.PerspectiveCamera(36,1,10,3000);
+
+    var hemi=new THREE.HemisphereLight(0xffffff,0x8a8470,0.85); scene.add(hemi);
+    var key=new THREE.DirectionalLight(0xfff4e6,0.85);
+    key.position.set(260,430,300); key.castShadow=true; key.shadow.mapSize.set(2048,2048);
+    key.shadow.bias=-0.0006; key.shadow.normalBias=0.4; key.shadow.radius=4;
+    var sc=key.shadow.camera; sc.left=-330;sc.right=330;sc.top=330;sc.bottom=-330;sc.near=50;sc.far=1200;
+    scene.add(key);
+    var fill=new THREE.DirectionalLight(0xdfe8ff,0.3); fill.position.set(-300,200,150); scene.add(fill);
+    var rim=new THREE.DirectionalLight(0xffffff,0.25); rim.position.set(0,260,-380); scene.add(rim);
+    var lampLight=new THREE.PointLight(0xffa95a,0,760,1); lampLight.position.set(-148,150,-62); scene.add(lampLight);
+
+    var kd=new THREE.Color(0xfff4e6), kn=new THREE.Color(0xffc49a);
+    var rd=new THREE.Color(0xffffff), rn=new THREE.Color(0xe0405f);
+    var hd=new THREE.Color(0xffffff), hnn=new THREE.Color(0xc9a0b0);
+
+    /* woven fabric: one canvas drives colour and bump */
+    function weave(){
+      var s=128,cv=document.createElement('canvas'); cv.width=cv.height=s;
+      var cx=cv.getContext('2d'), im=cx.createImageData(s,s);
+      for(var y=0;y<s;y++)for(var x=0;x<s;x++){
+        var th=(((x>>2)+(y>>2))&1)?(x&3):(y&3);
+        var v=212+th*6+(Math.random()*16-8);
+        var i=(y*s+x)*4; im.data[i]=im.data[i+1]=im.data[i+2]=v; im.data[i+3]=255;
+      }
+      cx.putImageData(im,0,0); return cv;
+    }
+    var wv=weave();
+    function tex(){var t=new THREE.CanvasTexture(wv);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(0.25,0.25);t.anisotropy=aniso;return t;}
+    var fabric =new THREE.MeshStandardMaterial({color:0xa23d57,roughness:0.82,map:tex(),bumpMap:tex(),bumpScale:0.6});
+    var fabric2=new THREE.MeshStandardMaterial({color:0xb24b66,roughness:0.82,map:tex(),bumpMap:tex(),bumpScale:0.6});
+    var seam   =new THREE.MeshStandardMaterial({color:0x4a1722,roughness:1});
+    var frame  =new THREE.MeshStandardMaterial({color:0x2c211c,roughness:0.75});
+    var wood   =new THREE.MeshStandardMaterial({color:0x4a3022,roughness:0.5});
+    var brass  =new THREE.MeshStandardMaterial({color:0xd0a661,roughness:0.34,metalness:0.55});
+
+    function box(w,h,d,mat){var m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.castShadow=true;m.receiveShadow=true;return m;}
+    function rbox(w,h,d,r,mat){
+      var b=Math.min(3,r), iw=w-2*b, ih=h-2*b, rr=Math.max(0.5,r-b), x=-iw/2, y=-ih/2, sh=new THREE.Shape();
+      sh.moveTo(x+rr,y); sh.lineTo(x+iw-rr,y); sh.quadraticCurveTo(x+iw,y,x+iw,y+rr);
+      sh.lineTo(x+iw,y+ih-rr); sh.quadraticCurveTo(x+iw,y+ih,x+iw-rr,y+ih);
+      sh.lineTo(x+rr,y+ih); sh.quadraticCurveTo(x,y+ih,x,y+ih-rr);
+      sh.lineTo(x,y+rr); sh.quadraticCurveTo(x,y,x+rr,y);
+      var g=new THREE.ExtrudeGeometry(sh,{depth:d-2*b,bevelEnabled:true,bevelThickness:b,bevelSize:b,bevelSegments:4,curveSegments:6});
+      g.translate(0,0,-(d-2*b)/2);
+      var m=new THREE.Mesh(g,mat); m.castShadow=true; m.receiveShadow=true; return m;
+    }
+
+    var shadowMat=new THREE.ShadowMaterial({opacity:0.22});
+    var ground=new THREE.Mesh(new THREE.PlaneGeometry(1600,1600),shadowMat);
+    ground.rotation.x=-Math.PI/2; ground.receiveShadow=true; scene.add(ground);
+
+    /* warm pool of light on the floor, visible at night */
+    var gc=document.createElement('canvas'); gc.width=gc.height=256;
+    var gx=gc.getContext('2d'), gr=gx.createRadialGradient(128,128,0,128,128,128);
+    gr.addColorStop(0,'rgba(255,170,90,0.9)'); gr.addColorStop(0.45,'rgba(255,120,70,0.35)'); gr.addColorStop(1,'rgba(255,100,60,0)');
+    gx.fillStyle=gr; gx.fillRect(0,0,256,256);
+    var glowMat=new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(gc),transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false});
+    var floorGlow=new THREE.Mesh(new THREE.PlaneGeometry(520,520),glowMat);
+    floorGlow.rotation.x=-Math.PI/2; floorGlow.position.set(-70,0.2,-10); scene.add(floorGlow);
+
+    /* floor lamp, back left */
+    var lamp=new THREE.Group(); lamp.position.set(-148,0,-62); scene.add(lamp);
+    var lb=new THREE.Mesh(new THREE.CylinderGeometry(12,13,1.6,40),brass); lb.position.y=0.8; lamp.add(lb);
+    var lp=new THREE.Mesh(new THREE.CylinderGeometry(0.8,0.8,138,16),brass); lp.position.y=70; lamp.add(lp);
+    var shadeMat=new THREE.MeshStandardMaterial({color:0xf0d9bd,emissive:0xffb066,emissiveIntensity:0.1,roughness:0.9,side:THREE.DoubleSide});
+    var shade=new THREE.Mesh(new THREE.CylinderGeometry(9,15,22,40,1,true),shadeMat); shade.position.y=150; lamp.add(shade);
+    var bulb=new THREE.Mesh(new THREE.SphereGeometry(5,20,16),new THREE.MeshBasicMaterial({color:0xffd9a0})); bulb.position.y=148; lamp.add(bulb);
+
+    /* frame and legs */
+    var base=box(W-6,12,D-4,frame); base.position.set(0,14,0); scene.add(base);
+    [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(function(s){
+      var leg=new THREE.Mesh(new THREE.CylinderGeometry(2.7,1.8,8,24),wood);
+      leg.position.set(s[0]*(W/2-10),4,s[1]*(D/2-10)); leg.castShadow=true; scene.add(leg);
+      var cap=new THREE.Mesh(new THREE.CylinderGeometry(1.85,1.85,0.8,24),brass);
+      cap.position.set(s[0]*(W/2-10),0.4,s[1]*(D/2-10)); scene.add(cap);
+    });
+
+    /* seat */
+    var filler=rbox(W-0.4,TH,D-H,3,fabric2); filler.position.set(0,P+TH/2,-D/2+(D-H)/2); scene.add(filler);
+    var riser=rbox(W-0.4,22,D-H,3,fabric2); riser.position.set(0,SEAT,-D/2+(D-H)/2); riser.scale.y=0.001; scene.add(riser);
+    [-1,1].forEach(function(s){var c=rbox(W/2-0.3,TH,H,6,fabric2); c.position.set(s*(W/4),P+TH/2,D/2-H/2); scene.add(c);});
+
+    /* arms with brass-edged walnut caps */
+    [-1,1].forEach(function(s){
+      var a=rbox(14,78,D,5,fabric); a.position.set(s*(W/2+7),47,0); scene.add(a);
+      var cap=box(15.4,3,D+0.6,wood); cap.position.set(s*(W/2+7),87.5,0); scene.add(cap);
+      var trim=box(15.6,0.7,D+0.8,brass); trim.position.set(s*(W/2+7),86.2,0); scene.add(trim);
+    });
+
+    /* back panel on its carriage; the hinge is the bottom edge */
+    var carriage=new THREE.Group(); scene.add(carriage);
+    var pad=rbox(W-0.6,H,TH,5,fabric); pad.position.set(0,H/2,0); carriage.add(pad);
+    var lum=new THREE.Group(); carriage.add(lum);
+
+    /* plush pillows: puffed front, flatter back, pinched corners, thin seamed edge */
+    function pillowGeo(w,h,d,back){
+      var g=new THREE.BoxGeometry(w,h,d,28,18,8), pa=g.attributes.position;
+      for(var i=0;i<pa.count;i++){
+        var x=pa.getX(i),y=pa.getY(i),z=pa.getZ(i);
+        var u=x/(w/2), v=y/(h/2);
+        var f=Math.pow(Math.max(0,1-u*u),0.6)*Math.pow(Math.max(0,1-v*v),0.6);
+        var k=z>=0?(0.12+0.88*f):(0.12+0.88*f*back);
+        pa.setXYZ(i,x*(1-0.07*v*v),y*(1-0.07*u*u),z*k);
+      }
+      g.computeVertexNormals(); return g;
+    }
+    function texR(rx,ry){var t=tex();t.repeat.set(rx,ry);return t;}
+    var pillowMat=new THREE.MeshStandardMaterial({color:0xc4637d,roughness:0.78,map:texR(22,11),bumpMap:texR(22,11),bumpScale:0.5});
+    var accentMat=new THREE.MeshStandardMaterial({color:0xeedfca,roughness:0.78,map:texR(9,9),bumpMap:texR(9,9),bumpScale:0.5});
+    function pillow(w,h,d,mat,x,y,z,rx,rz){
+      var m=new THREE.Mesh(pillowGeo(w,h,d,0.35),mat); m.castShadow=true; m.receiveShadow=true;
+      m.position.set(x,y,z); m.rotation.x=rx; m.rotation.z=rz;
+      var b=new THREE.Mesh(new THREE.SphereGeometry(1.5,16,12),brass); b.position.set(0,0,d/2-0.3); m.add(b);
+      lum.add(m); return m;
+    }
+    [-1,1].forEach(function(s){ pillow(90,46,16,pillowMat,s*(W/4),H/2+1,3.4,-0.1,s*0.015); });
+    pillow(34,34,12,accentMat,-62,16,12,-0.15,0.38);
+
+    var dark=true, nightV=1;
+    function shadowOp(){shadowMat.opacity=(dark?0.5:0.22)+0.18*nightV;}
+    function setNight(n){
+      nightV=n;
+      hemi.intensity=mix(0.85,0.3,n); hemi.color.copy(hd).lerp(hnn,n);
+      key.intensity=mix(0.85,0.55,n); key.color.copy(kd).lerp(kn,n);
+      fill.intensity=mix(0.3,0.1,n);
+      rim.intensity=mix(0.25,1.0,n); rim.color.copy(rd).lerp(rn,n);
+      lampLight.intensity=n*1.7; glowMat.opacity=n*0.55;
+      shadeMat.emissiveIntensity=0.1+n*1.6;
+      shadowOp();
+    }
+    var covers=[fabric,fabric2,pillowMat,accentMat].map(function(m){return {m:m,map:m.map,bump:m.bumpMap,r:m.roughness};});
+    function setCover(w){covers.forEach(function(c){c.m.map=w?null:c.map;c.m.bumpMap=w?null:c.bump;c.m.roughness=w?0.36:c.r;c.m.needsUpdate=true;});}
+    function setDark(d){dark=d;shadowOp();}
+    function sync(p){
+      carriage.position.set(0,p.y,p.z);
+      carriage.rotation.x=p.th;
+      var s=1-0.9*p.f; lum.scale.z=s; lum.position.z=PT/2;
+      pad.scale.z=PT/TH;
+      var rs=Math.max(0.001,p.rv*PT/22); riser.scale.y=rs; riser.position.y=SEAT+11*rs;
+    }
+    function resize(){
+      var w=stage.clientWidth,h=stage.clientHeight; if(!w||!h)return;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+      renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+    }
+    function render(az,pol,r){
+      camera.position.set(Math.sin(az)*Math.sin(pol)*r, Math.cos(pol)*r+35, Math.cos(az)*Math.sin(pol)*r-8);
+      camera.lookAt(0,35,-8); renderer.render(scene,camera);
+    }
+    setNight(1);
+    return {sync:sync,resize:resize,render:render,setDark:setDark,setNight:setNight,setCover:setCover};
+  }
+
+  var g3=null;
+  try{ if(typeof THREE==='undefined') throw new Error('three'); g3=build3d(); }
+  catch(e){ g3=null; $('glFail').hidden=false; }
+
+  /* ---------- state + readouts ---------- */
+  var t=0, target=0, lastIdx=-1, lastDone=null, lastPT=0;
+  var sl=$('slider'), tog=$('toggle');
+  function apply(){
+    var p=pose(t);
+    if(g3) g3.sync(p);
+    dPad.setAttribute('points',pts(p));
+    var top=Math.max.apply(null,padCorners(p).map(function(c){return c.y;}));
+    $('rAngle').textContent=Math.round(p.f*90)+'°';
+    $('rTravel').textContent=Math.round(GL*p.g)+' cm';
+    $('rTop').textContent=Math.round(top)+' cm';
+    $('rSeat').textContent=Math.round(H*(1-p.g))+' cm';
+    $('sTop').textContent=(SEAT+PT)+' cm'; $('sPad').textContent='199.4 \u00d7 58 \u00d7 '+PT+' cm';
+    dGhost.setAttribute('points',pts(pose(0)));
+    dRiser.setAttribute('y',Y(42+PT*p.rv).toFixed(2)); dRiser.setAttribute('height',(PT*p.rv).toFixed(2));
+    var idx=stepIndex(t), done=t>=0.999;
+    if(idx!==lastIdx||done!==lastDone||lastPT!==PT){
+      lastPT=PT;
+      lastIdx=idx; lastDone=done;
+      $('modeName').textContent=idx===0?'Sofa mode':done?'Glide mode':STEPS[idx].name;
+      $('modeDesc').textContent=done?'Resting on the seat as a double cushion. The rear platform has risen to match: one flat surface, '+(SEAT+PT)+' cm high.':DESC[idx];
+      chipBtns.forEach(function(b,i){b.setAttribute('aria-pressed',String(i===idx));});
+    }
+    sl.setAttribute('aria-valuetext',STEPS[idx].name+', '+Math.round(t*100)+' percent');
+    tog.textContent=target>0.5?'Back to sofa':'Glide onto seat';
+  }
+  tog.addEventListener('click',function(){target=target>0.5?0:1;});
+  function seg(attr,fn){var bs=[].slice.call(document.querySelectorAll('['+attr+']'));bs.forEach(function(b){b.addEventListener('click',function(){bs.forEach(function(o){o.setAttribute('aria-pressed',String(o===b));});fn(b.getAttribute(attr));});});}
+  seg('data-ht',function(v){PT=+v;dims();apply();});
+  seg('data-cov',function(v){if(g3)g3.setCover(v==='1');});
+  $('wt').addEventListener('input',function(){var v=this.value.trim();$('sWt').textContent=v?v+' kg (target)':'[X] kg';});
+  sl.addEventListener('input',function(){t=target=sl.value/100;apply();});
+
+  /* ---------- mood: day / night ---------- */
+  var nv=1, nt=1, glowEl=$('glow'), vigEl=$('vig');
+  var moodBtns=[].slice.call(document.querySelectorAll('[data-mood]'));
+  function moodUI(){
+    moodBtns.forEach(function(b){b.setAttribute('aria-pressed',String((b.getAttribute('data-mood')==='night')===(nt>0.5)));});
+  }
+  moodBtns.forEach(function(b){b.addEventListener('click',function(){nt=b.getAttribute('data-mood')==='night'?1:0;moodUI();});});
+  function paintMood(){
+    if(g3) g3.setNight(nv);
+    glowEl.style.opacity=nv; vigEl.style.opacity=nv;
+    stage.classList.toggle('night',nv>0.5);
+  }
+  moodUI(); paintMood();
+
+  /* ---------- camera ---------- */
+  var VIEWS={three:{az:0.7,pol:1.15,rad:520},front:{az:0,pol:1.35,rad:500},side:{az:Math.PI/2,pol:1.5,rad:560},top:{az:0,pol:0.32,rad:600}};
+  var cam={az:0.7,pol:1.15,rad:520,azT:0.7,polT:1.15,radT:520};
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var auto=!reduce, autoBtn=$('auto'), viewBtns=[].slice.call(document.querySelectorAll('[data-view]'));
+  autoBtn.setAttribute('aria-pressed',String(auto));
+  function setAuto(v){auto=v;autoBtn.setAttribute('aria-pressed',String(v));}
+  function setView(name){
+    var v=VIEWS[name]; setAuto(false);
+    var d=((v.az-cam.az+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;
+    cam.azT=cam.az+d; cam.polT=v.pol; cam.radT=v.rad;
+  }
+  viewBtns.forEach(function(b){b.addEventListener('click',function(){setView(b.getAttribute('data-view'));});});
+  autoBtn.addEventListener('click',function(){setAuto(!auto);});
+
+  var ptrs={}, pinch=0;
+  function count(){return Object.keys(ptrs).length;}
+  function pdist(){var k=Object.keys(ptrs),a=ptrs[k[0]],b=ptrs[k[1]];return Math.hypot(a.x-b.x,a.y-b.y);}
+  stage.addEventListener('pointerdown',function(e){
+    if(e.target.closest('.cam'))return;
+    ptrs[e.pointerId]={x:e.clientX,y:e.clientY}; setAuto(false);
+    try{stage.setPointerCapture(e.pointerId);}catch(_){}
+    if(count()===2)pinch=pdist();
+  });
+  stage.addEventListener('pointermove',function(e){
+    var q=ptrs[e.pointerId]; if(!q)return;
+    if(count()===2){ptrs[e.pointerId]={x:e.clientX,y:e.clientY};var d=pdist();if(pinch)cam.radT=Math.max(260,Math.min(850,cam.radT*pinch/d));pinch=d;return;}
+    cam.azT-=(e.clientX-q.x)*0.008;
+    cam.polT=Math.max(0.3,Math.min(1.52,cam.polT-(e.clientY-q.y)*0.006));
+    ptrs[e.pointerId]={x:e.clientX,y:e.clientY};
+  });
+  function up(e){delete ptrs[e.pointerId];pinch=0;}
+  stage.addEventListener('pointerup',up); stage.addEventListener('pointercancel',up);
+  stage.addEventListener('wheel',function(e){e.preventDefault();cam.radT=Math.max(260,Math.min(850,cam.radT+e.deltaY*0.4));},{passive:false});
+  stage.addEventListener('keydown',function(e){
+    var k=e.key,h=true;
+    if(k==='ArrowLeft')cam.azT-=0.15; else if(k==='ArrowRight')cam.azT+=0.15;
+    else if(k==='ArrowUp')cam.polT=Math.max(0.3,cam.polT-0.08); else if(k==='ArrowDown')cam.polT=Math.min(1.52,cam.polT+0.08);
+    else if(k==='+'||k==='=')cam.radT=Math.max(260,cam.radT-40); else if(k==='-')cam.radT=Math.min(850,cam.radT+40);
+    else h=false;
+    if(h){e.preventDefault();setAuto(false);}
+  });
+
+  if(g3){
+    if(window.ResizeObserver)new ResizeObserver(g3.resize).observe(stage); else window.addEventListener('resize',g3.resize);
+    g3.resize();
+  }
+  function isDark(){var a=root.getAttribute('data-theme');return a?a==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;}
+  var lastDark=null, last=performance.now();
+  function loop(now){
+    var dt=Math.min(0.05,(now-last)/1000); last=now;
+    if(t!==target){
+      var step=(reduce?4:0.32)*dt;
+      t=t<target?Math.min(target,t+step):Math.max(target,t-step);
+      sl.value=Math.round(t*100); apply();
+    }
+    if(nv!==nt){
+      var ns=(reduce?10:1.8)*dt;
+      nv=nv<nt?Math.min(nt,nv+ns):Math.max(nt,nv-ns);
+      paintMood();
+    }
+    if(auto)cam.azT+=dt*0.16;
+    var k=reduce?1:1-Math.pow(0.0006,dt);
+    cam.az+=(cam.azT-cam.az)*k; cam.pol+=(cam.polT-cam.pol)*k; cam.rad+=(cam.radT-cam.rad)*k;
+    if(g3){
+      var d=isDark(); if(d!==lastDark){lastDark=d;g3.setDark(d);}
+      var aspect=stage.clientWidth/Math.max(1,stage.clientHeight);
+      g3.render(cam.az,cam.pol,cam.rad*Math.max(1,1.6/aspect));
+    }
+    requestAnimationFrame(loop);
+  }
+  apply(); requestAnimationFrame(loop);
+})();
+</script>
+
+</body></html>

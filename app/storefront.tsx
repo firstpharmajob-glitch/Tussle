@@ -7,7 +7,6 @@ import {
   type CSSProperties,
   type FormEvent,
   type MouseEvent,
-  type RefObject,
   type ReactNode,
   useContext,
   useEffect,
@@ -22,6 +21,60 @@ const FREE_DELIVERY_THRESHOLD = 5000;
 
 type CartItem = { p: number; q: number };
 type Cart = Record<string, CartItem>;
+
+const products = [
+  {
+    name: "Dusk sofa-bed",
+    price: 49900,
+    preview: "/concepts/dusk-sofa-bed.html",
+    description:
+      "A plain two-seater with wipeable fabric. It fits a hostel room without taking it over.",
+    features: [
+      "Firm foam on a solid deck",
+      "Silent hinges, locking legs",
+      "Hidden drawer for essentials",
+    ],
+  },
+  {
+    name: "Lowlight coffee table",
+    price: 14900,
+    preview: "/concepts/lowlight-coffee-table.html",
+    description:
+      "A 120 × 60 cm wood coffee table with a shelf underneath.",
+    features: [
+      "Rounded edges, locking flip",
+      "Lower shelf for wipes and a towel",
+      "Wood on one side, padded on the other",
+    ],
+  },
+  {
+    name: "Hold chair",
+    price: 12900,
+    preview: "/concepts/hold-chair.html",
+    description: "An accent chair that looks entirely innocent.",
+    features: [
+      "Reinforced frame, non-slip feet",
+      "Recline locks in place",
+      "Wipeable cover",
+    ],
+  },
+  {
+    name: "Nightshift desk",
+    price: 21900,
+    preview: "/concepts/nightshift-desk.html",
+    description: "A work desk with fixed legs, a lift-off top and six rated rings.",
+    features: ["Fixed legs", "Lift-off top", "Six rated rings"],
+  },
+] as const;
+
+const productNames = new Set<string>(products.map(({ name }) => name));
+
+const updatedStoreCopy: Record<string, string> = {
+  "How much space does the Hush desk need?":
+    "Are these 3D previews final product specifications?",
+  "It is 12 cm deep when closed, so it sits almost flat against the wall.":
+    "No. The 3D models are concept previews; dimensions and load ratings shown in them are placeholders, not confirmed product specifications.",
+};
 
 type StorefrontProps = {
   nodes: MarkupNode[];
@@ -79,7 +132,7 @@ function renderMarkup(
   prefix = "node",
 ): ReactNode[] {
   return nodes.map((node, index) => {
-    if (!isElement(node)) return node;
+    if (!isElement(node)) return updatedStoreCopy[node] ?? node;
     const key = `${prefix}-${index}`;
     const replacement = replace?.(node, key);
     if (replacement !== undefined) return createElement(Fragment, { key }, replacement);
@@ -93,6 +146,26 @@ function renderMarkup(
 
 function formatPrice(value: number) {
   return `₹${value.toLocaleString("en-IN")}`;
+}
+
+function ConceptPreview({
+  src,
+  title,
+  room = false,
+}: {
+  src: string;
+  title: string;
+  room?: boolean;
+}) {
+  return (
+    <iframe
+      className={`concept-frame${room ? " room-frame" : ""}`}
+      src={room ? src : `${src}?embed=1`}
+      title={title}
+      loading="lazy"
+      referrerPolicy="no-referrer"
+    />
+  );
 }
 
 function ProductTile({
@@ -147,11 +220,13 @@ function ProductCard({
   price,
   children,
   onAdd,
+  className = "",
 }: {
   name: string;
   price: number;
   children: ReactNode;
   onAdd: (name: string, price: number) => void;
+  className?: string;
 }) {
   const [added, setAdded] = useState(false);
 
@@ -167,7 +242,7 @@ function ProductCard({
   }
 
   return (
-    <article className="card" onClick={handleClick}>
+    <article className={`card ${className}`.trim()} onClick={handleClick}>
       {children}
       <div className="row">
         <span className="price">{formatPrice(price)}</span>
@@ -182,16 +257,16 @@ function ProductCard({
 function ProductQuiz() {
   const [selected, setSelected] = useState<number | null>(null);
   const questions = [
-    "Nowhere to work",
-    "Too much stuff",
-    "Cable chaos",
-    "Friends sleep over",
+    "A place for guests to sleep",
+    "A coffee table that does more",
+    "A chair to recline in",
+    "A desk for everyday work",
   ];
   const recommendations = [
-    "Try the Hush desk. It folds out for work and vanishes after.",
-    "Try the Stash ottoman. 80 litres of hiding place you can sit on.",
-    "Try the Tidy box. Power strips go in, cables disappear.",
-    "Try the Love Glide. A sofa by day, a place for friends to stay at night.",
+    "Meet the Dusk sofa-bed: a plain two-seater, with a hidden drawer for essentials.",
+    "Meet the Lowlight coffee table: a lower shelf and a wood side that flips to padding.",
+    "Meet the Hold chair: a wipeable cover and a recline that locks in place.",
+    "Meet the Nightshift desk: fixed legs, a lift-off top and six rated rings.",
   ];
 
   return (
@@ -220,6 +295,156 @@ function ProductQuiz() {
   );
 }
 
+function FeaturedLoveGlide() {
+  const conceptUrl = "/concepts/love-glide-sofa.html";
+
+  return (
+    <section className="featured-product" aria-labelledby="featured-love-glide-title">
+      <div className="wrap">
+        <div className="featured-layout">
+          <div className="featured-copy">
+            <p className="eyebrow">Featured · TUSSLE after dark</p>
+            <h2 id="featured-love-glide-title">Love Glide sofa</h2>
+            <p className="sub">
+              Meet the sofa in its interactive 3D concept. Explore each position and see how the
+              Love Glide transforms.
+            </p>
+            <a className="btn featured-link" href={conceptUrl} target="_blank" rel="noreferrer">
+              Explore the full concept <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div className="featured-media">
+            <iframe
+              className="featured-frame"
+              src={conceptUrl}
+              title="Love Glide sofa interactive 3D concept"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductCatalog({ onAdd }: { onAdd: (name: string, price: number) => void }) {
+  return (
+    <>
+      <FeaturedLoveGlide />
+      <section id="shop">
+        <div className="wrap">
+          <p className="eyebrow">The TUSSLE collection</p>
+          <h2>Four pieces. Room to breathe.</h2>
+          <p className="sub">
+            Considered furniture for small rooms, slow evenings and the unexpected guest.
+          </p>
+          <div className="grid product-grid">
+            {products.map((product) => (
+              <ProductCard
+                key={product.name}
+                name={product.name}
+                price={product.price}
+                className="concept-card"
+                onAdd={onAdd}
+              >
+                <div className="concept-media">
+                  <ConceptPreview
+                    src={product.preview}
+                    title={`${product.name} interactive 3D concept`}
+                  />
+                </div>
+                <div className="concept-copy">
+                  <h3>{product.name}</h3>
+                  <p>{product.description}</p>
+                  <ul className="concept-features">
+                    {product.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+                  <a
+                    className="concept-link"
+                    href={product.preview}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open full 3D concept <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </ProductCard>
+            ))}
+          </div>
+          <p className="concept-disclaimer">
+            Interactive models are concepts. Any dimensions or load ratings shown in the original
+            previews are placeholders, not confirmed specifications.
+          </p>
+        </div>
+      </section>
+      <section className="room-showcase" aria-labelledby="room-showcase-title">
+        <div className="wrap">
+          <p className="eyebrow">A little room to imagine</p>
+          <h2 id="room-showcase-title">The 9 m² room</h2>
+          <p className="sub">
+            See the Dusk, Lowlight and Hold together in an interactive room concept.
+          </p>
+          <ConceptPreview
+            src="/concepts/room-9sqm.html"
+            title="Interactive 3D concept for The 9 square metre room"
+            room
+          />
+        </div>
+      </section>
+    </>
+  );
+}
+
+function BeforeYouBuy() {
+  const details = [
+    {
+      title: "Delivery across India",
+      description:
+        "We deliver across India. Contact us to confirm delivery timing and shipping charges for your location.",
+    },
+    {
+      title: "Self assembly",
+      description: "Our furniture is self-assembled.",
+    },
+    {
+      title: "Returns",
+      description:
+        "Our return policy is still being finalized. Please contact us for the latest terms before ordering.",
+    },
+    {
+      title: "Warranty",
+      description:
+        "Warranty terms are still being finalized. Please contact us for the latest information before ordering.",
+    },
+  ];
+
+  return (
+    <section id="faq">
+      <div className="wrap">
+        <p className="eyebrow">The useful details</p>
+        <h2>Before you buy.</h2>
+        <p className="sub">
+          Questions about your location, delivery or a piece? Talk to a real person.
+        </p>
+        <div className="grid buying-grid">
+          {details.map(({ title, description }) => (
+            <article className="buying-card" key={title}>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </article>
+          ))}
+        </div>
+        <a className="btn buying-contact" href="mailto:lovetussle@gmail.com">
+          Email lovetussle@gmail.com
+        </a>
+      </div>
+    </section>
+  );
+}
+
 type HeroState = {
   index: number;
   open: boolean;
@@ -229,6 +454,66 @@ type HeroState = {
 
 const HeroContext = createContext<HeroState | null>(null);
 
+function Hero3DFrame() {
+  const frameRef = useRef<HTMLIFrameElement>(null);
+  const [height, setHeight] = useState<number | null>(null);
+
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame) return;
+
+    let observer: ResizeObserver | null = null;
+    let frameWindow: Window | null = null;
+    const updateHeight = () => {
+      const document = frame.contentDocument;
+      if (!document) return;
+      const nextHeight = Math.ceil(
+        Math.max(document.documentElement.scrollHeight, document.body.scrollHeight),
+      );
+      setHeight((current) => (current === nextHeight ? current : nextHeight));
+    };
+    const observeFrame = () => {
+      const document = frame.contentDocument;
+      if (!document) return;
+
+      observer?.disconnect();
+      frameWindow?.removeEventListener("resize", updateHeight);
+      frameWindow = document.defaultView;
+      observer = new ResizeObserver(updateHeight);
+      observer.observe(document.documentElement);
+      observer.observe(document.body);
+      const hero = document.getElementById("hero");
+      if (hero) observer.observe(hero);
+      frameWindow?.addEventListener("resize", updateHeight);
+      updateHeight();
+    };
+
+    frame.addEventListener("load", observeFrame);
+    if (frame.contentDocument?.readyState === "complete") observeFrame();
+
+    return () => {
+      frame.removeEventListener("load", observeFrame);
+      observer?.disconnect();
+      frameWindow?.removeEventListener("resize", updateHeight);
+    };
+  }, []);
+
+  return (
+    <iframe
+      ref={frameRef}
+      src="/tussle-hero-3d.html?embed=1"
+      title="Tussle Dusk sofa-bed 3D hero"
+      className="hero-3d-frame"
+      style={{
+        display: "block",
+        width: "100%",
+        height: height ? `${height}px` : "100svh",
+        border: 0,
+      }}
+    />
+  );
+}
+
 function useHero() {
   const hero = useContext(HeroContext);
   if (!hero) throw new Error("The hero controls must be rendered inside the hero section.");
@@ -236,9 +521,10 @@ function useHero() {
 }
 
 const heroCaptions = [
-  "That’s the Love Glide. A plain sofa by day.",
-  "That’s the Nightshift desk. 9 to 5 on top. Flips after dark.",
-  "That’s the Hush desk. It lives in 12 cm of wall.",
+  "That’s the Dusk sofa-bed. An easygoing two-seater, ready to become a bed.",
+  "That’s the Lowlight coffee table. Wood on one side, padded on the other.",
+  "That’s the Hold chair. A recline that locks in place.",
+  "That’s the Nightshift desk. A lift-off top, fixed legs and six rated rings.",
 ];
 
 function HeroExperience({ children }: { children: ReactNode }) {
@@ -270,9 +556,8 @@ function HeroExperience({ children }: { children: ReactNode }) {
   );
 }
 
-function HeroCabinetContent({ renderChildren }: { renderChildren: ReactNode }) {
+function HeroCabinetContent() {
   const { index } = useHero();
-  if (index === 2) return <div className="in">{renderChildren}</div>;
 
   return (
     <div className="in" aria-hidden="true">
@@ -289,15 +574,35 @@ function HeroCabinetContent({ renderChildren }: { renderChildren: ReactNode }) {
           <rect x="12" y="96" width="5" height="10" fill="#17120f" />
           <rect x="83" y="96" width="5" height="10" fill="#17120f" />
         </svg>
+      ) : index === 1 ? (
+        <svg viewBox="0 0 100 125">
+          <rect x="8" y="57" width="84" height="12" rx="4" fill="#8a5a3c" />
+          <rect x="14" y="69" width="6" height="44" fill="#17120f" />
+          <rect x="80" y="69" width="6" height="44" fill="#17120f" />
+          <rect x="21" y="87" width="58" height="5" rx="2" fill="#f4dc6a" />
+          <rect x="21" y="92" width="5" height="18" fill="#17120f" />
+          <rect x="74" y="92" width="5" height="18" fill="#17120f" />
+          <rect x="11" y="54" width="78" height="3" rx="2" fill="#cfc3f2" />
+        </svg>
+      ) : index === 2 ? (
+        <svg viewBox="0 0 100 125">
+          <path d="M29 26h42l8 41H25z" fill="#2f3cf0" />
+          <rect x="23" y="64" width="56" height="13" rx="6" fill="#cfc3f2" />
+          <path d="M28 77l-7 35h6l12-34m28 0 12 34h6L74 77" fill="#17120f" />
+          <rect x="19" y="109" width="12" height="4" rx="2" fill="#f4dc6a" />
+          <rect x="70" y="109" width="12" height="4" rx="2" fill="#f4dc6a" />
+        </svg>
       ) : (
         <svg viewBox="0 0 100 125">
-          <rect x="6" y="72" width="88" height="7" rx="2" fill="#8a5a3c" />
-          <rect x="16" y="79" width="5" height="40" fill="#17120f" />
-          <rect x="79" y="79" width="5" height="40" fill="#17120f" />
-          <rect x="30" y="50" width="38" height="22" rx="2" fill="#17120f" />
-          <rect x="33" y="53" width="32" height="16" fill="#f4dc6a" />
-          <rect x="10" y="80" width="80" height="3" rx="1" fill="#f4dc6a" />
-          <rect x="74" y="60" width="10" height="12" rx="2" fill="#cfc3f2" />
+          <rect x="9" y="40" width="82" height="10" rx="3" fill="#8a5a3c" />
+          <rect x="16" y="50" width="6" height="61" fill="#17120f" />
+          <rect x="78" y="50" width="6" height="61" fill="#17120f" />
+          <rect x="17" y="35" width="66" height="4" rx="2" fill="#f4dc6a" />
+          <circle cx="21" cy="33" r="3" fill="#2f3cf0" />
+          <circle cx="36" cy="33" r="3" fill="#2f3cf0" />
+          <circle cx="50" cy="33" r="3" fill="#2f3cf0" />
+          <circle cx="64" cy="33" r="3" fill="#2f3cf0" />
+          <circle cx="79" cy="33" r="3" fill="#2f3cf0" />
         </svg>
       )}
     </div>
@@ -339,184 +644,6 @@ function HeroControls({
     );
   }
   return undefined;
-}
-
-type RoomState = {
-  value: number;
-  setValue: (value: number) => void;
-  moveTo: (value: number) => void;
-  cancelAnimation: () => void;
-  selectedPreset: number | null;
-  setSelectedPreset: (value: number | null) => void;
-  sliderRef: RefObject<HTMLDivElement | null>;
-};
-
-const RoomContext = createContext<RoomState | null>(null);
-
-function useRoom() {
-  const room = useContext(RoomContext);
-  if (!room) throw new Error("Room comparison controls must be inside the room section.");
-  return room;
-}
-
-function RoomComparison({ node, children }: { node: MarkupElement; children: ReactNode }) {
-  const [value, setValue] = useState(50);
-  const [selectedPreset, setSelectedPreset] = useState<number | null>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const controlFrame = useRef(0);
-  const autoFrame = useRef(0);
-
-  function cancelAnimation() {
-    cancelAnimationFrame(autoFrame.current);
-    cancelAnimationFrame(controlFrame.current);
-  }
-
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    function animate(from: number, to: number, duration: number, complete?: () => void) {
-      const start = performance.now();
-      function update(now: number) {
-        const progress = Math.min(1, (now - start) / duration);
-        const eased =
-          progress < 0.5
-            ? 2 * progress * progress
-            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-        setValue(Math.round(from + (to - from) * eased));
-        if (progress < 1) {
-          autoFrame.current = requestAnimationFrame(update);
-        } else {
-          complete?.();
-        }
-      }
-      autoFrame.current = requestAnimationFrame(update);
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0]?.isIntersecting) return;
-        observer.disconnect();
-        animate(50, 0, 700, () => animate(0, 100, 1400));
-      },
-      { threshold: 0.6 },
-    );
-    observer.observe(slider);
-
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(autoFrame.current);
-    };
-  }, []);
-
-  function moveTo(target: number) {
-    cancelAnimation();
-    setSelectedPreset(target);
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setValue(target);
-      return;
-    }
-    const from = value;
-    const start = performance.now();
-    function update(now: number) {
-      const progress = Math.min(1, (now - start) / 700);
-      const eased =
-        progress < 0.5
-          ? 2 * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-      setValue(Math.round(from + (target - from) * eased));
-      if (progress < 1) controlFrame.current = requestAnimationFrame(update);
-    }
-    controlFrame.current = requestAnimationFrame(update);
-  }
-
-  useEffect(() => () => cancelAnimation(), []);
-
-  return (
-    <RoomContext.Provider
-      value={{
-        value,
-        setValue,
-        moveTo,
-        cancelAnimation,
-        selectedPreset,
-        setSelectedPreset,
-        sliderRef,
-      }}
-    >
-      {createElement("section", { ...node.attrs }, children)}
-    </RoomContext.Provider>
-  );
-}
-
-function RoomRange({ node }: { node: MarkupElement }) {
-  const { value, setValue, setSelectedPreset, cancelAnimation } = useRoom();
-  return (
-    <input
-      type="range"
-      min={0}
-      max={100}
-      value={value}
-      aria-label={attr(node, "aria-label")}
-      onChange={(event) => {
-        cancelAnimation();
-        setSelectedPreset(null);
-        setValue(Number(event.target.value));
-      }}
-    />
-  );
-}
-
-function RoomSlider({
-  node,
-  children,
-}: {
-  node: MarkupElement;
-  children: ReactNode;
-}) {
-  const { value, sliderRef } = useRoom();
-  return (
-    <div
-      {...node.attrs}
-      ref={sliderRef}
-      style={{ ...(node.attrs.style as CSSProperties), "--p": `${value}%` } as CSSProperties}
-    >
-      {children}
-    </div>
-  );
-}
-
-function RoomControls() {
-  const { moveTo, selectedPreset } = useRoom();
-  return (
-    <div className="opts" id="pre">
-      {[
-        ["Move-in mess", 0],
-        ["Halfway", 50],
-        ["Sorted", 100],
-      ].map(([label, target]) => (
-        <button
-          className="btn alt"
-          type="button"
-          aria-pressed={selectedPreset === target}
-          key={label}
-          onClick={() => moveTo(Number(target))}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function RoomStat({ id }: { id: string }) {
-  const { value } = useRoom();
-  const stats: Record<string, string> = {
-    s1: `${Math.round(18 + 46 * (value / 100))}%`,
-    s2: String(Math.round(14 - 11 * (value / 100))),
-    s3: String(Math.round(6 - 6 * (value / 100))),
-  };
-  return <b id={id}>{stats[id]}</b>;
 }
 
 function AgeGate({ children }: { children: ReactNode }) {
@@ -643,19 +770,6 @@ function BrandMoods({ node }: { node: MarkupElement }) {
         </button>
       ))}
     </div>
-  );
-}
-
-function RoomLabel({ node, children }: { node: MarkupElement; children: ReactNode }) {
-  const { value } = useRoom();
-  const visible = hasClass(node, "ta") ? value > 40 : value < 60;
-  return createElement(
-    node.tag,
-    {
-      ...node.attrs,
-      style: { ...(node.attrs.style as CSSProperties), opacity: visible ? 1 : 0 },
-    },
-    children,
   );
 }
 
@@ -879,6 +993,7 @@ export default function Storefront({ nodes }: StorefrontProps) {
         const clean: Cart = {};
         Object.entries(saved).forEach(([name, value]) => {
           if (
+            productNames.has(name) &&
             value &&
             typeof value === "object" &&
             "p" in value &&
@@ -956,16 +1071,12 @@ export default function Storefront({ nodes }: StorefrontProps) {
       const id = attr(node, "id");
       const children = () => render(node.children, key, productName, logoMood);
 
+      if (id === "shop") return <ProductCatalog key={key} onAdd={addToCart} />;
+
+      if (node.tag === "div" && hasClass(node, "tick")) return null;
+
       if (node.tag === "div" && hasClass(node, "hero")) {
-        return (
-          <HeroExperience key={key}>
-            {createElement(
-              "div",
-              { ...node.attrs },
-              render(node.children, `${key}-hero`, productName, logoMood),
-            )}
-          </HeroExperience>
-        );
+        return <Hero3DFrame key={key} />;
       }
 
       if (id === "open" || id === "next" || id === "cab" || id === "cap") {
@@ -976,34 +1087,11 @@ export default function Storefront({ nodes }: StorefrontProps) {
         return (
           <HeroCabinetContent
             key={key}
-            renderChildren={render(node.children, `${key}-interior`, productName, logoMood)}
           />
         );
       }
 
-      if (id === "move") {
-        return <RoomComparison key={key} node={node} children={children()} />;
-      }
-
-      if (id === "ba") {
-        return <RoomSlider key={key} node={node} children={children()} />;
-      }
-
-      if (id === "pre") return <RoomControls key={key} />;
-      if (hasClass(node, "ta") || hasClass(node, "tb")) {
-        return <RoomLabel key={key} node={node} children={children()} />;
-      }
-      if (id === "s1" || id === "s2" || id === "s3") {
-        return <RoomStat key={key} id={id} />;
-      }
-
-      if (
-        node.tag === "input" &&
-        attr(node, "type") === "range" &&
-        attr(node, "aria-label") === "Compare before and after"
-      ) {
-        return <RoomRange key={key} node={node} />;
-      }
+      if (id === "move") return null;
 
       if (id === "gate") return <AgeGate key={key}>{children()}</AgeGate>;
 
@@ -1080,6 +1168,8 @@ export default function Storefront({ nodes }: StorefrontProps) {
       if (id === "join-form") return <NewsletterForm />;
       if (id === "msg") return null;
       if (id === "quiz") return <ProductQuiz />;
+      if (id === "faq") return <BeforeYouBuy key={key} />;
+      if (hasClass(node, "st")) return null;
 
       if (node.tag === "div" && hasClass(node, "tile")) {
         return (
