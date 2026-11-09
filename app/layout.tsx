@@ -3,9 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.lovetussle.com"),
-  title: "Tussle Furniture Co. | Thoughtful Furniture for Small Rooms",
+  title: "Tussle Furniture Co. | Furniture for Small Spaces in India",
   description:
-    "Discover Tussle Furniture Co., thoughtful furniture for small rooms in India, with interactive 3D concept previews.",
+    "Explore Tussle Furniture Co. at Lovetussle: furniture for small spaces in India, with interactive 3D concept previews.",
   applicationName: "Tussle Furniture Co.",
   alternates: {
     canonical: "/",
@@ -15,15 +15,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "/",
     siteName: "Tussle Furniture Co.",
-    title: "Tussle Furniture Co. | Thoughtful Furniture for Small Rooms",
+    title: "Tussle Furniture Co. | Furniture for Small Spaces in India",
     description:
-      "Discover thoughtful furniture for small rooms in India, with interactive 3D concept previews.",
+      "Explore Tussle Furniture Co. at Lovetussle: furniture for small spaces in India, with interactive 3D concept previews.",
   },
   twitter: {
     card: "summary",
-    title: "Tussle Furniture Co. | Thoughtful Furniture for Small Rooms",
+    title: "Tussle Furniture Co. | Furniture for Small Spaces in India",
     description:
-      "Discover thoughtful furniture for small rooms in India, with interactive 3D concept previews.",
+      "Explore Tussle Furniture Co. at Lovetussle: furniture for small spaces in India, with interactive 3D concept previews.",
   },
   robots: {
     index: true,
