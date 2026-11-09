@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kandariya Floor Lounger — Tussle Furniture Co.</title>
+<meta name="description" content="Explore the interactive Kandariya Floor Lounger concept by Tussle Furniture Co.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;min-height:100%;background:#f9f5eb}
+#kandariya{--bg:#f9f5eb;--ink:#17120f;--fab:#4b4d2b;--line:#f2e8cf;--accent:#8f6b22;--mute:#6b5d51;--rule:#d9cfbd;--card:#fffaf0;box-sizing:border-box;max-width:1040px;margin:0 auto;padding:36px 22px;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,sans-serif;transition:background 1.2s,color 1.2s;border-radius:24px}
+#kandariya[data-theme="dark"]{--bg:#14100d;--ink:#f6efe0;--fab:#2f3119;--accent:#d9b45a;--mute:#b4a899;--rule:#352b23;--card:#1d1712}
+#kandariya *,#kandariya *::before,#kandariya *::after{box-sizing:inherit}
+#kandariya .top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600;letter-spacing:.16em;font-size:14px}
+#kandariya h2{margin:56px 0 8px}
+#kandariya button:focus-visible,#kandariya a:focus-visible,#kandariya input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){#kandariya *{transition:none!important}}
+#kandariya .tog{font:inherit;font-weight:600;font-size:15px;color:var(--bg);background:var(--ink);border:0;border-radius:999px;padding:9px 20px;cursor:pointer;transition:background .3s}
+#kandariya .tog:hover{background:var(--accent)}
+#kandariya .eyebrow{margin:46px 0 0;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
+#kandariya h1{font:400 clamp(42px,8.4vw,88px)/1 "Yatra One",Georgia,serif;margin:12px 0 14px;max-width:11em}
+#kandariya h1 em{font-style:italic;color:var(--accent)}
+#kandariya .lede{color:var(--mute);max-width:36em;margin:0 0 8px;font-size:18px}
+#kandariya .stage{position:relative;margin:22px -8px 0;height:min(62vw,540px);min-height:340px;touch-action:pan-y;cursor:grab;border-radius:22px}
+#kandariya .stage:active{cursor:grabbing}
+#kandariya .stage::before{content:"";position:absolute;inset:-6% 4% 0;background:radial-gradient(closest-side,var(--accent),transparent);opacity:0;transition:opacity 1.8s;pointer-events:none}
+#kandariya .stage canvas{position:relative;display:block;width:100%;height:100%}
+#kandariya .hint{position:absolute;left:12px;bottom:4px;font-size:14px;color:var(--mute);pointer-events:none}
+#kandariya .cap{color:var(--mute);font-size:15px;margin:6px 0 0;min-height:1.5em;font-style:italic}
+#kandariya .cta{display:inline-block;font-weight:600;color:var(--bg);background:var(--ink);text-decoration:none;padding:13px 26px;border-radius:999px;transition:background .3s}
+#kandariya .cta:hover{background:var(--accent)}
+#kandariya h2{font:400 clamp(27px,4vw,40px)/1.12 "Yatra One",Georgia,serif;margin:76px 0 8px}
+#kandariya .ctl{display:flex;flex-wrap:wrap;gap:18px 32px;align-items:center;margin-top:18px}
+#kandariya .rec{display:flex;align-items:center;gap:12px}
+#kandariya .rec label{font-weight:600}
+#kandariya .rec input{width:160px;accent-color:var(--accent)}
+#kandariya .rec output{min-width:5em;color:var(--mute)}
+#kandariya .kit{display:flex;flex-wrap:wrap;gap:10px}
+#kandariya .kb{font:inherit;font-size:15px;color:var(--ink);background:transparent;border:1.5px solid var(--rule);border-radius:999px;padding:8px 16px;cursor:pointer;transition:.2s}
+#kandariya .kb:hover{border-color:var(--accent)}
+#kandariya .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:20px}
+#kandariya .sw{font:inherit;color:var(--ink);text-align:left;background:var(--card);border:1.5px solid var(--rule);border-radius:14px;padding:10px 10px 14px;cursor:pointer}
+#kandariya .sw svg{width:100%;height:auto;display:block;border-radius:8px;background:var(--fab);margin-bottom:10px}
+#kandariya .sw b{display:block;font-weight:600;font-size:18px}
+#kandariya .sw span{display:block;color:var(--mute);font-size:15px;line-height:1.4}
+#kandariya .pl{fill:none;stroke:var(--line);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+#kandariya .chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
+#kandariya .cc{font:inherit;background:none;border:0;padding:0;cursor:pointer;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:8px;width:86px}
+#kandariya .cc i{display:block;width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.55),transparent 42%),radial-gradient(circle at 70% 78%,rgba(0,0,0,.35),transparent 55%),var(--c);box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--rule);transition:transform .25s,box-shadow .25s}
+#kandariya .cc:hover i{transform:translateY(-3px) scale(1.06)}
+#kandariya .cc[aria-pressed="true"] i{box-shadow:0 0 0 2px var(--bg),0 0 0 4.5px var(--accent),0 8px 22px -6px var(--c)}
+#kandariya .cc span{font-size:13px;color:var(--mute);text-align:center;line-height:1.25}
+#kandariya .cc[aria-pressed="true"] span{color:var(--ink);font-weight:600}
+#kandariya .sw svg{transition:background .5s}
+html.embedded,html.embedded body{width:100%;height:100%;min-height:0;overflow:hidden}
+html.embedded #kandariya{width:100%;height:100%;max-width:none;margin:0;padding:0;border-radius:0}
+html.embedded #kandariya>:not(.stage){display:none}
+html.embedded #kandariya .stage{width:100%;height:100%;min-height:0;margin:0;border-radius:18px}
+html.embedded #kandariya .hint{font-size:12px}
+</style>
+</head>
+<body>
+<section id="kandariya" data-theme="light">
+  <div class="top"><span>TUSSLE FURNITURE CO.</span><button class="tog" id="tog" type="button" aria-pressed="false">Open it</button></div>
+  <p class="eyebrow">Tussle after dark · Floor lounger</p>
+  <h1>Kandariya <em>Floor Lounger</em></h1>
+  <p class="lede">By day, a low floor sofa that reads as heritage decor. Press <em>Open it</em> and it folds flat into a firm, wide bed, with lock-in wedges and a hidden drawer, under warm, dim light.</p>
+  <div class="stage" id="stage"><span class="hint">Drag to turn. Scroll to zoom.</span></div>
+  <p class="cap" id="cap">By day, a plain low floor sofa. Press Open it.</p>
+
+  <h2>Comfort for long nights</h2>
+  <p class="lede">Set the position, then add what you need. Every piece is removable and wipeable.</p>
+  <div class="ctl">
+    <div class="rec"><label for="rec">Position</label><input id="rec" type="range" min="0" max="2" step="1" value="0"><output id="recv" for="rec">Sofa</output></div>
+    <div class="kit" role="group" aria-label="Comfort kit"><button class="kb" type="button" data-k="topper" aria-pressed="false">Contour foam topper</button><button class="kb" type="button" data-k="lumbar" aria-pressed="false">Support bolster</button><button class="kb" type="button" data-k="neck" aria-pressed="false">Neck bolster</button></div>
+    <div class="kit" role="group" aria-label="Night transform"><button class="kb" type="button" data-k="wedges" aria-pressed="false">Support wedges</button><button class="kb" type="button" data-k="legs" aria-pressed="false">Soft leg support</button><button class="kb" type="button" data-k="drawer" aria-pressed="false">Hidden drawer</button></div>
+  </div>
+
+  <h2>Choose the colour</h2>
+  <p class="lede">Five refined colours from Japan’s traditional palette. The cushions and wedges tone in with each one. The lounger and its night glow change with you. <b id="cname" style="color:var(--accent)">Kon · Navy</b></p>
+  <div class="chips" role="group" aria-label="Cover colour"><button class="cc" type="button" data-c="0" aria-pressed="true" aria-label="Kon · Navy" style="--c:#1b2a41"><i></i><span>Kon<br>Navy</span></button><button class="cc" type="button" data-c="1" aria-pressed="false" aria-label="Kuro · Black" style="--c:#050506"><i></i><span>Kuro<br>Black</span></button><button class="cc" type="button" data-c="2" aria-pressed="false" aria-label="Matcha · Moss" style="--c:#3f4f3a"><i></i><span>Matcha<br>Moss</span></button><button class="cc" type="button" data-c="3" aria-pressed="false" aria-label="Enji · Wine" style="--c:#5e2430"><i></i><span>Enji<br>Wine</span></button><button class="cc" type="button" data-c="4" aria-pressed="false" aria-label="Kinari · Ecru" style="--c:#cfc3a8"><i></i><span>Kinari<br>Ecru</span></button></div>
+  <a class="cta" style="margin-top:28px" href="mailto:lovetussle@gmail.com?subject=Kandariya%20Floor%20Lounger">Ask about this piece</a>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var root=document.getElementById("kandariya"),tog=document.getElementById('tog'),cap=document.getElementById('cap'),
+rec=document.getElementById('rec'),recv=document.getElementById('recv'),stage=document.getElementById('stage');
+var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var names=['Sofa','Lounge','Flat'],angs=[1.35,.65,0],all=['topper','lumbar','neck','wedges','drawer','legs'],eve=['wedges','legs','drawer'];
+var txt={padma:'Padma: a lotus lattice that reads as plain pattern in daylight.',jali:'Jali: diamond screen work, like a carved stone window.',shikhara:'Shikhara: rows of temple towers, quiet from a distance.',apsara:'Apsara: dancer figures reduced to a few flowing curves.'};
+var S={night:0,nightT:0,rec:angs[0],recT:angs[0],k:{}};all.forEach(function(k){S.k[k]=[0,0]});
+var PT={padma:{w:48,h:48,d:['M24 5c-6 6-6 14 0 20 6-6 6-14 0-20zM24 25c-8-2-14-8-14-16 8 0 14 6 14 16zM24 25c8-2 14-8 14-16-8 0-14 6-14 16zM24 25v20M10 45h28']},
+jali:{w:40,h:40,d:['M20 0L40 20 20 40 0 20zM20 9L31 20 20 31 9 20z','M17.5 20a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0']},
+shikhara:{w:44,h:52,d:['M22 3c4 7 4 12 0 17-4-5-4-10 0-17zM13 23c5 4 13 4 18 0M9 30c7 5 19 5 26 0M5 38c9 6 25 6 34 0M2 47h40']},
+apsara:{w:60,h:76,d:['M25 12a5 5 0 1 0 10 0a5 5 0 1 0-10 0','M30 17c-8 8 8 16 0 26M30 25c-10-4-16 0-18 6M30 25c10-4 16-8 18-16M30 43c-8 6-12 14-14 24M30 43c8 6 12 14 14 24']}};
+
+function setTheme(d){root.setAttribute('data-theme',d?'dark':'light');tog.textContent=d?'Back to day':'Open it';tog.setAttribute('aria-pressed',d?'true':'false');S.nightT=d?1:0}
+function setRec(i){rec.value=i;recv.textContent=names[i];S.recT=angs[i]}
+function setKit(k,on){S.k[k][1]=on?1:0;document.querySelector('.kb[data-k="'+k+'"]').setAttribute('aria-pressed',on?'true':'false')}
+setTheme(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);S.night=S.nightT;
+rec.addEventListener('input',function(){setRec(+rec.value)});
+document.querySelectorAll('.kb').forEach(function(b){b.addEventListener('click',function(){setKit(b.getAttribute('data-k'),b.getAttribute('aria-pressed')!=='true')})});
+tog.addEventListener('click',function(){
+  var n=root.getAttribute('data-theme')!=='dark';setTheme(n);
+  if(n){cap.textContent='After dark: the back folds flat into a firm, wide bed, the wedges lock in, a soft leg support rises, the drawer opens and the light turns warm.';
+    setTimeout(function(){setRec(2)},calm?0:600);
+    eve.forEach(function(k,i){setTimeout(function(){setKit(k,true)},calm?0:1600+i*700)})}
+  else{setRec(0);all.forEach(function(k){setKit(k,false)});cap.textContent='By day, a plain low floor sofa. Press Open it.'}
+});
+
+var COL=[{"n": "Kon · Navy", "f": "#1b2a41", "l": "#e8eefa", "a": 1780289, "s": 5928096, "b": 2504794, "t": 8361917, "x": 9071423, "xs": 13678732}, {"n": "Kuro · Black", "f": "#050506", "l": "#e9e8e5", "a": 328966, "s": 3421243, "b": 723725, "t": 4473933, "x": 10255173, "xs": 14270602}, {"n": "Matcha · Moss", "f": "#3f4f3a", "l": "#e9f0e2", "a": 4149050, "s": 9676417, "b": 5662792, "t": 11452316, "x": 8019002, "xs": 13678732}, {"n": "Enji · Wine", "f": "#5e2430", "l": "#f8e6ea", "a": 6169648, "s": 11100271, "b": 7615295, "t": 12944786, "x": 9203011, "xs": 13678732}, {"n": "Kinari · Ecru", "f": "#cfc3a8", "l": "#4d4129", "a": 13616040, "s": 16117467, "b": 14537401, "t": 16380898, "x": 7297594, "xs": 13678732}];
+root.style.setProperty("--fab",COL[0].f);root.style.setProperty("--line",COL[0].l);
+document.querySelectorAll('.cc').forEach(function(b){b.addEventListener('click',function(){var c=COL[+b.getAttribute('data-c')];
+  document.querySelectorAll('.cc').forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});
+  root.style.setProperty('--fab',c.f);root.style.setProperty('--line',c.l);document.getElementById('cname').textContent=c.n;
+  if(window.__applyCol)window.__applyCol(c)})});
+var T=window.THREE,R;
+try{R=new T.WebGLRenderer({antialias:true,alpha:true})}catch(e){R=null}
+if(!T||!R){stage.innerHTML='<p class="cap" style="padding:40px 0">3D view needs WebGL, which this browser does not offer.</p>';
+  return}
+R.setPixelRatio(Math.min(window.devicePixelRatio||1,2));R.shadowMap.enabled=true;R.shadowMap.type=T.PCFSoftShadowMap;
+R.outputEncoding=T.sRGBEncoding;R.toneMapping=T.ACESFilmicToneMapping;
+stage.insertBefore(R.domElement,stage.firstChild);
+var scene=new T.Scene(),cam=new T.PerspectiveCamera(33,1,.1,60);
+
+/* environment reflections from a small procedural studio */
+(function(){var e=new T.Scene();
+  var rm=new T.Mesh(new T.BoxGeometry(40,20,40),new T.MeshBasicMaterial({color:0x7a7064,side:T.BackSide}));rm.position.set(0,9,0);e.add(rm);
+  function pl(w,h,c,x,y,z,rx,ry){var m=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({side:T.DoubleSide}));m.material.color.setRGB(c[0],c[1],c[2]);m.position.set(x,y,z);m.rotation.set(rx,ry,0);e.add(m)}
+  pl(9,7,[5,4.8,4.4],14,6,6,0,-Math.PI/2);pl(10,10,[2.2,2.2,2.2],0,17,0,Math.PI/2,0);pl(3,8,[3,1.8,.8],-14,5,-6,0,Math.PI/2);
+  var pg=new T.PMREMGenerator(R);scene.environment=pg.fromScene(e,.04).texture;pg.dispose()})();
+
+function rr(w,h,r){var s=new T.Shape(),x=-w/2,y=-h/2;s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);return s}
+function smooth(g){g.computeVertexNormals();var p=g.attributes.position,n=g.attributes.normal,m={},i,k,a;function key(i){return Math.round(p.getX(i)*400)+','+Math.round(p.getY(i)*400)+','+Math.round(p.getZ(i)*400)}
+  for(i=0;i<p.count;i++){k=key(i);a=m[k]||(m[k]=[0,0,0]);a[0]+=n.getX(i);a[1]+=n.getY(i);a[2]+=n.getZ(i)}
+  for(i=0;i<p.count;i++){a=m[key(i)];var l=Math.sqrt(a[0]*a[0]+a[1]*a[1]+a[2]*a[2])||1;n.setXYZ(i,a[0]/l,a[1]/l,a[2]/l)}n.needsUpdate=true}
+function slab(w,d,h,r,b,mat,pf){var g=new T.ExtrudeGeometry(rr(w,d,r),{depth:h-2*b,bevelEnabled:true,bevelThickness:b,bevelSize:b,bevelSegments:6,curveSegments:14});g.rotateX(-Math.PI/2);g.translate(0,b,0);
+  if(pf){var p=g.attributes.position;for(var i=0;i<p.count;i++){var y=p.getY(i);if(y>h*.5){var u=Math.max(0,1-Math.pow(p.getX(i)/(w/2),2)),v=Math.max(0,1-Math.pow(p.getZ(i)/(d/2),2));p.setY(i,y+pf*u*v)}}p.needsUpdate=true;smooth(g)}
+  var m=new T.Mesh(g,mat);m.castShadow=m.receiveShadow=true;return m}
+function cyl(r,h,mat,rz,rx){var g=new T.CylinderGeometry(r,r,h,24);if(rz)g.rotateZ(Math.PI/2);if(rx)g.rotateX(Math.PI/2);var m=new T.Mesh(g,mat);m.castShadow=true;return m}
+function cv2(w,h,f){var c=document.createElement('canvas');c.width=w;c.height=h;f(c.getContext('2d'),w,h);return c}
+function rep(t,n){t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(n,n);return t}
+
+var bump=rep(new T.CanvasTexture(cv2(128,128,function(x,w,h){var d=x.createImageData(w,h);for(var i=0;i<d.data.length;i+=4){var v=128+(Math.random()-.5)*110;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}x.putImageData(d,0,0)})),26);
+var grain=rep(new T.CanvasTexture(cv2(256,256,function(x,w,h){x.fillStyle='#6a3d22';x.fillRect(0,0,w,h);for(var i=0;i<90;i++){x.fillStyle=Math.random()<.5?'rgba(30,14,6,.22)':'rgba(190,120,70,.14)';x.fillRect(0,Math.random()*h,w,1+Math.random()*3)}})),.7);
+grain.encoding=T.sRGBEncoding;
+function vel(c,s){return new T.MeshPhysicalMaterial({color:c,roughness:1,sheen:new T.Color(s),bumpMap:bump,bumpScale:.07})}
+var velvet=vel(0x3e4b2c,0x8fa062),cushM=vel(0x5d6c43,0xa4b57a),wedgeM=vel(0x8a4f37,0xd08a64),
+wood=new T.MeshStandardMaterial({map:grain,roughness:.42}),
+brass=new T.MeshStandardMaterial({color:0xc9a24a,metalness:1,roughness:.3}),trimM=brass.clone(),
+sand=new T.MeshStandardMaterial({color:0xc2a06a,roughness:.95,bumpMap:bump,bumpScale:.2}),
+towelM=new T.MeshStandardMaterial({color:0xf2ece0,roughness:1,bumpMap:bump,bumpScale:.5}),
+whiteM=new T.MeshStandardMaterial({color:0xffffff,roughness:.55});
+trimM.emissive=new T.Color(0xffa050);
+
+window.__applyCol=function(c){velvet.color.set(c.a);velvet.sheen.set(c.s);cushM.color.set(c.b);cushM.sheen.set(c.t);wedgeM.color.set(c.x);wedgeM.sheen.set(c.xs);if(legM){legM.color.set(c.x);legM.sheen.set(c.xs)}};
+var base=slab(3.95,2.2,.12,.14,.02,wood);base.position.set(0,.04,0);scene.add(base);
+var ext=slab(3.95,1.1,.12,.14,.02,wood);ext.position.set(0,.02,-.5);scene.add(ext);
+var trim=slab(3.9,2.15,.03,.12,.01,trimM);trim.position.set(0,.16,0);scene.add(trim);
+var seat=slab(3.2,2,.31,.16,.09,velvet,.07);seat.position.set(0,.19,0);scene.add(seat);
+[-1.75,1.75].forEach(function(x){var a=slab(.32,2.3,.53,.15,.07,velvet,.03);a.position.set(x,.19,-.15);scene.add(a)});
+var hinge=new T.Group();hinge.position.set(0,.19,-1);scene.add(hinge);
+var panel=slab(3.2,.9,.31,.14,.09,velvet,.05);panel.position.set(0,0,-.45);hinge.add(panel);
+var hb=new T.Group();hb.position.set(0,.2,-1);scene.add(hb);[-1,-.33,.33,1].forEach(function(x){var k=cyl(.055,.55,brass,1,0);k.position.x=x;hb.add(k)});
+[-1.2,1.2].forEach(function(x){var r=new T.Mesh(new T.BoxGeometry(.05,.02,1),brass);r.position.set(x,.13,0);ext.add(r)});
+[-1.05,0,1.05].forEach(function(x){var c=slab(1,.75,.24,.18,.09,cushM,.06);c.position.set(x,.34,-.45);hinge.add(c)});
+var pm=new T.MeshStandardMaterial({color:0xffffff,roughness:1,emissive:0xffd27a,emissiveIntensity:0});
+var pg2=new T.PlaneGeometry(.7,.55);pg2.rotateX(-Math.PI/2);
+
+var tp=slab(2.9,1.8,.1,.15,.03,sand);tp.position.set(0,.54,0);tp.scale.setScalar(.001);scene.add(tp);
+var lb=cyl(.15,2.2,sand,1,0);lb.position.set(0,.69,.6);lb.scale.setScalar(.001);scene.add(lb);
+var nk=cyl(.13,1.7,sand,1,0);nk.position.set(0,.78,-.8);nk.scale.setScalar(.001);hinge.add(nk);
+var KM={topper:tp,lumbar:lb,neck:nk};
+
+var ws=new T.Shape();ws.moveTo(0,0);ws.lineTo(.9,0);ws.lineTo(.9,.07);ws.lineTo(.12,.34);ws.quadraticCurveTo(0,.36,0,.26);ws.lineTo(0,0);
+var wg=new T.ExtrudeGeometry(ws,{depth:1.1,bevelEnabled:true,bevelThickness:.04,bevelSize:.04,bevelSegments:4});wg.translate(0,0,-.55);wg.rotateY(-Math.PI/2);wg.translate(0,0,-.45);smooth(wg);
+var wA=new T.Mesh(wg,wedgeM),wB=new T.Mesh(wg,wedgeM);
+wA.position.set(-.8,.54,-.3);wB.position.set(.8,.54,-.4);wB.rotation.y=Math.PI;
+[wA,wB].forEach(function(w){w.castShadow=w.receiveShadow=true;w.scale.set(1,.001,1);scene.add(w)});
+
+var dr=new T.Group();dr.position.set(0,.045,0);scene.add(dr);
+var tray=slab(2.4,1,.07,.05,.01,sand);tray.position.set(0,0,.6);dr.add(tray);
+var dfront=slab(2.5,.04,.11,.02,.005,wood);dfront.position.set(0,-.005,1.12);dr.add(dfront);
+var towel=slab(.9,.5,.05,.04,.02,towelM);towel.position.set(-.5,.07,.65);dr.add(towel);
+var wipes=slab(.45,.3,.04,.03,.01,whiteM);wipes.position.set(.45,.07,.65);dr.add(wipes);
+[-1.2,1.2].forEach(function(x){var r=new T.Mesh(new T.BoxGeometry(.04,.03,.95),brass);r.position.set(x,.1,.6);dr.add(r)});var dl=new T.Mesh(new T.BoxGeometry(2.3,.012,.01),brass);dl.position.set(0,.1,1.145);dr.add(dl);
+var legM=vel(0x9a5a3e,0xd9966f),ls=new T.Shape();ls.moveTo(0,0);ls.lineTo(.95,0);ls.lineTo(.95,.1);ls.quadraticCurveTo(.5,.26,.1,.3);ls.quadraticCurveTo(0,.3,0,.22);ls.lineTo(0,0);
+var lg=new T.ExtrudeGeometry(ls,{depth:2.3,bevelEnabled:true,bevelThickness:.05,bevelSize:.05,bevelSegments:5});lg.translate(0,0,-1.15);lg.rotateY(-Math.PI/2);lg.translate(0,0,-.475);smooth(lg);
+var lp=new T.Mesh(lg,legM);lp.position.set(0,.54,.525);lp.castShadow=lp.receiveShadow=true;lp.scale.set(1,.001,1);scene.add(lp);
+
+window.__applyCol(COL[0]);
+var fm=new T.MeshStandardMaterial({color:0xe4dac6,roughness:.85,transparent:true,depthWrite:false,
+  alphaMap:new T.CanvasTexture(cv2(256,256,function(x,w,h){var g=x.createRadialGradient(128,128,10,128,128,128);g.addColorStop(0,'#fff');g.addColorStop(.55,'#fff');g.addColorStop(1,'#000');x.fillStyle=g;x.fillRect(0,0,w,h)}))});
+var floor=new T.Mesh(new T.CircleGeometry(9,64).rotateX(-Math.PI/2),fm);floor.receiveShadow=true;scene.add(floor);
+var cs=new T.Mesh(new T.PlaneGeometry(5.4,3.6).rotateX(-Math.PI/2),new T.MeshBasicMaterial({transparent:true,depthWrite:false,opacity:.55,
+  map:new T.CanvasTexture(cv2(256,256,function(x,w,h){var g=x.createRadialGradient(128,128,20,128,128,128);g.addColorStop(0,'rgba(0,0,0,.9)');g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,w,h)}))}));
+cs.position.y=.006;scene.add(cs);
+
+var lampBase=cyl(.35,.05,brass);lampBase.position.set(-3.2,.03,-1.3);scene.add(lampBase);
+var pole=cyl(.04,3,brass);pole.position.set(-3.2,1.5,-1.3);scene.add(pole);
+var shadeM=new T.MeshStandardMaterial({color:0xf3e3c0,emissive:0xffc070,emissiveIntensity:0,side:T.DoubleSide,roughness:.8});
+var shade=new T.Mesh(new T.CylinderGeometry(.34,.55,.7,28,1,true),shadeM);shade.position.set(-3.2,3.1,-1.3);scene.add(shade);
+
+var hemi=new T.HemisphereLight(0xfff3e0,0x5a4a3a,.7),sun=new T.DirectionalLight(0xfff1dc,1.5),lamp=new T.PointLight(0xffa850,0,14,1.6),under=new T.PointLight(0xff9040,0,5,1.8);
+sun.position.set(4,7,5);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);var sc=sun.shadow.camera;sc.left=sc.bottom=-6;sc.right=sc.top=6;sc.far=20;sun.shadow.bias=-.0005;sun.shadow.normalBias=.02;
+lamp.position.set(-3.2,2.9,-1.3);under.position.set(0,.12,1.5);scene.add(hemi,sun,lamp,under);
+var MATS=[velvet,cushM,wedgeM,legM,sand,towelM,whiteM,wood,brass,trimM,fm],dayC=new T.Color(0xe4dac6),nightC=new T.Color(0x211812);
+
+
+
+var az=.55,el=.34,rad=9.5,drag=false,px=0,py=0,idle=!calm;
+var cv=R.domElement;
+cv.addEventListener('pointerdown',function(e){drag=true;idle=false;px=e.clientX;py=e.clientY;cv.setPointerCapture(e.pointerId)});
+cv.addEventListener('pointermove',function(e){if(!drag)return;az-=(e.clientX-px)*.008;el=Math.max(.06,Math.min(1.25,el+(e.clientY-py)*.006));px=e.clientX;py=e.clientY});
+cv.addEventListener('pointerup',function(){drag=false});cv.addEventListener('pointercancel',function(){drag=false});
+cv.addEventListener('wheel',function(e){e.preventDefault();rad=Math.max(6.5,Math.min(15,rad+e.deltaY*.01))},{passive:false});
+function size(){var w=stage.clientWidth,h=stage.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+if(window.ResizeObserver)new ResizeObserver(size).observe(stage);else window.addEventListener('resize',size);size();
+
+function lerp(a,b,k){return calm?b:a+(b-a)*k}
+function frame(t){
+  S.night=lerp(S.night,S.nightT,.04);S.rec=lerp(S.rec,S.recT,.07);
+  hinge.rotation.x=S.rec;ext.position.z=-.5-(1-S.rec/1.35);
+  var n=S.night;
+  sun.intensity=1.5-1.35*n;hemi.intensity=.7-.55*n;lamp.intensity=1.5*n;under.intensity=.9*n;
+  pm.emissiveIntensity=1.15*n;shadeM.emissiveIntensity=1.4*n;trimM.emissiveIntensity=.8*n;R.toneMappingExposure=1.05-.15*n;
+  MATS.forEach(function(m){m.envMapIntensity=1-.88*n});fm.color.copy(dayC).lerp(nightC,n);cs.material.opacity=.55+.2*n;
+  all.forEach(function(k){var v=S.k[k];v[0]=lerp(v[0],v[1],.1)});
+  ['topper','lumbar','neck'].forEach(function(k){KM[k].scale.setScalar(Math.max(.001,S.k[k][0]))});
+  wA.scale.y=wB.scale.y=Math.max(.001,S.k.wedges[0]);lp.scale.y=Math.max(.001,S.k.legs[0]);dr.position.z=S.k.drawer[0]*.95;
+  if(idle){az=.55+Math.sin(t*.0004)*.5}
+  cam.position.set(rad*Math.sin(az)*Math.cos(el),rad*Math.sin(el)+.5,rad*Math.cos(az)*Math.cos(el));cam.lookAt(0,.45,-.25);
+  R.render(scene,cam);requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+})();
+if(new URLSearchParams(window.location.search).get('embed')==='1'){
+  document.documentElement.classList.add('embedded');
+}
+</script>
+</body>
+</html>

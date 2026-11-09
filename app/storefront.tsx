@@ -24,16 +24,11 @@ type Cart = Record<string, CartItem>;
 
 const products = [
   {
-    name: "Dusk sofa-bed",
-    price: 49900,
-    preview: "/concepts/dusk-sofa-bed.html",
-    description:
-      "A plain two-seater with wipeable fabric. It fits a hostel room without taking it over.",
-    features: [
-      "Firm foam on a solid deck",
-      "Silent hinges, locking legs",
-      "Hidden drawer for essentials",
-    ],
+    name: "Kandariya Floor Lounger",
+    price: null,
+    preview: "/concepts/kandariya-floor-lounger.html",
+    description: "A floor lounger that opens into a bed.",
+    features: [],
   },
   {
     name: "Lowlight coffee table",
@@ -223,7 +218,7 @@ function ProductCard({
   className = "",
 }: {
   name: string;
-  price: number;
+  price: number | null;
   children: ReactNode;
   onAdd: (name: string, price: number) => void;
   className?: string;
@@ -233,7 +228,7 @@ function ProductCard({
   function handleClick(event: MouseEvent<HTMLElement>) {
     if (!(event.target instanceof window.Element)) return;
     const button = event.target.closest<HTMLButtonElement>("button.add");
-    if (!button) return;
+    if (!button || price === null) return;
 
     event.preventDefault();
     onAdd(name, price);
@@ -245,10 +240,19 @@ function ProductCard({
     <article className={`card ${className}`.trim()} onClick={handleClick}>
       {children}
       <div className="row">
-        <span className="price">{formatPrice(price)}</span>
-        <button className="btn alt add" type="button" aria-label={`Add ${name} to bag`}>
-          {added ? "Added" : "Add to bag"}
-        </button>
+        <span className="price">{price === null ? "Price on request" : formatPrice(price)}</span>
+        {price === null ? (
+          <a
+            className="btn alt"
+            href={`mailto:lovetussle@gmail.com?subject=${encodeURIComponent(name)}`}
+          >
+            Ask about this piece
+          </a>
+        ) : (
+          <button className="btn alt add" type="button" aria-label={`Add ${name} to bag`}>
+            {added ? "Added" : "Add to bag"}
+          </button>
+        )}
       </div>
     </article>
   );
@@ -263,7 +267,7 @@ function ProductQuiz() {
     "A desk for everyday work",
   ];
   const recommendations = [
-    "Meet the Dusk sofa-bed: a plain two-seater, with a hidden drawer for essentials.",
+    "Meet the Kandariya Floor Lounger: a low sofa that opens flat into a bed, with optional comfort pieces.",
     "Meet the Lowlight coffee table: a lower shelf and a wood side that flips to padding.",
     "Meet the Hold chair: a wipeable cover and a recline that locks in place.",
     "Meet the Nightshift desk: fixed legs, a lift-off top and six rated rings.",
@@ -316,7 +320,7 @@ function FeaturedLoveGlide() {
           <div className="featured-media">
             <iframe
               className="featured-frame"
-              src={conceptUrl}
+              src={`${conceptUrl}?embed=1`}
               title="Love Glide sofa interactive 3D concept"
               loading="lazy"
               referrerPolicy="no-referrer"
@@ -357,18 +361,20 @@ function ProductCatalog({ onAdd }: { onAdd: (name: string, price: number) => voi
                 <div className="concept-copy">
                   <h3>{product.name}</h3>
                   <p>{product.description}</p>
-                  <ul className="concept-features">
-                    {product.features.map((feature) => (
-                      <li key={feature}>{feature}</li>
-                    ))}
-                  </ul>
+                  {product.features.length > 0 && (
+                    <ul className="concept-features">
+                      {product.features.map((feature) => (
+                        <li key={feature}>{feature}</li>
+                      ))}
+                    </ul>
+                  )}
                   <a
                     className="concept-link"
                     href={product.preview}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Open full 3D concept <span aria-hidden="true">↗</span>
+                    Open 3D view <span aria-hidden="true">↗</span>
                   </a>
                 </div>
               </ProductCard>
