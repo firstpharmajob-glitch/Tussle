@@ -2,9 +2,40 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Tussle Furniture Co. — by day, furniture. By night, Tussle.",
+  metadataBase: new URL("https://www.lovetussle.com"),
+  title: "Tussle Furniture Co. | Thoughtful Furniture for Small Rooms",
   description:
-    "Thoughtful furniture for small rooms. Looks like everyday furniture. Quietly made for two.",
+    "Discover Tussle Furniture Co., thoughtful furniture for small rooms in India, with interactive 3D concept previews.",
+  applicationName: "Tussle Furniture Co.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "/",
+    siteName: "Tussle Furniture Co.",
+    title: "Tussle Furniture Co. | Thoughtful Furniture for Small Rooms",
+    description:
+      "Discover thoughtful furniture for small rooms in India, with interactive 3D concept previews.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Tussle Furniture Co. | Thoughtful Furniture for Small Rooms",
+    description:
+      "Discover thoughtful furniture for small rooms in India, with interactive 3D concept previews.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({

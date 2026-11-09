@@ -1,0 +1,21 @@
+# Tussle Furniture Co.
+
+> Thoughtful furniture for small rooms in India, with interactive 3D concept previews.
+
+Tussle Furniture Co. is a furniture brand presenting a small-room collection and interactive product concepts.
+The website is https://www.lovetussle.com/.
+For enquiries, contact lovetussle@gmail.com.
+
+## Main pages
+
+- [Home and furniture collection](https://www.lovetussle.com/): Featured Love Glide sofa concept and the Tussle collection.
+- [Kandariya Floor Lounger](https://www.lovetussle.com/concepts/kandariya-floor-lounger.html): Interactive floor-lounger concept.
+- [Love Glide sofa](https://www.lovetussle.com/concepts/love-glide-sofa.html): Interactive sofa concept.
+- [Lowlight coffee table](https://www.lovetussle.com/concepts/lowlight-coffee-table.html): Interactive coffee-table concept.
+- [Hold chair](https://www.lovetussle.com/concepts/hold-chair.html): Interactive chair concept.
+- [Nightshift desk](https://www.lovetussle.com/concepts/nightshift-desk.html): Interactive desk concept.
+- [The 9 m² room](https://www.lovetussle.com/concepts/room-9sqm.html): Interactive room concept.
+
+## Important context
+
+Interactive models are concepts. Dimensions, load ratings, and other specifications shown in concept previews may be placeholders and are not confirmed product specifications. Contact Tussle to confirm current availability, pricing, and product details.
