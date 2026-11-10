@@ -11,6 +11,7 @@ const structuredData = {
       alternateName: "Lovetussle",
       url: "https://www.lovetussle.com/",
       logo: "https://www.lovetussle.com/icon.png",
+      sameAs: ["https://www.instagram.com/lovetussle/"],
       description:
         "Tussle Furniture Co. is a furniture brand in India presenting furniture concepts for small spaces and interactive 3D previews.",
       email: "lovetussle@gmail.com",
