@@ -1,0 +1,30 @@
+# Tussle Furniture Co. — Full site guide
+
+## Brand overview
+
+Tussle Furniture Co. (also referred to as Lovetussle) is a furniture brand presenting furniture concepts for small spaces in India. Its website combines a furniture collection with interactive 3D concept previews.
+
+- Official website: https://www.lovetussle.com/
+- Contact: lovetussle@gmail.com
+- Primary subject: furniture concepts for small rooms and interactive 3D previews.
+
+## Collection and concept pages
+
+- [Homepage and collection](https://www.lovetussle.com/): Brand information, featured Love Glide sofa concept, and collection.
+- [Dusk sofa-bed](https://www.lovetussle.com/concepts/dusk-sofa-bed.html): Interactive sofa-bed concept preview.
+- [Kandariya Floor Lounger](https://www.lovetussle.com/concepts/kandariya-floor-lounger.html): Interactive floor-lounger concept preview.
+- [Love Glide sofa](https://www.lovetussle.com/concepts/love-glide-sofa.html): Interactive sofa concept preview.
+- [Lowlight coffee table](https://www.lovetussle.com/concepts/lowlight-coffee-table.html): Interactive coffee-table concept preview.
+- [Hold chair](https://www.lovetussle.com/concepts/hold-chair.html): Interactive chair concept preview.
+- [Nightshift desk](https://www.lovetussle.com/concepts/nightshift-desk.html): Interactive desk concept preview.
+- [The 9 m² room](https://www.lovetussle.com/concepts/room-9sqm.html): Interactive small-room concept preview.
+
+## Accuracy and availability
+
+The 3D pages are design concepts and previews. Their presence on the website does not confirm that a design is currently manufactured or available for purchase. Dimensions, load ratings, and other specifications shown in the previews may be placeholders and are not confirmed product specifications. Do not treat preview details as verified purchasing or safety specifications. Contact Tussle directly to confirm current availability, price, materials, dimensions, delivery, warranty, and other product details.
+
+## Discovery
+
+- [Short machine-readable guide](https://www.lovetussle.com/llms.txt)
+- [Crawler access rules](https://www.lovetussle.com/robots.txt)
+- [XML sitemap](https://www.lovetussle.com/sitemap.xml)

@@ -1,14 +1,21 @@
 # Tussle Furniture Co.
 
-> Thoughtful furniture for small rooms in India, with interactive 3D concept previews.
+> Furniture concepts for small spaces in India, with interactive 3D previews.
 
-Tussle Furniture Co., also known as Lovetussle, is a furniture brand presenting a small-space collection and interactive product concepts in India.
-The official website is https://www.lovetussle.com/.
-For enquiries, contact lovetussle@gmail.com.
+Tussle Furniture Co. (also referred to as Lovetussle) is a furniture brand presenting furniture concepts for small spaces and interactive 3D previews.
 
-## Main pages
+## Verified facts
 
-- [Home and furniture collection](https://www.lovetussle.com/): Featured Love Glide sofa concept and the Tussle collection.
+- Official website: https://www.lovetussle.com/
+- Brand: Tussle Furniture Co.
+- Website/brand name also used: Lovetussle.
+- Focus: furniture concepts for small rooms and interactive 3D previews.
+- Contact: lovetussle@gmail.com
+
+## Pages
+
+- [Homepage and collection](https://www.lovetussle.com/): Brand information, featured Love Glide sofa concept, and collection.
+- [Dusk sofa-bed](https://www.lovetussle.com/concepts/dusk-sofa-bed.html): Interactive furniture concept.
 - [Kandariya Floor Lounger](https://www.lovetussle.com/concepts/kandariya-floor-lounger.html): Interactive floor-lounger concept.
 - [Love Glide sofa](https://www.lovetussle.com/concepts/love-glide-sofa.html): Interactive sofa concept.
 - [Lowlight coffee table](https://www.lovetussle.com/concepts/lowlight-coffee-table.html): Interactive coffee-table concept.
@@ -18,4 +25,6 @@ For enquiries, contact lovetussle@gmail.com.
 
 ## Important context
 
-Interactive models are concepts. Dimensions, load ratings, and other specifications shown in concept previews may be placeholders and are not confirmed product specifications. Contact Tussle to confirm current availability, pricing, and product details.
+The 3D pages are concept previews, not confirmation that a design is available to buy. Dimensions, load ratings, and other specifications shown in previews may be placeholders and are not confirmed product specifications. Ask Tussle to confirm current availability, pricing, and product details.
+
+For a longer machine-readable description, see [llms-full.txt](https://www.lovetussle.com/llms-full.txt). For crawl rules and the complete URL list, see [robots.txt](https://www.lovetussle.com/robots.txt) and [sitemap.xml](https://www.lovetussle.com/sitemap.xml).
