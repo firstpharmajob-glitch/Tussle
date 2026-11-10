@@ -1077,6 +1077,26 @@ export default function Storefront({ nodes }: StorefrontProps) {
       const id = attr(node, "id");
       const children = () => render(node.children, key, productName, logoMood);
 
+      if (node.tag === "footer") {
+        return (
+          <footer key={key}>
+            {children()}
+            <nav className="footer-socials" aria-label="Social media">
+              <a href="https://www.instagram.com/lovetussle/" target="_blank" rel="noreferrer">
+                Instagram
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61596574044874"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Facebook
+              </a>
+            </nav>
+          </footer>
+        );
+      }
+
       if (id === "shop") return <ProductCatalog key={key} onAdd={addToCart} />;
 
       if (node.tag === "div" && hasClass(node, "tick")) return null;
