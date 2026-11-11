@@ -60,10 +60,9 @@ html.embed-preview #hint{right:18px;bottom:14px}
     <div><b>Footprint</b><span>120 × 60 cm</span></div>
     <div><b>Surface height</b><span id="dH">58 cm</span></div>
     <div><b>Top</b><span id="dTop">Solid wood</span></div>
-    <div><b>Anchor points</b><span id="dAnc">Hidden</span></div>
   </div>
-  <p class="note"><b>Night kit:</b> fixed 58 cm legs; the top lifts off its locating pins, turns over by hand and locks down with side latches, showing a firm, buttoned, wipeable pad; six flush, rated anchor rings; a drawer for cuffs, wipes and a towel.</p>
-  <p class="note"><b>Safe use:</b> use soft cuffs with quick release, keep safety shears within reach, never restrain around the neck, and agree limits and a stop word first. Rings, welds and the load rating need real testing before sale. Concept model with placeholder dimensions, and the lift-off top (likely 15 to 25 kg) needs a light core and a two-hand grip, with latches and pins reviewed for pinch points.</p>
+  <p class="note"><b>Nightshift:</b> fixed 58 cm legs; the top lifts off its locating pins, turns over by hand and locks down with side latches, showing a firm, buttoned, wipeable pad.</p>
+  <p class="note"><b>Concept details:</b> dimensions and mechanisms are placeholders. Materials, latches, load limits and pinch points need engineering review and testing before production.</p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -132,14 +131,6 @@ html.embed-preview #hint{right:18px;bottom:14px}
   add(top,box(L,3,Wd,[edgeM,edgeM,woodM,edgeM,edgeM,edgeM]),0,3,0);
   add(top,box(L,6,Wd,[padE,padE,padE,padM,padE,padE]),0,-1.5,0);
 
-  var rings=[];
-  [-45,0,45].forEach(function(x){[-20,20].forEach(function(z){
-    var g=new THREE.Group(); g.position.set(x,-4.5,z); top.add(g);
-    add(g,mesh(new THREE.CylinderGeometry(3.4,3.4,0.9,20),metal),0,-0.45,0);
-    add(g,mesh(new THREE.TorusGeometry(2.6,0.6,10,24),metal),0,-3.2,0);
-    rings.push(g);
-  });});
-
   var lap=new THREE.Group(); scene.add(lap);
   add(lap,box(34,1.5,24,M(0x9aa0a6,0.4,0.6)),0,0.75,4);
   var scr=add(lap,box(34,22,1,M(0x23272b,0.5,0.3)),0,12,-8); scr.rotation.x=-0.2;
@@ -157,14 +148,12 @@ html.embed-preview #hint{right:18px;bottom:14px}
     latches.forEach(function(l){l.rotation.y=Math.PI/2*(1-locked);});
     top.position.y=H+4.5+lift;
     top.rotation.x=Math.PI*sm(sub(0.3,0.65,t));
-    var rs=Math.max(0.001,sm(sub(0.9,1,t))); rings.forEach(function(g){g.scale.set(rs,rs,rs);});
     var ls=Math.max(0.001,1-sm(sub(0,0.1,t))); lap.scale.set(ls,ls,ls); lap.visible=t<0.1; lap.position.y=surf;
     var night=t>0.5;
     document.getElementById('modeName').textContent=night?'By night, Tussle.':'By day, furniture.';
-    document.getElementById('modeDesc').textContent=night?'Flipped, padded, with anchor points.':'A plain work desk. Room for a 15-inch laptop.';
+    document.getElementById('modeDesc').textContent=night?'Flipped over to a padded, wipeable surface.':'A plain work desk. Room for a 15-inch laptop.';
     document.getElementById('dH').textContent=Math.round(surf)+' cm';
     document.getElementById('dTop').textContent=t>0.98?'Padded, wipeable':(t<0.02?'Solid wood':'Changing…');
-    document.getElementById('dAnc').textContent=t>0.98?'6 rated rings':(t<0.02?'Hidden':'Rising…');
     document.getElementById('toggle').textContent=target>0.5?'Switch to day':'Switch to night';
   }
   document.getElementById('toggle').addEventListener('click',function(){target=target>0.5?0:1; sl.value=Math.round(target*100); apply();});

@@ -26,7 +26,7 @@ const structuredData = {
       alternateName: "Lovetussle",
       url: "https://www.lovetussle.com/",
       description:
-        "Tussle Furniture Co., also known as Lovetussle, presents thoughtful furniture concepts for different homes and lifestyles, with interactive 3D previews.",
+        "Tussle Furniture Co., also known as Lovetussle, makes furniture that looks right at home by day and works harder at night, with interactive 3D concept previews.",
       inLanguage: "en-IN",
       publisher: { "@id": "https://www.lovetussle.com/#organization" },
     },
@@ -34,7 +34,7 @@ const structuredData = {
       "@type": "WebPage",
       "@id": "https://www.lovetussle.com/#webpage",
       url: "https://www.lovetussle.com/",
-      name: "Tussle Furniture Co. | Furniture for Every Home",
+      name: "Tussle Furniture Co. | Furniture for Home Life, Quietly",
       isPartOf: { "@id": "https://www.lovetussle.com/#website" },
       about: { "@id": "https://www.lovetussle.com/#organization" },
       mainEntity: { "@id": "https://www.lovetussle.com/#concepts" },
@@ -44,7 +44,7 @@ const structuredData = {
       "@id": "https://www.lovetussle.com/#concepts",
       name: "Tussle interactive furniture and room concepts",
       description:
-        "Interactive 3D concept previews from Tussle Furniture Co. for different homes and lifestyles. These concepts are not confirmed product specifications or availability.",
+        "Interactive 3D concept previews from Tussle Furniture Co. for home life, designed to look right by day and work harder at night. Concepts are not confirmed product specifications or availability.",
       itemListElement: [
         {
           "@type": "ListItem",

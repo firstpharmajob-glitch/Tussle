@@ -3,9 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.lovetussle.com"),
-  title: "Tussle Furniture Co. | Furniture for Every Home",
+  title: "Tussle Furniture Co. | Furniture for Home Life, Quietly",
   description:
-    "Discover Tussle Furniture Co. at Lovetussle: thoughtful furniture concepts for every kind of home, with interactive 3D previews.",
+    "Tussle makes furniture that looks right at home by day and works harder at night. Private packaging, neutral billing, delivered across India.",
   applicationName: "Tussle Furniture Co.",
   alternates: {
     canonical: "/",
@@ -15,15 +15,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "/",
     siteName: "Tussle Furniture Co.",
-    title: "Tussle Furniture Co. | Furniture for Every Home",
+    title: "Tussle Furniture Co. | Furniture for Home Life, Quietly",
     description:
-      "Discover Tussle Furniture Co. at Lovetussle: thoughtful furniture concepts for every kind of home, with interactive 3D previews.",
+      "Tussle makes furniture that looks right at home by day and works harder at night. Private packaging, neutral billing, delivered across India.",
   },
   twitter: {
     card: "summary",
-    title: "Tussle Furniture Co. | Furniture for Every Home",
+    title: "Tussle Furniture Co. | Furniture for Home Life, Quietly",
     description:
-      "Discover Tussle Furniture Co. at Lovetussle: thoughtful furniture concepts for every kind of home, with interactive 3D previews.",
+      "Tussle makes furniture that looks right at home by day and works harder at night. Private packaging, neutral billing, delivered across India.",
   },
   robots: {
     index: true,

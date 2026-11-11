@@ -27,7 +27,7 @@ const products = [
     name: "Kandariya Floor Lounger",
     price: null,
     preview: "/concepts/kandariya-floor-lounger.html",
-    description: "A floor lounger that opens into a bed.",
+    description: "A low floor lounger that opens into a wide, firm bed.",
     features: [],
   },
   {
@@ -35,7 +35,7 @@ const products = [
     price: 14900,
     preview: "/concepts/lowlight-coffee-table.html",
     description:
-      "A 120 × 60 cm wood coffee table with a shelf underneath.",
+      "A 120 × 60 cm wood table with a lower shelf, wood on one side and padded on the other.",
     features: [
       "Rounded edges, locking flip",
       "Lower shelf for wipes and a towel",
@@ -46,7 +46,7 @@ const products = [
     name: "Hold chair",
     price: 12900,
     preview: "/concepts/hold-chair.html",
-    description: "An accent chair that looks entirely innocent.",
+    description: "An accent chair that suits any room.",
     features: [
       "Reinforced frame, non-slip feet",
       "Recline locks in place",
@@ -57,8 +57,8 @@ const products = [
     name: "Nightshift desk",
     price: 21900,
     preview: "/concepts/nightshift-desk.html",
-    description: "A work desk with fixed legs, a lift-off top and six rated rings.",
-    features: ["Fixed legs", "Lift-off top", "Six rated rings"],
+    description: "A work desk with fixed legs and a lift-off top.",
+    features: ["Fixed legs", "Lift-off top"],
   },
 ] as const;
 
@@ -69,18 +69,24 @@ const updatedStoreCopy: Record<string, string> = {
     "Are these 3D previews final product specifications?",
   "It is 12 cm deep when closed, so it sits almost flat against the wall.":
     "No. The 3D models are concept previews; dimensions and load ratings shown in them are placeholders, not confirmed product specifications.",
-  "Made for small rooms and big lives": "Furniture for all your plot twists",
+  "Made for small rooms and big lives": "Why Tussle",
   "Hostel rooms, shared flats, first apartments. We design for the space you actually have.":
-    "From compact corners to spacious living rooms, we design thoughtful pieces for the way you live.",
-  "Small-room smart": "Flexible by design",
+    "Looks right at home by day. A little more thoughtful after dark.",
+  "Small-room smart": "Looks like furniture, because it is.",
   "Every piece does at least two jobs, so one room can be a bedroom, an office and a place to have friends over.":
-    "Adaptable furniture gives your space more ways to work, rest and welcome friends.",
-  "Hides the mess": "Room for the everyday",
+    "Every piece suits an ordinary room by day, with nothing on show that needs explaining.",
+  "Hides the mess": "Made for the night shift too.",
   "Storage you can’t see means a room that looks calm, even on the days it isn’t.":
-    "Thoughtful storage and details help keep everyday essentials close and your home feeling considered.",
-  "Rental friendly": "Made to move with you",
+    "Firm support, wipeable surfaces and hidden storage for the things you'd rather keep close.",
+  "Rental friendly": "Yours alone to know about.",
   "Flat-packed and tool-light, so moving day takes an afternoon instead of a week.":
-    "Practical, easy-to-live-with pieces for the homes and routines life brings.",
+    "Plain boxes, neutral billing and quiet delivery. What you buy is your business.",
+  "9 m² hostel room": "Living alone, finally",
+  "The desk folds away so the bed isn’t the whole room.":
+    "A place that’s entirely yours, on your terms.",
+  "Shared flat, Gachibowli": "Shared flat",
+  "Your corner, tidy, even when the living room isn’t.":
+    "Your corner, tidy, even when the living room isn’t.",
 };
 
 type StorefrontProps = {
@@ -282,7 +288,7 @@ function ProductQuiz() {
     "Meet the Kandariya Floor Lounger: a low sofa that opens flat into a bed, with optional comfort pieces.",
     "Meet the Lowlight coffee table: a lower shelf and a wood side that flips to padding.",
     "Meet the Hold chair: a wipeable cover and a recline that locks in place.",
-    "Meet the Nightshift desk: fixed legs, a lift-off top and six rated rings.",
+    "Meet the Nightshift desk: fixed legs and a lift-off top.",
   ];
 
   return (
@@ -353,7 +359,7 @@ function ProductCatalog({ onAdd }: { onAdd: (name: string, price: number) => voi
           <p className="eyebrow">The TUSSLE collection</p>
           <h2>Furniture for all your plot twists.</h2>
           <p className="sub">
-            Thoughtful pieces for the way you live, from compact corners to rooms made for gathering.
+            Four pieces for small rooms, slow evenings and the unexpected guest.
           </p>
           <div className="grid product-grid">
             {products.map((product) => (
@@ -542,7 +548,7 @@ const heroCaptions = [
   "That’s the Dusk sofa-bed. An easygoing two-seater, ready to become a bed.",
   "That’s the Lowlight coffee table. Wood on one side, padded on the other.",
   "That’s the Hold chair. A recline that locks in place.",
-  "That’s the Nightshift desk. A lift-off top, fixed legs and six rated rings.",
+  "That’s the Nightshift desk. A lift-off top and fixed legs.",
 ];
 
 function HeroExperience({ children }: { children: ReactNode }) {
@@ -1088,6 +1094,8 @@ export default function Storefront({ nodes }: StorefrontProps) {
     renderMarkup(items, (node, key) => {
       const id = attr(node, "id");
       const children = () => render(node.children, key, productName, logoMood);
+
+      if (node.tag === "article" && textContent(node).includes("Parents’ spare room")) return null;
 
       if (node.tag === "footer") {
         return (
