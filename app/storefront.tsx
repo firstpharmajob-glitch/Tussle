@@ -69,7 +69,7 @@ const updatedStoreCopy: Record<string, string> = {
     "Are these 3D previews final product specifications?",
   "It is 12 cm deep when closed, so it sits almost flat against the wall.":
     "No. The 3D models are concept previews; dimensions and load ratings shown in them are placeholders, not confirmed product specifications.",
-  "Made for small rooms and big lives": "Furniture for every kind of home",
+  "Made for small rooms and big lives": "Furniture for all your plot twists",
   "Hostel rooms, shared flats, first apartments. We design for the space you actually have.":
     "From compact corners to spacious living rooms, we design thoughtful pieces for the way you live.",
   "Small-room smart": "Flexible by design",
@@ -351,7 +351,7 @@ function ProductCatalog({ onAdd }: { onAdd: (name: string, price: number) => voi
       <section id="shop">
         <div className="wrap">
           <p className="eyebrow">The TUSSLE collection</p>
-          <h2>Furniture for every kind of home.</h2>
+          <h2>Furniture for all your plot twists.</h2>
           <p className="sub">
             Thoughtful pieces for the way you live, from compact corners to rooms made for gathering.
           </p>
