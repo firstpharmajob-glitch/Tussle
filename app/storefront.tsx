@@ -69,6 +69,18 @@ const updatedStoreCopy: Record<string, string> = {
     "Are these 3D previews final product specifications?",
   "It is 12 cm deep when closed, so it sits almost flat against the wall.":
     "No. The 3D models are concept previews; dimensions and load ratings shown in them are placeholders, not confirmed product specifications.",
+  "Made for small rooms and big lives": "Furniture for every kind of home",
+  "Hostel rooms, shared flats, first apartments. We design for the space you actually have.":
+    "From compact corners to spacious living rooms, we design thoughtful pieces for the way you live.",
+  "Small-room smart": "Flexible by design",
+  "Every piece does at least two jobs, so one room can be a bedroom, an office and a place to have friends over.":
+    "Adaptable furniture gives your space more ways to work, rest and welcome friends.",
+  "Hides the mess": "Room for the everyday",
+  "Storage you can’t see means a room that looks calm, even on the days it isn’t.":
+    "Thoughtful storage and details help keep everyday essentials close and your home feeling considered.",
+  "Rental friendly": "Made to move with you",
+  "Flat-packed and tool-light, so moving day takes an afternoon instead of a week.":
+    "Practical, easy-to-live-with pieces for the homes and routines life brings.",
 };
 
 type StorefrontProps = {
@@ -339,9 +351,9 @@ function ProductCatalog({ onAdd }: { onAdd: (name: string, price: number) => voi
       <section id="shop">
         <div className="wrap">
           <p className="eyebrow">The TUSSLE collection</p>
-          <h2>Four pieces. Room to breathe.</h2>
+          <h2>Furniture for every kind of home.</h2>
           <p className="sub">
-            Considered furniture for small rooms, slow evenings and the unexpected guest.
+            Thoughtful pieces for the way you live, from compact corners to rooms made for gathering.
           </p>
           <div className="grid product-grid">
             {products.map((product) => (

@@ -16,7 +16,7 @@ const structuredData = {
         "https://www.facebook.com/profile.php?id=61596574044874",
       ],
       description:
-        "Tussle Furniture Co. is a furniture brand in India presenting furniture concepts for small spaces and interactive 3D previews.",
+        "Tussle Furniture Co. is a furniture brand presenting thoughtful furniture concepts for different homes and lifestyles, including compact spaces.",
       email: "lovetussle@gmail.com",
     },
     {
@@ -26,7 +26,7 @@ const structuredData = {
       alternateName: "Lovetussle",
       url: "https://www.lovetussle.com/",
       description:
-        "Tussle Furniture Co., also known as Lovetussle, presents furniture for small spaces in India with interactive 3D concept previews.",
+        "Tussle Furniture Co., also known as Lovetussle, presents thoughtful furniture concepts for different homes and lifestyles, with interactive 3D previews.",
       inLanguage: "en-IN",
       publisher: { "@id": "https://www.lovetussle.com/#organization" },
     },
@@ -34,7 +34,7 @@ const structuredData = {
       "@type": "WebPage",
       "@id": "https://www.lovetussle.com/#webpage",
       url: "https://www.lovetussle.com/",
-      name: "Tussle Furniture Co. | Furniture for Small Spaces in India",
+      name: "Tussle Furniture Co. | Furniture for Every Home",
       isPartOf: { "@id": "https://www.lovetussle.com/#website" },
       about: { "@id": "https://www.lovetussle.com/#organization" },
       mainEntity: { "@id": "https://www.lovetussle.com/#concepts" },
@@ -44,7 +44,7 @@ const structuredData = {
       "@id": "https://www.lovetussle.com/#concepts",
       name: "Tussle interactive furniture and room concepts",
       description:
-        "Interactive 3D concept previews from Tussle Furniture Co. These concepts are not confirmed product specifications or availability.",
+        "Interactive 3D concept previews from Tussle Furniture Co. for different homes and lifestyles. These concepts are not confirmed product specifications or availability.",
       itemListElement: [
         {
           "@type": "ListItem",
