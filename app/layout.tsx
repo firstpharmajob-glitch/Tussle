@@ -3,9 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.lovetussle.com"),
-  title: "Tussle Furniture Co. | Furniture for Home Life, Quietly",
+  title: "Tussle Furniture Co. (Love Tussle) | Furniture for Home Life",
   description:
-    "Tussle makes furniture that looks right at home by day and works harder at night. Private packaging, neutral billing, delivered across India.",
+    "Love Tussle, also known as Tussle Furniture Co., makes furniture that looks right at home by day and works harder at night. Private packaging, neutral billing, delivered across India.",
   applicationName: "Tussle Furniture Co.",
   alternates: {
     canonical: "/",
@@ -14,16 +14,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "/",
-    siteName: "Tussle Furniture Co.",
-    title: "Tussle Furniture Co. | Furniture for Home Life, Quietly",
+    siteName: "Tussle Furniture Co. (Love Tussle)",
+    title: "Tussle Furniture Co. (Love Tussle) | Furniture for Home Life",
     description:
-      "Tussle makes furniture that looks right at home by day and works harder at night. Private packaging, neutral billing, delivered across India.",
+      "Love Tussle, also known as Tussle Furniture Co., makes furniture that looks right at home by day and works harder at night. Private packaging, neutral billing, delivered across India.",
   },
   twitter: {
     card: "summary",
-    title: "Tussle Furniture Co. | Furniture for Home Life, Quietly",
+    title: "Tussle Furniture Co. (Love Tussle) | Furniture for Home Life",
     description:
-      "Tussle makes furniture that looks right at home by day and works harder at night. Private packaging, neutral billing, delivered across India.",
+      "Love Tussle, also known as Tussle Furniture Co., makes furniture that looks right at home by day and works harder at night. Private packaging, neutral billing, delivered across India.",
   },
   robots: {
     index: true,
