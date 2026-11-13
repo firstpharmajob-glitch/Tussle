@@ -4,12 +4,13 @@ const siteUrl = "https://www.lovetussle.com";
 const pages = [
   "",
   "concepts/dusk-sofa-bed.html",
-  "concepts/hold-chair.html",
+  "concepts/simhasana.html",
   "concepts/kandariya-floor-lounger.html",
   "concepts/love-glide-sofa.html",
   "concepts/lowlight-coffee-table.html",
   "concepts/nightshift-desk.html",
-  "concepts/room-9sqm.html",
+  "concepts/tarang.html",
+  "concepts/tussle-house.html",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

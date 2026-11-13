@@ -8,7 +8,7 @@ const structuredData = {
       "@type": "Organization",
       "@id": "https://www.lovetussle.com/#organization",
       name: "Tussle Furniture Co.",
-      alternateName: ["Love Tussle", "Lovetussle"],
+      alternateName: ["Tussle", "Love Tussle", "Lovetussle"],
       url: "https://www.lovetussle.com/",
       logo: "https://www.lovetussle.com/icon.png",
       sameAs: [
@@ -23,10 +23,10 @@ const structuredData = {
       "@type": "WebSite",
       "@id": "https://www.lovetussle.com/#website",
       name: "Tussle Furniture Co.",
-      alternateName: ["Love Tussle", "Lovetussle"],
+      alternateName: ["Tussle", "Love Tussle", "Lovetussle"],
       url: "https://www.lovetussle.com/",
       description:
-        "Tussle Furniture Co., also known as Love Tussle or Lovetussle, makes furniture that looks right at home by day and works harder at night, with interactive 3D concept previews.",
+        "Tussle Furniture Co. (also known as Love Tussle or Lovetussle) presents thoughtful furniture concepts for compact homes, with interactive 3D previews.",
       inLanguage: "en-IN",
       publisher: { "@id": "https://www.lovetussle.com/#organization" },
     },
@@ -34,7 +34,7 @@ const structuredData = {
       "@type": "WebPage",
       "@id": "https://www.lovetussle.com/#webpage",
       url: "https://www.lovetussle.com/",
-      name: "Tussle Furniture Co. (Love Tussle) | Furniture for Home Life",
+      name: "Lights out. Tussle on.",
       isPartOf: { "@id": "https://www.lovetussle.com/#website" },
       about: { "@id": "https://www.lovetussle.com/#organization" },
       mainEntity: { "@id": "https://www.lovetussle.com/#concepts" },
@@ -73,8 +73,8 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 5,
-          name: "Hold chair",
-          url: "https://www.lovetussle.com/concepts/hold-chair.html",
+          name: "Simhasana",
+          url: "https://www.lovetussle.com/concepts/simhasana.html",
         },
         {
           "@type": "ListItem",
@@ -85,8 +85,14 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 7,
-          name: "The 9 m² room",
-          url: "https://www.lovetussle.com/concepts/room-9sqm.html",
+          name: "Tarang",
+          url: "https://www.lovetussle.com/concepts/tarang.html",
+        },
+        {
+          "@type": "ListItem",
+          position: 8,
+          name: "The Tussle house",
+          url: "https://www.lovetussle.com/concepts/tussle-house.html",
         },
       ],
     },

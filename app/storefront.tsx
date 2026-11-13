@@ -28,29 +28,37 @@ const products = [
     price: null,
     preview: "/concepts/kandariya-floor-lounger.html",
     description: "A low floor lounger that opens into a wide, firm bed.",
-    features: [],
+    features: [
+      "Opens into a wide bed",
+      "Lock-in support wedges",
+      "Removable comfort kit",
+      "Hidden drawer",
+    ],
   },
   {
     name: "Lowlight coffee table",
     price: 14900,
     preview: "/concepts/lowlight-coffee-table.html",
     description:
-      "A 120 × 60 cm wood table with a lower shelf, wood on one side and padded on the other.",
+      "A walnut coffee table with a reversible padded top, a lower shelf, and Night Deck for two.",
     features: [
-      "Rounded edges, locking flip",
-      "Lower shelf for wipes and a towel",
-      "Wood on one side, padded on the other",
+      "Walnut top with padded reverse",
+      "Brass legs and shadow line",
+      "Lower shelf for essentials",
+      "Night Deck card game for two",
     ],
   },
   {
-    name: "Hold chair",
-    price: 12900,
-    preview: "/concepts/hold-chair.html",
-    description: "An accent chair that suits any room.",
+    name: "Simhasana",
+    price: null,
+    preview: "/concepts/simhasana.html",
+    description:
+      "A wide lounge chair that looks like plain furniture by day. At night, the back reclines, a footstool docks flush, and the light turns warm.",
     features: [
-      "Reinforced frame, non-slip feet",
-      "Recline locks in place",
-      "Wipeable cover",
+      "Three locked recline angles",
+      "Removable, washable comfort pieces",
+      "Docking footstool",
+      "Five chenille colour options",
     ],
   },
   {
@@ -58,7 +66,25 @@ const products = [
     price: 21900,
     preview: "/concepts/nightshift-desk.html",
     description: "A work desk with fixed legs and a lift-off top.",
-    features: ["Fixed legs", "Lift-off top"],
+    features: [
+      "Fixed 58 cm legs",
+      "Lift-off reversible top",
+      "Padded, wipeable side",
+      "Wood finish for daytime",
+    ],
+  },
+  {
+    name: "Tarang",
+    price: null,
+    preview: "/concepts/tarang.html",
+    description:
+      "A channel-quilted bench that transforms into a contoured wave, with a hidden drawer.",
+    features: [
+      "Looks like a bench by day",
+      "Transforms into a contoured wave",
+      "Hidden drawer in the plinth",
+      "Five upholstery colours",
+    ],
   },
 ] as const;
 
@@ -281,14 +307,16 @@ function ProductQuiz() {
   const questions = [
     "A place for guests to sleep",
     "A coffee table that does more",
-    "A chair to recline in",
+    "A wide lounge chair with a docking footstool",
     "A desk for everyday work",
+    "A bench that transforms into a wave",
   ];
   const recommendations = [
     "Meet the Kandariya Floor Lounger: a low sofa that opens flat into a bed, with optional comfort pieces.",
-    "Meet the Lowlight coffee table: a lower shelf and a wood side that flips to padding.",
-    "Meet the Hold chair: a wipeable cover and a recline that locks in place.",
+    "Meet the Lowlight coffee table: a walnut top that flips to padding, with a lower shelf and Night Deck for two.",
+    "Meet Simhasana: a wide lounge chair with three locked recline angles and a docking footstool.",
     "Meet the Nightshift desk: fixed legs and a lift-off top.",
+    "Meet Tarang: a channel-quilted bench that transforms into a contoured wave.",
   ];
 
   return (
@@ -331,8 +359,13 @@ function FeaturedLoveGlide() {
               Meet the sofa in its interactive 3D concept. Explore each position and see how the
               Love Glide transforms.
             </p>
-            <a className="btn featured-link" href={conceptUrl} target="_blank" rel="noreferrer">
-              Explore the full concept <span aria-hidden="true">↗</span>
+            <a
+              className="btn featured-link"
+              href={`${conceptUrl}?night=1`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              See it at night <span aria-hidden="true">↗</span>
             </a>
           </div>
           <div className="featured-media">
@@ -359,7 +392,7 @@ function ProductCatalog({ onAdd }: { onAdd: (name: string, price: number) => voi
           <p className="eyebrow">The TUSSLE collection</p>
           <h2>Furniture for all your plot twists.</h2>
           <p className="sub">
-            Four pieces for small rooms, slow evenings and the unexpected guest.
+            Five pieces for small rooms, slow evenings and the unexpected guest.
           </p>
           <div className="grid product-grid">
             {products.map((product) => (
@@ -375,6 +408,15 @@ function ProductCatalog({ onAdd }: { onAdd: (name: string, price: number) => voi
                     src={product.preview}
                     title={`${product.name} interactive 3D concept`}
                   />
+                  <a
+                    className="product-night-link"
+                    href={`${product.preview}?night=1`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`See ${product.name} at night`}
+                  >
+                    See it at night
+                  </a>
                 </div>
                 <div className="concept-copy">
                   <h3>{product.name}</h3>
@@ -406,16 +448,25 @@ function ProductCatalog({ onAdd }: { onAdd: (name: string, price: number) => voi
       </section>
       <section className="room-showcase" aria-labelledby="room-showcase-title">
         <div className="wrap">
-          <p className="eyebrow">A little room to imagine</p>
-          <h2 id="room-showcase-title">The 9 m² room</h2>
+          <p className="eyebrow">Step inside</p>
+          <h2 id="room-showcase-title">The Tussle house</h2>
           <p className="sub">
-            See the Dusk, Lowlight and Hold together in an interactive room concept.
+            Explore four rooms filled with Tussle pieces. Look around, switch from day to night,
+            and tap a piece to see it up close.
           </p>
           <ConceptPreview
-            src="/concepts/room-9sqm.html"
-            title="Interactive 3D concept for The 9 square metre room"
+            src="/concepts/tussle-house.html?embed=1"
+            title="Interactive 3D tour of the Tussle house"
             room
           />
+          <a
+            className="room-link"
+            href="/concepts/tussle-house.html"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open the full Tussle house <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
     </>
@@ -546,8 +597,8 @@ function useHero() {
 
 const heroCaptions = [
   "That’s the Dusk sofa-bed. An easygoing two-seater, ready to become a bed.",
-  "That’s the Lowlight coffee table. Wood on one side, padded on the other.",
-  "That’s the Hold chair. A recline that locks in place.",
+  "That’s the Lowlight coffee table. Walnut by day, padded for Night Deck after dark.",
+  "That’s Simhasana. A wide lounge chair with a docking footstool.",
   "That’s the Nightshift desk. A lift-off top and fixed legs.",
 ];
 
@@ -671,12 +722,15 @@ function HeroControls({
 }
 
 function AgeGate({ children }: { children: ReactNode }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     try {
-      if (sessionStorage.getItem("t18")) setOpen(false);
+      const accepted =
+        localStorage.getItem("t18") === "1" || sessionStorage.getItem("t18") === "1";
+      setOpen(!accepted);
+      if (accepted) localStorage.setItem("t18", "1");
     } catch {
       setOpen(true);
     }
@@ -704,9 +758,13 @@ function AgeGate({ children }: { children: ReactNode }) {
     if (!(event.target instanceof window.Element) || !event.target.closest("#g18")) return;
     setOpen(false);
     try {
-      sessionStorage.setItem("t18", "1");
+      localStorage.setItem("t18", "1");
     } catch {
-      setOpen(false);
+      try {
+        sessionStorage.setItem("t18", "1");
+      } catch {
+        setOpen(false);
+      }
     }
   }
 

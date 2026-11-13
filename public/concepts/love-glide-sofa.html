@@ -41,6 +41,9 @@ body{
   padding-right:max(16px,env(safe-area-inset-right,0px));
 }
 .wrap{max-width:1180px;margin-inline:auto;display:grid;gap:20px}
+.home-link{display:inline-flex;align-items:center;width:max-content;max-width:100%;padding:10px 16px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:#171a33;color:#fff;text-decoration:none;font:600 14px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;transition:background .2s}
+.home-link:hover{background:#7a510e}
+.home-link:focus-visible{outline:3px solid #d6ad64;outline-offset:3px}
 .top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 24px}
 .eyebrow{margin:0 0 6px;font:500 .72rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 h1{margin:0;font:500 clamp(2.2rem,6vw,3.8rem)/.98 var(--display);letter-spacing:-.02em;text-wrap:balance}
@@ -123,13 +126,14 @@ details.note ul{margin:8px 0 0;padding-left:18px}
 html.embedded,html.embedded body{width:100%;height:100%;min-height:0;overflow:hidden}
 html.embedded body{padding:0}
 html.embedded .wrap{width:100%;height:100%;max-width:none;display:block}
-html.embedded .top,html.embedded .hint,html.embedded .side{display:none}
+html.embedded .home-link,html.embedded .top,html.embedded .hint,html.embedded .side{display:none}
 html.embedded .app,html.embedded .app>section{width:100%;height:100%;display:block}
 html.embedded #stage{width:100%;height:100%;min-height:0;border:0;border-radius:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style></head><body>
 
 <div class="wrap">
+  <a class="home-link" href="/" aria-label="Back to Tussle Furniture Co. homepage">← Back to Tussle</a>
   <header class="top">
     <div>
       <p class="eyebrow">Tussle Furniture Co. · Concept preview</p>
@@ -453,8 +457,9 @@ html.embedded #stage{width:100%;height:100%;min-height:0;border:0;border-radius:
   catch(e){ g3=null; $('glFail').hidden=false; }
 
   /* ---------- state + readouts ---------- */
-  var t=0, target=0, lastIdx=-1, lastDone=null, lastPT=0;
+  var t=0, target=new URLSearchParams(location.search).get('night')==='1'?1:0, lastIdx=-1, lastDone=null, lastPT=0;
   var sl=$('slider'), tog=$('toggle');
+  sl.value=Math.round(target*100);
   function apply(){
     var p=pose(t);
     if(g3) g3.sync(p);
@@ -476,7 +481,7 @@ html.embedded #stage{width:100%;height:100%;min-height:0;border:0;border-radius:
       chipBtns.forEach(function(b,i){b.setAttribute('aria-pressed',String(i===idx));});
     }
     sl.setAttribute('aria-valuetext',STEPS[idx].name+', '+Math.round(t*100)+' percent');
-    tog.textContent=target>0.5?'Back to sofa':'Glide onto seat';
+    tog.textContent=target>0.5?'Back to sofa':'See it at night';
   }
   tog.addEventListener('click',function(){target=target>0.5?0:1;});
   function seg(attr,fn){var bs=[].slice.call(document.querySelectorAll('['+attr+']'));bs.forEach(function(b){b.addEventListener('click',function(){bs.forEach(function(o){o.setAttribute('aria-pressed',String(o===b));});fn(b.getAttribute(attr));});});}

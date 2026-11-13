@@ -14,6 +14,7 @@ html,body{margin:0;min-height:100%;background:#f9f5eb}
 #kandariya[data-theme="dark"]{--bg:#14100d;--ink:#f6efe0;--fab:#2f3119;--accent:#d9b45a;--mute:#b4a899;--rule:#352b23;--card:#1d1712}
 #kandariya *,#kandariya *::before,#kandariya *::after{box-sizing:inherit}
 #kandariya .top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600;letter-spacing:.16em;font-size:14px}
+#kandariya .home-link{color:#fff;text-decoration:none;letter-spacing:normal;font:600 14px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif}
 #kandariya h2{margin:56px 0 8px}
 #kandariya button:focus-visible,#kandariya a:focus-visible,#kandariya input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){#kandariya *{transition:none!important}}
@@ -63,7 +64,7 @@ html.embedded #kandariya .hint{font-size:12px}
 </head>
 <body>
 <section id="kandariya" data-theme="light">
-  <div class="top"><span>TUSSLE FURNITURE CO.</span><button class="tog" id="tog" type="button" aria-pressed="false">Open it</button></div>
+  <div class="top"><a class="home-link" href="/" aria-label="Back to Tussle Furniture Co. homepage">← Back to Tussle</a><button class="tog" id="tog" type="button" aria-pressed="false">Open it</button></div>
   <p class="eyebrow">Tussle after dark · Floor lounger</p>
   <h1>Kandariya <em>Floor Lounger</em></h1>
   <p class="lede">By day, a low floor sofa that reads as heritage decor. Press <em>Open it</em> and it folds flat into a firm, wide bed, with lock-in wedges and a hidden drawer, under warm, dim light.</p>
@@ -97,10 +98,11 @@ jali:{w:40,h:40,d:['M20 0L40 20 20 40 0 20zM20 9L31 20 20 31 9 20z','M17.5 20a2.
 shikhara:{w:44,h:52,d:['M22 3c4 7 4 12 0 17-4-5-4-10 0-17zM13 23c5 4 13 4 18 0M9 30c7 5 19 5 26 0M5 38c9 6 25 6 34 0M2 47h40']},
 apsara:{w:60,h:76,d:['M25 12a5 5 0 1 0 10 0a5 5 0 1 0-10 0','M30 17c-8 8 8 16 0 26M30 25c-10-4-16 0-18 6M30 25c10-4 16-8 18-16M30 43c-8 6-12 14-14 24M30 43c8 6 12 14 14 24']}};
 
-function setTheme(d){root.setAttribute('data-theme',d?'dark':'light');tog.textContent=d?'Back to day':'Open it';tog.setAttribute('aria-pressed',d?'true':'false');S.nightT=d?1:0}
+function setTheme(d){root.setAttribute('data-theme',d?'dark':'light');tog.textContent=d?'Back to day':'See it at night';tog.setAttribute('aria-pressed',d?'true':'false');S.nightT=d?1:0}
 function setRec(i){rec.value=i;recv.textContent=names[i];S.recT=angs[i]}
 function setKit(k,on){S.k[k][1]=on?1:0;document.querySelector('.kb[data-k="'+k+'"]').setAttribute('aria-pressed',on?'true':'false')}
-setTheme(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);S.night=S.nightT;
+var startAtNight=new URLSearchParams(window.location.search).get('night')==='1';
+setTheme(startAtNight?false:window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);S.night=S.nightT;
 rec.addEventListener('input',function(){setRec(+rec.value)});
 document.querySelectorAll('.kb').forEach(function(b){b.addEventListener('click',function(){setKit(b.getAttribute('data-k'),b.getAttribute('aria-pressed')!=='true')})});
 tog.addEventListener('click',function(){
@@ -108,8 +110,9 @@ tog.addEventListener('click',function(){
   if(n){cap.textContent='After dark: the back folds flat into a firm, wide bed, the wedges lock in, a soft leg support rises, the drawer opens and the light turns warm.';
     setTimeout(function(){setRec(2)},calm?0:600);
     eve.forEach(function(k,i){setTimeout(function(){setKit(k,true)},calm?0:1600+i*700)})}
-  else{setRec(0);all.forEach(function(k){setKit(k,false)});cap.textContent='By day, a plain low floor sofa. Press Open it.'}
+  else{setRec(0);all.forEach(function(k){setKit(k,false)});cap.textContent='By day, a plain low floor sofa. Press See it at night.'}
 });
+if(startAtNight)tog.click();
 
 var COL=[{"n": "Kon · Navy", "f": "#1b2a41", "l": "#e8eefa", "a": 1780289, "s": 5928096, "b": 2504794, "t": 8361917, "x": 9071423, "xs": 13678732}, {"n": "Kuro · Black", "f": "#050506", "l": "#e9e8e5", "a": 328966, "s": 3421243, "b": 723725, "t": 4473933, "x": 10255173, "xs": 14270602}, {"n": "Matcha · Moss", "f": "#3f4f3a", "l": "#e9f0e2", "a": 4149050, "s": 9676417, "b": 5662792, "t": 11452316, "x": 8019002, "xs": 13678732}, {"n": "Enji · Wine", "f": "#5e2430", "l": "#f8e6ea", "a": 6169648, "s": 11100271, "b": 7615295, "t": 12944786, "x": 9203011, "xs": 13678732}, {"n": "Kinari · Ecru", "f": "#cfc3a8", "l": "#4d4129", "a": 13616040, "s": 16117467, "b": 14537401, "t": 16380898, "x": 7297594, "xs": 13678732}];
 root.style.setProperty("--fab",COL[0].f);root.style.setProperty("--line",COL[0].l);
