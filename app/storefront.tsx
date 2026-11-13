@@ -353,6 +353,7 @@ function FeaturedLoveGlide() {
       <div className="wrap">
         <div className="featured-layout">
           <div className="featured-copy">
+            <h1>Tussle Furniture Co.</h1>
             <p className="eyebrow">Featured · TUSSLE after dark</p>
             <h2 id="featured-love-glide-title">Love Glide sofa</h2>
             <p className="sub">

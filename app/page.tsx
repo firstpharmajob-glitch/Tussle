@@ -34,7 +34,7 @@ const structuredData = {
       "@type": "WebPage",
       "@id": "https://www.lovetussle.com/#webpage",
       url: "https://www.lovetussle.com/",
-      name: "Lights out. Tussle on.",
+      name: "Tussle Furniture Co. (Love Tussle) | Furniture for Small Homes",
       isPartOf: { "@id": "https://www.lovetussle.com/#website" },
       about: { "@id": "https://www.lovetussle.com/#organization" },
       mainEntity: { "@id": "https://www.lovetussle.com/#concepts" },

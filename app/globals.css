@@ -55,6 +55,7 @@ h2{font-size:clamp(32px,5vw,56px);letter-spacing:-.035em;line-height:1;margin:0 
 .featured-product{background:var(--fg);color:var(--bg)}
 .featured-product .wrap{max-width:1320px}
 .featured-layout{display:grid;grid-template-columns:minmax(240px,.72fr) minmax(0,1.28fr);gap:48px;align-items:center}
+.featured-copy h1{max-width:16ch;font-size:clamp(2rem,4vw,3rem);line-height:1.04}
 .featured-copy h2{max-width:10ch}
 .featured-copy .sub{color:color-mix(in srgb,var(--bg) 76%,transparent)}
 .featured-link{display:inline-flex;gap:8px;align-items:center;text-decoration:none;background:var(--bg);color:var(--fg)}
