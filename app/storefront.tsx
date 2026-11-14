@@ -388,7 +388,7 @@ function FeaturedLoveGlide() {
         <div className="featured-layout">
           <div className="featured-copy">
             <h1>Tussle Furniture Co.</h1>
-            <p className="eyebrow">Featured · TUSSLE after dark</p>
+            <p className="eyebrow">Love Tussle · Official site</p>
             <h2 id="featured-love-glide-title">Love Glide sofa</h2>
             <p className="sub">
               Meet the sofa in its interactive 3D concept. Explore each position and see how the
@@ -428,7 +428,7 @@ function ProductCatalog({ onAdd }: { onAdd: (name: string, price: number) => voi
           <p className="eyebrow">The TUSSLE collection</p>
           <h2>Furniture for all your plot twists.</h2>
           <p className="sub">
-            Five pieces for small rooms, slow evenings and the unexpected guest.
+            Five pieces for everyday living, slow evenings and the unexpected guest.
           </p>
           <div className="grid product-grid">
             {products.map((product) => (

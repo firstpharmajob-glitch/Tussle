@@ -510,8 +510,8 @@ export default function PlainByDayPage() {
               need?
             </p>
             <p>
-              That idea still feels useful today, especially in compact homes. A
-              piece can look at ease in the room and still offer a little more
+              That idea still feels useful today. A piece can look at ease in the
+              room and still offer a little more
               comfort, support or flexibility when it is needed. The best solution
               might be a well-placed seat, a softer light or a layout that gives
               people options.

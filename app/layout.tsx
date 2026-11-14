@@ -3,9 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.lovetussle.com"),
-  title: "Tussle Furniture Co. (Love Tussle) | Furniture for Small Homes",
+  title: "Tussle Furniture Co. (Love Tussle) | Official Site",
   description:
-    "The official home of Tussle Furniture Co., also known as Love Tussle. Explore playful, space-smart furniture concepts for compact homes, with interactive 3D previews.",
+    "Tussle Furniture Co., also known as Love Tussle, is the official home of Tussle furniture. Explore the collection, interactive 3D concepts and design stories.",
   applicationName: "Tussle Furniture Co.",
   verification: {
     google: "yMVLkQQ2z2hqapWAxXvPVVdiUb5SHZVMYwHd-7ct6cI",
@@ -18,15 +18,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "/",
     siteName: "Tussle Furniture Co.",
-    title: "Tussle Furniture Co. (Love Tussle) | Furniture for Small Homes",
+    title: "Tussle Furniture Co. (Love Tussle) | Official Site",
     description:
-      "The official home of Tussle Furniture Co., also known as Love Tussle. Explore playful, space-smart furniture concepts for compact homes, with interactive 3D previews.",
+      "Tussle Furniture Co., also known as Love Tussle, is the official home of Tussle furniture. Explore the collection, interactive 3D concepts and design stories.",
   },
   twitter: {
     card: "summary",
-    title: "Tussle Furniture Co. (Love Tussle) | Furniture for Small Homes",
+    title: "Tussle Furniture Co. (Love Tussle) | Official Site",
     description:
-      "The official home of Tussle Furniture Co., also known as Love Tussle. Explore playful, space-smart furniture concepts for compact homes, with interactive 3D previews.",
+      "Tussle Furniture Co., also known as Love Tussle, is the official home of Tussle furniture. Explore the collection, interactive 3D concepts and design stories.",
   },
   robots: {
     index: true,

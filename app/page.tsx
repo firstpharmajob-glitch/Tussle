@@ -16,17 +16,17 @@ const structuredData = {
         "https://www.facebook.com/profile.php?id=61596574044874",
       ],
       description:
-        "Tussle Furniture Co. is a furniture brand presenting thoughtful furniture concepts for different homes and lifestyles, including compact spaces.",
+        "Tussle Furniture Co. presents playful furniture concepts that feel at home by day and reveal thoughtful details after dark.",
       email: "lovetussle@gmail.com",
     },
     {
       "@type": "WebSite",
       "@id": "https://www.lovetussle.com/#website",
-      name: "Tussle Furniture Co.",
+      name: "Tussle Furniture Co. (Love Tussle)",
       alternateName: ["Tussle", "Love Tussle", "Lovetussle"],
       url: "https://www.lovetussle.com/",
       description:
-        "Tussle Furniture Co. (also known as Love Tussle or Lovetussle) presents thoughtful furniture concepts for compact homes, with interactive 3D previews.",
+        "Tussle Furniture Co. (also known as Love Tussle or Lovetussle) presents playful furniture concepts for everyday life, with thoughtful details that reveal themselves after dark and interactive 3D previews.",
       inLanguage: "en-IN",
       publisher: { "@id": "https://www.lovetussle.com/#organization" },
     },
@@ -34,7 +34,9 @@ const structuredData = {
       "@type": "WebPage",
       "@id": "https://www.lovetussle.com/#webpage",
       url: "https://www.lovetussle.com/",
-      name: "Tussle Furniture Co. (Love Tussle) | Furniture for Small Homes",
+      name: "Tussle Furniture Co. (Love Tussle) | Official Site",
+      description:
+        "The official home of Tussle Furniture Co., also known as Love Tussle. Explore the collection, interactive 3D concepts and design stories.",
       isPartOf: { "@id": "https://www.lovetussle.com/#website" },
       about: { "@id": "https://www.lovetussle.com/#organization" },
       mainEntity: { "@id": "https://www.lovetussle.com/#concepts" },
