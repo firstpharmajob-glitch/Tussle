@@ -61,6 +61,7 @@ html.embedded #kandariya>:not(.stage){display:none}
 html.embedded #kandariya .stage{width:100%;height:100%;min-height:0;margin:0;border-radius:18px}
 html.embedded #kandariya .hint{font-size:12px}
 </style>
+<script src="/preview-visibility.js"></script>
 </head>
 <body>
 <section id="kandariya" data-theme="light">
@@ -236,8 +237,8 @@ function frame(t){
   wA.scale.y=wB.scale.y=Math.max(.001,S.k.wedges[0]);lp.scale.y=Math.max(.001,S.k.legs[0]);dr.position.z=S.k.drawer[0]*.95;
   if(idle){az=.55+Math.sin(t*.0004)*.5}
   cam.position.set(rad*Math.sin(az)*Math.cos(el),rad*Math.sin(el)+.5,rad*Math.cos(az)*Math.cos(el));cam.lookAt(0,.45,-.25);
-  R.render(scene,cam);requestAnimationFrame(frame)}
-requestAnimationFrame(frame);
+  R.render(scene,cam)}
+window.tussleStartPreview(frame);
 })();
 if(new URLSearchParams(window.location.search).get('embed')==='1'){
   document.documentElement.classList.add('embedded');

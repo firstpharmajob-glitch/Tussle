@@ -183,6 +183,34 @@ function renderMarkup(
   });
 }
 
+function usePreviewVisibility(iframeRef: { current: HTMLIFrameElement | null }) {
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe || !("IntersectionObserver" in window)) return;
+
+    let visible = false;
+    const sendVisibility = () => {
+      iframe.contentWindow?.postMessage(
+        { type: "tussle:visibility", visible },
+        window.location.origin,
+      );
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sendVisibility();
+    });
+    const onLoad = () => sendVisibility();
+
+    iframe.addEventListener("load", onLoad);
+    observer.observe(iframe);
+
+    return () => {
+      iframe.removeEventListener("load", onLoad);
+      observer.disconnect();
+    };
+  }, [iframeRef]);
+}
+
 function formatPrice(value: number) {
   return `₹${value.toLocaleString("en-IN")}`;
 }
@@ -196,8 +224,12 @@ function ConceptPreview({
   title: string;
   room?: boolean;
 }) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  usePreviewVisibility(iframeRef);
+
   return (
     <iframe
+      ref={iframeRef}
       className={`concept-frame${room ? " room-frame" : ""}`}
       src={room ? src : `${src}?embed=1`}
       title={title}
@@ -347,6 +379,8 @@ function ProductQuiz() {
 
 function FeaturedLoveGlide() {
   const conceptUrl = "/concepts/love-glide-sofa.html";
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  usePreviewVisibility(iframeRef);
 
   return (
     <section className="featured-product" aria-labelledby="featured-love-glide-title">
@@ -371,6 +405,7 @@ function FeaturedLoveGlide() {
           </div>
           <div className="featured-media">
             <iframe
+              ref={iframeRef}
               className="featured-frame"
               src={`${conceptUrl}?embed=1`}
               title="Love Glide sofa interactive 3D concept"
@@ -533,6 +568,7 @@ const HeroContext = createContext<HeroState | null>(null);
 function Hero3DFrame() {
   const frameRef = useRef<HTMLIFrameElement>(null);
   const [height, setHeight] = useState<number | null>(null);
+  usePreviewVisibility(frameRef);
 
   useEffect(() => {
     const frame = frameRef.current;

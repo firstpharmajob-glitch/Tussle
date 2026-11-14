@@ -59,6 +59,7 @@ footer{max-width:1240px;margin:0 auto;border-top:1px solid var(--line);padding:2
 :root.embed .bar,:root.embed .hero,:root.embed .sr,:root.embed footer{display:none}
 :root.embed #stage{height:100vh;max-width:none;margin:0;border:0;border-radius:0}
 </style>
+<script src="/preview-visibility.js"></script>
 </head>
 <body>
 <div class="bar"><a class="brand" href="/">Tussle Furniture Co.</a></div>
@@ -628,8 +629,7 @@ VIEWS.forEach(function(vw,i){var b=document.createElement('button');b.type='butt
   document.getElementById('chips').appendChild(b);chipEls.push(b);});
 var selectPiece=function(slug){P.forEach(function(o){if(o.slug!==slug)return;chipEls.forEach(function(b){b.setAttribute('aria-pressed','false');});tlook.set(o.g.position.x,30,o.g.position.z);trad=760;tpol=1.05;taz=o.g.position.x<0?.3:-.3;lastIn=performance.now();});pinned=slug;hovSlug=null;setHover(slug);};
 var ENQ='hello@lovetussle.com'; /* change to your real email */
-var PT={n:0,p:{},d:0,pz:false},vis=true,ld=document.getElementById('loader');
-if('IntersectionObserver' in window)new IntersectionObserver(function(en){vis=en[0].isIntersecting;}).observe(stage);
+var PT={n:0,p:{},d:0,pz:false},ld=document.getElementById('loader');
 stage.addEventListener('pointerdown',function(e){if(e.target.closest('.dock,.tag,.chips,.card'))return;PT.p[e.pointerId]=[e.clientX,e.clientY];PT.n=Object.keys(PT.p).length;PT.d=0;if(PT.n===1)PT.pz=false;});
 stage.addEventListener('pointermove',function(e){if(!PT.p[e.pointerId])return;PT.p[e.pointerId]=[e.clientX,e.clientY];
   if(PT.n===2){PT.pz=true;var k=Object.keys(PT.p),a=PT.p[k[0]],b=PT.p[k[1]],d=Math.hypot(a[0]-b[0],a[1]-b[1]);if(PT.d)trad=Math.max(700,Math.min(3000,trad*PT.d/d));PT.d=d;lastIn=performance.now();clearChips();}});
@@ -654,7 +654,6 @@ window.addEventListener('resize',resize);resize();
 
 var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,last=performance.now(),v=new THREE.Vector3();
 function loop(now){
-  if(!vis||document.hidden){last=now;requestAnimationFrame(loop);return;}
   if(t>0)WARM.forEach(function(w,i){w.intensity=t*(1.7+.2*Math.sin(now/260+i*1.7)+.1*Math.sin(now/97+i));});
   var dt=Math.min(.05,(now-last)/1000);last=now;
   if(t!==target){t=t<target?Math.min(target,t+(reduce?4:.3)*dt):Math.max(target,t-(reduce?4:.3)*dt);sl.value=Math.round(t*100);apply();}
@@ -668,9 +667,9 @@ function loop(now){
     var kt=o.slug===pinned?1:0,k0=o.k||0;if(k0!==kt){o.k=kt>k0?Math.min(1,k0+dt*.7):Math.max(0,k0-dt*.7);try{o.upd(Math.max(t,o.k));}catch(e){}}
     v.set(o.g.position.x,o.ly,o.g.position.z).project(camera);o.tag.style.left=(v.x*.5+.5)*w+'px';o.tag.style.top=(-v.y*.5+.5)*h+'px';});
   RT.forEach(function(o){v.set(o.x,2,o.z).project(camera);o.el.style.left=(v.x*.5+.5)*w+'px';o.el.style.top=(-v.y*.5+.5)*h+'px';});
-  renderer.render(scene,camera);if(ld){ld.classList.add('done');var l2=ld;setTimeout(function(){l2.remove();},900);ld=null;}requestAnimationFrame(loop);
+  renderer.render(scene,camera);if(ld){ld.classList.add('done');var l2=ld;setTimeout(function(){l2.remove();},900);ld=null;}
 }
-apply();requestAnimationFrame(loop);
+apply();window.tussleStartPreview(loop);
 
 }
 })();

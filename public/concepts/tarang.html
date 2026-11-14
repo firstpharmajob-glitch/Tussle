@@ -115,6 +115,7 @@ html.embed .wrap>:not(.stage){display:none!important}
 html.embed .stage{width:100%;height:100%;min-height:0;margin:0;border:0;border-radius:0}
 html.embed .hint{left:18px;bottom:14px}
 </style>
+<script src="/preview-visibility.js"></script>
 </head>
 <body>
 
@@ -581,8 +582,8 @@ function frame(t){
     mechanismRenderer.render(mechanismScene,mechanismCamera);
   }
   frame.lastTime=t;
-  requestAnimationFrame(frame)}
-requestAnimationFrame(frame);
+}
+window.tussleStartPreview(frame);
 })();
 </script>
 </body>

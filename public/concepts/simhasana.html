@@ -130,6 +130,7 @@ html.embed .stage{height:calc(100vh - 72px);border-radius:0}
 :root[data-theme="dark"] h1{text-shadow:0 0 .3em color-mix(in srgb,var(--accent) 50%,transparent)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}h1 span{animation:none;opacity:1;transform:none}.aura{display:none}}
 </style>
+<script src="/preview-visibility.js"></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -436,8 +437,8 @@ function frame(t){
   if(idle){az=.55+Math.sin(t*.0004)*.5}
   intro=Math.min(1,intro+.011);var ie=1-Math.pow(1-intro,3),A=az+(1-ie)*1.7,E=el+(1-ie)*.3,D=rad+(1-ie)*4;
   cam.position.set(D*Math.sin(A)*Math.cos(E),D*Math.sin(E)+.5,D*Math.cos(A)*Math.cos(E));cam.lookAt(0,.85,-.2);
-  R.render(scene,cam);requestAnimationFrame(frame)}
-requestAnimationFrame(frame);
+  R.render(scene,cam)}
+window.tussleStartPreview(frame);
 })();
 </script>
 </body>
