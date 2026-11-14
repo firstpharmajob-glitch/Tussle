@@ -1194,22 +1194,54 @@ export default function Storefront({ nodes }: StorefrontProps) {
 
       if (node.tag === "footer") {
         return (
-          <footer key={key}>
-            {children()}
-            <nav className="footer-socials" aria-label="Social media">
-              <a href="/journal">Journal</a>
-              <a href="https://www.instagram.com/lovetussle/" target="_blank" rel="noreferrer">
-                Instagram
-              </a>
-              <a
-                href="https://www.facebook.com/profile.php?id=61596574044874"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Facebook
-              </a>
-            </nav>
-          </footer>
+          <Fragment key={key}>
+            <section className="journal-promo" aria-labelledby="journal-promo-title">
+              <div className="wrap journal-promo-layout">
+                <div className="journal-promo-copy">
+                  <p className="eyebrow">From the Tussle Journal</p>
+                  <h2 id="journal-promo-title">
+                    The stories our furniture holds.
+                  </h2>
+                  <p>
+                    Explore how beds, screens and shared seats have made space for
+                    comfort and privacy across cultures.
+                  </p>
+                  <a className="journal-promo-link" href="/journal/plain-by-day">
+                    Read Plain by Day <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+                <a
+                  className="journal-promo-image"
+                  href="/journal/plain-by-day"
+                  aria-label="Read Plain by Day: A History of Furniture Made for Intimacy"
+                >
+                  <img
+                    src="/journal/duchesse-brisee.webp"
+                    alt=""
+                    loading="lazy"
+                    width="900"
+                    height="1200"
+                  />
+                </a>
+              </div>
+            </section>
+            <footer>
+              {children()}
+              <nav className="footer-socials" aria-label="Social media">
+                <a href="/journal">Journal</a>
+                <a href="https://www.instagram.com/lovetussle/" target="_blank" rel="noreferrer">
+                  Instagram
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61596574044874"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Facebook
+                </a>
+              </nav>
+            </footer>
+          </Fragment>
         );
       }
 
