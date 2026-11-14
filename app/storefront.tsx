@@ -1197,6 +1197,7 @@ export default function Storefront({ nodes }: StorefrontProps) {
           <footer key={key}>
             {children()}
             <nav className="footer-socials" aria-label="Social media">
+              <a href="/journal">Journal</a>
               <a href="https://www.instagram.com/lovetussle/" target="_blank" rel="noreferrer">
                 Instagram
               </a>

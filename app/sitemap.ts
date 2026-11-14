@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next";
 const siteUrl = "https://www.lovetussle.com";
 const pages = [
   "",
+  "journal",
+  "journal/plain-by-day",
   "concepts/dusk-sofa-bed.html",
   "concepts/simhasana.html",
   "concepts/kandariya-floor-lounger.html",
